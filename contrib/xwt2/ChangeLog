@@ -1,0 +1,52 @@
+/*
+ * $Id: ChangeLog 9282 2011-02-14 18:48:05Z druzus $
+ */
+
+/* Use this format for the entry headers:
+   YYYY-MM-DD HH:MM UTC[-|+]hhmm Your Full Name <your_email@address>
+   For example:
+   2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
+*/
+
+2004-08-26 22:00 UTC+0200 Lorenzo Fiorini <lorenzo_fiorini/at/teamwork.it>
+    * contrib/xwt2/Rules.make
+      * synced with contrib/xwt to manage msys/mingw32
+    * contrib/xwt2/tests/Makefile
+    - contrib/xwt2/tests/Makefile.mingw32
+    - contrib/xwt2/tests/Makefile.linux
+      * synced with contrib/xwt to manage msys/mingw32
+    * contrib/xwt2/tests/xwt_test1.prg 
+      * reformat to clean eol
+
+2004-06-16 10:50 UTC-0300 Luiz Rafael Culik <culikr /at / brturbo.com>
+    * xwt_gtk_base.c
+      xwt_gtk_layout.c
+      xwt_gtk_sensible.c 
+      xwt_gtk_window.c 
+      ! minor fix to problem that generate core dumps(related to color support) 
+
+2004-06-14 15:10 UTC-0300 Luiz Rafael Culik <culikr /at / brturbo.com>
+   * xwt_gtk_viewport.c
+     xwt_gtk_window.c
+     xwt_gtk_menuitem.c
+     xwt_gtk_textbox.c
+     xwt_gtk_textarea.c
+     xwt_gtk_grid.c
+     xwt_gtk_framewnd.c
+     xwt_gtk_menu.c
+     ! minor fix on construct(set the colors members to NULL)
+
+2004-05-24 19:55 UTC-0300 Luiz Rafael Culik <culikr /at / brturbo.com>
+   * xwt_gtk/xwt_gtk.h
+     !added new members to xwt_gtk_base structure(for storing colors)
+   * xwt_gtk/xwt_gtk_base.c
+     ! Handle color on BOOL xwt_gtk_base_setprop/BOOL xwt_gtk_base_getprop(current colors only for labels)
+    * xwt_gtk/xwt_gtk_label.c    
+    * xwt_gtk/xwt_gtk_button.c    
+     ! init color atribures to null
+   + tests/xwt_test1.prg
+     + new test to demostrate color( Gian, this one freeze the system, can you help)
+          
+   
+
+  

@@ -1,0 +1,17 @@
+Source: xharbour
+Section: devel
+Priority: optional
+Maintainer: Luiz Rafael Culik Guimaraes <luiz at xharbour.com.br>
+Build-Depends: debhelper (>= 4.0.0),  bison, libncurses5-dev, libgpmg1-dev, libslang2-dev, gcc
+Standards-Version: 3.6.1
+
+Package: xharbour
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Compiler for the xBase superset language often referred to as Clipper
+ Free software Clipper compatible compiler
+ XHarbour is a CA-Clipper compatible compiler for multiple platforms. This
+ package includes a compiler, pre-processor, header files, virtual machine
+ and documentation.
+ See README.RPM in the documentation directory for information specific to
+ this RPM distribution.

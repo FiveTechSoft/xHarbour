@@ -1,0 +1,86 @@
+#
+# $Id: xcc.cf 9279 2011-02-14 18:06:32Z druzus $
+#
+
+include $(TOP)$(ROOT)config/$(HB_ARCHITECTURE)/global.cf
+
+OBJ_EXT = .obj
+EXE_EXT = .exe
+LIB_PREF =
+LIB_EXT = .lib
+
+CC = xcc.exe
+CC_IN = -c
+CC_OUT = -Fo
+CPPFLAGS = -I. -I$(TOP) -I$(TOP)$(ROOT)
+# disabled - it produces bad code
+#CPPFLAGS += -Ot
+
+ifneq ($(HB_INC_COMPILE),)
+CPPFLAGS += -I$(HB_INC_COMPILE)
+endif
+
+# -U_MSC_VER -D__XCC__
+CFLAGS = 
+
+
+
+#C_FLAGSNMT   =-G6 -Ogtyb2p -FD -Gs -GA -TP -W3 -nologo -I$(INCLUDE_DIR) -D__WIN32__ -DHB_OS_WIN_32 -DSIMPLEX $(C_USR) $(CFLAGS)
+
+LD = xlink.exe
+LD_OUT = -OUT:
+
+# Add all libraries specified in CONTRIBS and LIBS.
+ifeq ($(HB_LIB_COMPILE),)
+LINKPATHS += $(foreach lib, $(CONTRIBS), -LIBPATH:$(TOP)$(ROOT)contrib/$(lib)/$(ARCH_DIR))
+LINKPATHS += $(foreach lib, $(LIBS), -LIBPATH:$(TOP)$(ROOT)source/$(lib)/$(ARCH_DIR))
+else
+LINKPATHS += -LIBPATH:$(HB_LIB_COMPILE)
+endif
+LINKLIBS += $(foreach lib, $(CONTRIBS), $(subst lib,,$(lib))$(LIB_EXT))
+LINKLIBS += $(foreach lib, $(LIBS), $(lib)$(LIB_EXT))
+
+# If LIBS specifies the rdd library, add all DB drivers.
+ifeq ($(findstring rdd,$(LIBS)),rdd)
+ifeq ($(HB_LIB_COMPILE),)
+LINKPATHS += $(foreach drv, $(HB_DB_DRIVERS), -LIBPATH:$(TOP)$(ROOT)source/rdd/$(drv)/$(ARCH_DIR))
+endif
+LINKLIBS += $(foreach drv, $(HB_DB_DRIVERS), $(drv)$(LIB_EXT))
+endif
+
+# Add the specified GT driver library and other RTLs
+ifeq ($(findstring rtl,$(LIBS)),rtl)
+
+ifeq ($(HB_LIB_COMPILE),)
+LINKPATHS += -LIBPATH:$(TOP)$(ROOT)source/rtl/pcre/$(ARCH_DIR)
+endif
+LINKLIBS += pcrepos$(LIB_EXT)
+
+ifeq ($(HB_LIB_COMPILE),)
+LINKPATHS += -LIBPATH:$(TOP)$(ROOT)source/rtl/zlib/$(ARCH_DIR)
+endif
+LINKLIBS += zlib$(LIB_EXT)
+
+ifeq ($(HB_LIB_COMPILE),)
+LINKPATHS += $(foreach gt, $(HB_GT_LIBS), -LIBPATH:$(TOP)$(ROOT)source/rtl/$(gt)/$(ARCH_DIR))
+endif
+LINKLIBS += $(foreach gt, $(HB_GT_LIBS), $(gt)$(LIB_EXT))
+
+endif
+
+LDFLAGS = $(LINKPATHS) kernel32.lib user32.lib \
+          winspool.lib ole32.lib oleaut32.lib uuid.lib \
+          comctl32.lib mapi32.lib advapi32.lib \
+          gdi32.lib mpr.lib
+
+ifeq ($(HB_GUI),yes)
+LDFLAGS += /SUBSYSTEM:WINDOWS
+endif
+
+# mpr wsock32 ws2_32 mapi32
+
+AR = xlib.exe
+ARFLAGS = $(A_USR)
+AR_RULE = $(AR) $(ARFLAGS) /out:$@ $(^F)
+
+include $(TOP)$(ROOT)config/rules.cf

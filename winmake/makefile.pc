@@ -1,0 +1,200 @@
+#===============================================================================
+#
+# $Id: makefile.pc 10238 2018-06-23 21:09:22Z lculik $
+#
+# MAKEFILE FOR PELLESC
+#
+# This is Generic File, do not change it. If you should require your own build
+# version, changes should only be made on your local copy.(AJ:2008-04-26)
+#
+#===============================================================================
+# Comment the following line when using version lower than 5.00
+.PHONY : ALL
+
+!include winmake\common.mak
+
+!if ("$(HB_DEBUG)"=="d")
+CC_DEBUGFLAGS =-Zi
+LNK_DEBUGFLAGS=-DEBUG
+!endif
+
+!if ("$(__COMP__)"=="__XCC__")
+RC        =XRC
+CC        =XCC
+LINKEXE   =XLINK
+LIBEXE    =XLIB
+OLDFLAG   =
+HB_MACHINE=IX86
+!else
+RC        =PORC
+CC        =POCC
+LINKEXE   =POLINK
+LIBEXE    =POLIB
+OLDFLAG   =-Go
+!endif
+
+ACE_DLL   ="$(HB_DIR_ADS)\ace32.dll"
+ACE_LIB   =$(ACE32_LIB)
+
+!if ("$(HB_ARCH)"=="64")
+HB_TARGET   =-Tamd64-coff
+HB_MACHINE  =X64
+WS32DEF     =winmake\ws2_32pc.def
+!else
+HB_TARGET   =-Tx86-coff
+!if !("$(__COMP__)"=="__XCC__")
+HB_MACHINE  =X86
+!endif
+!endif
+
+CC_DEFINES  =-DNEED_DUMMY_RETURN -DNULL=0 -DMINILZO_HAVE_CONFIG_H -W2
+
+!if ("$(HB_MT)"=="mt") || ("$(HB_THREAD_SUPPORT)"=="1")
+CC_DEFINES  =$(CC_DEFINES) -MT
+!endif
+
+!if ("$(__COMP__)"=="__XCC__")
+HARBOURFLAGS=-d__XCC__ $(HARBOURFLAGS)
+CC_DEFINES  =-D__XCC__ $(CC_DEFINES)
+!endif
+
+!if !("$(__COMP__)"=="__XCC__")
+PDFLIB      =$(PDFLITE_LIB)
+!endif
+
+INCLUDE_DIR=-I"$(CC_DIR)\include\win" $(INCLUDE_DIR)
+OPTFLAGS   =-Ze -Zx $(HB_TARGET) $(OLDFLAG)
+
+!include winmake\common3.mak
+
+#*******************************************************************************
+!if ("$(__BLD__)"=="CORE_BLD")
+#*******************************************************************************
+
+# XCC cannot compiler PDFLITE, due internal compiler error
+!if ("$(__COMP__)"=="__XCC__")
+PDFLITE_LIB_OBJS=\
+	$(OBJ_DIR)\pdf1$(OBJEXT)\
+	$(OBJ_DIR)\hbpdflib$(OBJEXT)
+!else
+HBDOC_EXE_OBJS=\
+	$(HBDOC_EXE_OBJS)\
+	$(HBDOC_PDF_OBJS)
+!endif
+
+# Hack for 64-bit compilation -> unresolved: __WSAFDIsSet
+#!if ("$(HB_ARCH)"=="64")
+#WS2_32PC_LIB=$(LIB_DIR)\ws2_32pc.lib
+#!endif
+
+#VM_LIB_OBJS=\
+#	$(VM_LIB_OBJS)\
+#	$(VM_MAIN_OBJS)
+
+LINKERFLAGS  =-LIBPATH:$(LIB_DIR) -LIBPATH:"$(CC_DIR)\LIB" -LIBPATH:"$(CC_DIR)\LIB\WIN$(HB_ARCH)" -MACHINE:$(HB_MACHINE) -SUBSYSTEM:CONSOLE
+
+!if ("$(HB_MT)"=="")
+PROJECT=$(ST_PROJECT)
+!else
+PROJECT=$(MT_PROJECT)
+!endif
+
+ALL: $(PROJECT)
+#!if ("$(HB_ARCH)"=="64")
+#PROJECT=$(PROJECT) $(WS2_32PC_LIB)
+#!endif
+
+VM_LIB_OBJS=\
+	$(VM_LIB_OBJS)\
+	$(VM_MAIN_OBJS)
+
+#*******************************************************************************
+!elseif ("$(__BLD__)"=="DLL_BLD")
+#*******************************************************************************
+
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(TIFF_LIB_OBJS)
+
+# Hack for 64-bit compilation -> unresolved: __WSAFDIsSet
+#!if ("$(HB_ARCH)"=="64")
+#WS2_32PC_LIB=$(LIB_DIR)\ws2_32pc.lib
+#!endif
+
+!if ("$(HB_DLL_ISMT)"=="1")
+CLIBFLAGS   =-MT $(CLIBFLAGS)
+!endif
+
+!if ("$(__COMP__)"=="__XCC__")
+__FLAGS     =-NOEXPOBJ
+!else
+__FLAGS     =-DEF:$(EXPORT_DEF) -IMPLIB:$(HARBOUR_DLL_LIB)
+!endif
+
+DLLFLAGS=\
+	$(__FLAGS)\
+	-OUT:$(HARBOUR_DLL)\
+	-DLL\
+	-MACHINE:$(HB_MACHINE)\
+	-LIBPATH:"$(CC_DIR)\LIB" -LIBPATH:$(LIB_DIR) -LIBPATH:"$(CC_DIR)\LIB\WIN$(HB_ARCH)"\
+	-SUBSYSTEM:WINDOWS\
+	$(HARBOUR_DLL_OBJS) $(HARBOUR_DLL_RES)
+
+EXEFLAGS=\
+	-LIBPATH:"$(CC_DIR)\LIB"\
+	-MACHINE:$(HB_MACHINE)\
+	-LIBPATH:$(LIB_DIR) -LIBPATH:"$(CC_DIR)\LIB\WIN$(HB_ARCH)"\
+	-SUBSYSTEM:CONSOLE
+
+ALL: $(DLL_PROJECT)
+
+#*******************************************************************************
+!elseif ("$(__BLD__)"=="CONTRIB_BLD")
+#*******************************************************************************
+
+!include winmake\common1.mak
+
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(HBSQLIT3_LIB)
+
+!if !("$(HB_ARCH)"=="64")
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(GTWVW_LIB)\
+	$(XWT_LIB)\
+	$(GTWVG_LIB)
+!endif
+
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(OPTIONAL_PRJ)
+
+ALL: $(CONTRIB_PROJECT)
+
+!endif
+
+RC_CMD         =$(RC) -r -i"$(CC_DIR)\include" -fo $@ $**
+HB_CMD         =$(HARBOUR_EXE) -n1 $(HARBOURFLAGS) $** -o$@
+HB_CMD_MAIN    =$(HARBOUR_EXE) -n0 $(HARBOURFLAGS) -d_USE_APPMAIN_ $** -o$@
+CC_CMD         =$(CC) $(CLIBFLAGS) -W2 -Fo$@ $**
+CC_CMD_HARBOUR =$(CC) $(CLIBFLAGS) -W2 -D__HB_COMPILER__ $(CC_COMP_DEFINES) -Fo$@ $**
+CCC_CMD        =$(CC_CMD)
+LIB_CMD        =$(LIBEXE) -MACHINE:$(HB_MACHINE) -OUT:$@ $**
+LIB_CMD_1      =$(LIB_CMD)
+LINK_CMD       =$(LINKEXE) $(LNK_DEBUGFLAGS) -MACHINE:$(HB_MACHINE) -OUT:$@ $** $(LINKERFLAGS)
+HRB_LINK_CMD   =$(LINKEXE) $(LNK_DEBUGFLAGS) -MACHINE:$(HB_MACHINE) -OUT:$(HARBOUR_EXE) $(HARBOUR_EXE_OBJS) $(HRB_LIBS) $(HARBOUR_EXE_RES) $(LINKERFLAGS)
+DLL_LINK_CMD  =$(LINKEXE) $(LNK_DEBUGFLAGS) $(DLLFLAGS)
+DLLEXE_LINK_CMD=$(LINKEXE) $(LNK_DEBUGFLAGS) $(EXEFLAGS) -OUT:$@ $** $(HARBOUR_DLL_LIB) 
+
+#===============================================================================
+# Building rules of Object files
+#===============================================================================
+
+#!if ("$(HB_ARCH)"=="64")
+#$(WS2_32PC_LIB) : $(WS32DEF)
+#	$(LIBEXE) -DEF:$(WS32DEF) -OUT:$(WS2_32PC_LIB) -MACHINE:AMD64
+#!endif
+
+!include winmake\common2.mak
+!include winmake\compile.mak

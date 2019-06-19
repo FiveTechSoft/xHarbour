@@ -1,0 +1,184 @@
+CLASS C Structure:
+------------------
+
+Syntax:
+-------
+
+   Definition:
+   -----------
+
+   C STRUCTURE <strucName> [Align <align>]
+     [ MEMBER <memberName> IS <CTYPEDEF> ]
+     [ MEMBER <memberName[<arrayLength>]> IS <CTYPEDEF> ]
+     [ MEMBER <memberName> IS <CTYPEDEF>(<arrayLength>) ]
+     [ MEMBER <memberName> IS|INPLACE <strucName> ]
+     [ MEMBER <memberName> AS <strucName> ]
+     [ ... ]
+   END C STRUCTURE
+
+   Example:
+   --------
+
+     // Explicit Alignment.
+     C STRUCTURE MyNestedStructure Align 1
+       Member c1[2] IS CTYPE_CHAR
+       Member l2    IS CTYPE_LONG
+     END C STRUCTURE
+
+     // Different Alignment.
+     C STRUCTURE MyStructure Align 4
+       Member sName    IS CTYPE_CHAR_PTR
+       Member cAge     IS CTYPE_CHAR
+       Member uiWeight IS CTYPE_UNSIGNED_INT
+       Member dHeight  IS CTYPE_DOUBLE
+
+       // This is IN-PLACE - Note IS clause (may also use INPLACE clause).
+       Member Nested   IS MyNestedStructure
+
+       // This is DETACHED - Note AS clause.
+       Member pNext    AS MyStructure
+     END C STRUCTURE
+
+
+   Usage:
+   ------
+
+   <lValue> IS <strucName>
+
+     Example:
+     --------
+       LOCAL oStructure IS MyStructure
+
+   <lValue> IS <strucName> := {...}
+
+     Example:
+     --------
+       LOCAL oStructure IS MyStructure := { "Tom", 10, 35, 1.10, { { 65, 0 }, 10000 } }
+
+   <lValue> IS <strucName> INIT|FROM {...}
+
+     Example:
+     --------
+       LOCAL oStructure IS MyStructure INIT { "Tom", 10, 35, 1.10, { { 65, 0 }, 10000 } }
+
+       oStructure IS MyStructure FROM { "Tom", 10, 35, 1.10, { { 65, 0 }, 10000 } }
+
+   <strucObj>:<memberName>
+
+     Example:
+     --------
+       oStructure:pNext IS MyStructure
+
+
+   Usage in other PRG files:
+   -------------------------
+
+   IMPORT C STRUCTURE <strucName>
+
+     Example:
+     --------
+       IMPORT C STRUCTURE MyStructure
+
+Properties:
+-----------
+
+   acTypes        -> Array Of CTYPE Definitions of Structure Members.
+   nAlign         -> [READ ONLY] Alignment attribute of the C Structure.
+   SizeOf         -> [READ ONLY] The equivalent of C' sizeof( STRUCTURE ).
+   nId            -> [READ ONLY] Unique ID of this Structure.
+   InternalBuffer -> [READ ONLY] String representation of the C Structure memory image.
+
+   [xMember] -> Each Structure Member is represented by a given Property of the same name.
+
+
+Methods:
+--------
+
+   Reset               -> Initializes all Structure Member properties to NIL.
+
+   Buffer( [New], [lAdopt] ) -> Optionally SET the InternalBuffer to a new image, which will automatically
+                                call the DeValue() Method to reflect the change in Member Properties. The
+                                lAdopt flag indicates memory pointed by nested pointers should be assigned
+                                to the resulting members, or should remain the responsability of caller.
+
+                             -> Return a copy of the InternalBuffer.
+
+   Value               -> Return a newly calculated C Structure Image and record it into InternalBuffer.
+
+   DeValue( [lAdopt] ) -> Calculates new values for all Member Properties to reflect the current image of
+                          the C Structure from the InternalBuffer. The lAdopt flag indicates memory pointed
+                          by nested pointers should be assigned to the resulting members, or should remain
+                          the responsability of caller.
+
+                         Return Array of Member Properties values.
+
+   Array              -> Return Array of Member Properties values.
+
+   SayMembers( cPad ) -> Outputs formated list of all Members and Sub-Members.
+
+   Init( aValues )    -> Initializes the structure with the values supplied in the [optionaly nested]
+                         aValues array.
+
+                      -> Return refernce to the initialized stracture object.
+
+
+   Pointer( [nNew], [lAdopt] ) -> Optionally SET the InternalBuffer to a new image (pointed to by nNew),
+                                  which will automatically call the Buffer() Method (and thus DeValue())
+                                  to reflect the change in Member Properties. The lAdopt flag indicates
+                                  memory pointed by nested pointers should be assigned to the resulting
+                                  members, or should remain the responsability of caller.
+
+                               -> Return the Pointer address of the InternalBuffer.
+
+
+PRG Support Functions:
+----------------------
+
+  __ActiveStructure( cStructure, nAlign )         -> PP Syntax Support. Registers the new Structure.
+
+                                                     Return refernce to the Definitions Array of the Structure.
+
+  HB_MemberDefinition( cMember, CType )           -> PP Syntax Support. Adds the Memebr Definition to the
+                                                     Current Structure.
+
+  HB_CStructureID( cStructure )                   -> Returns the ID of a given Structure by LITERAL Name.
+
+
+  HB_CStructure( cStructure, nAlign )             -> Creates a new Instance of a C Structure Class for the
+                                                     Active Structure. If such Structure was already defined
+                                                     it will instanciate an object of the pre-existing class,
+                                                     otherwise it will create new Class matching the definitions
+                                                     and will instanciate the new class.
+
+                                                     Return new object instance of the specified C Structure class.
+
+  HB_CStructureFromID( nId, nAlign )              -> Creates a new Instance of a C Structure based on the Structure ID.
+
+                                                     Return new object instance of the specified C Structure class.
+
+  HB_CStructureCSyntax( cStructure, aDefinitions, cTag, cSynonList, nAlign ) -> PP Syntax Support. Creates new Structure
+                                                                                From C Syntax definition. Reset __ActiveStructure().
+
+  HB_SizeOfCStructure( acTypes, nAlign )          -> Return the equivalent of C' sizeof( STRUCTURE ) for the given specs.
+
+  HB_ArrayToStructure( aValues, acTypes, nAlign ) -> Return a String representation of the C Structure memory image
+                                                     for the given values in array aValues based on given definitions.
+
+  HB_StructureToArray( Buffer, acTypes, nAlign )  -> Return an Array calculated from the given C Structure memory image
+                                                     based on given definitions.
+
+  HB_IS_CStructure( xVal )                        -> Return .T. if the passed value is a C Structure Class Object.
+
+
+
+C Support Functions:
+--------------------
+
+  unsigned int SizeOfCStructure( PHB_ITEM aDef, unsigned int uiAlign )
+  -> Return the calculated equivalent of C' sizeof( STRUCTURE ) for the given definitions.
+
+  PHB_ITEM ArrayToStructure( PHB_ITEM aVar, PHB_ITEM aDef, unsigned int uiAlign )
+  -> Return the equivalent of C Structure Memory Image for the given parameters.
+
+  PHB_ITEM StructureToArray( BYTE *Buffer, PHB_ITEM aDef, unsigned int uiAlign, bAdopt   )
+  -> Return xHarbour C Structure Class Object for the given parameters.

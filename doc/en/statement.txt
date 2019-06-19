@@ -1,0 +1,584 @@
+/*  $DOC$
+ *  $FUNCNAME$
+ *      FOR
+ *  $CATEGORY$
+ *      Statement
+ *  $ONELINER$
+ *      Execute a block of statements a specified number of times
+ *  $SYNTAX$
+ *      FOR <idCounter> := <nStart> TO <nEnd>
+ *         [STEP <nIncrement>]
+ *         <statements>...
+ *         [EXIT]
+ *         <statements>...
+ *         [LOOP]
+ *      NEXT
+ *  $ARGUMENTS$
+ *      <idCounter> is the name of the loop control or counter variable.  If
+ *      the specified <idCounter> is not visible or does not exist, a private
+ *      variable is created.
+ *
+ *      <nStart> is the initial value assigned to <idCounter>.  If
+ *      <nIncrement> is negative, <nStart> must be less than <nEnd>.
+ *
+ *      TO <nEnd> defines the final value of <idCounter>.  If <nIncrement>
+ *      is negative, <nStart> must be greater than <nEnd>; otherwise, <nStart>
+ *      must be less than <nEnd>.
+ *
+ *      STEP <nIncrement> defines the amount <idCounter> is changed for each
+ *      iteration of the loop.  <nIncrement> can be either positive or negative.
+ *      If the STEP clause is not specified, <idCounter> is incremented by one
+ *      for each iteration of the loop.
+ *
+ *      EXIT unconditionally branches control from within a FOR...NEXT
+ *      construct to the statement immediately following the nearest NEXT
+ *      statement.
+ *
+ *      LOOP branches control to the most recently executed FOR or DO WHILE
+ *      statement.
+ *
+ *  $RETURNS$
+ *      None
+ *  $DESCRIPTION$
+ *      FOR...NEXT is a control structure that executes a block of statements a
+ *      specified number of times.  The control structure loops from the initial
+ *      value of <idCounter> to the boundary specified by <nEnd>, moving through
+ *      the range of values of the control variable for an increment specified
+ *      by <nIncrement>.  All expressions in the FOR statement are reevaluated
+ *      for each iteration of the loop.  The <nStart> and <nEnd> expressions,
+ *      therefore, can be changed as the control structure operates.
+ *  
+ *      A FOR loop operates until <idCounter> is greater than <nEnd> or an EXIT
+ *      statement is encountered.  Control then branches to the statement
+ *      following the corresponding NEXT statement.  If a LOOP statement is
+ *      encountered, control branches back to the current FOR statement.
+ *  
+ *      If <nIncrement> is a negative value, <idCounter> is decremented rather
+ *      than incremented.  The FOR loop, however, continues until <idCounter> is
+ *      less than <nEnd>.  This means that <nEnd> must be less than <nStart>
+ *      when the FOR loop begins.
+ *  
+ *      FOR loops are useful for traversing arrays where <idCounter> is used as
+ *      the array subscript.  See the example below.
+ *  
+ *      FOR...NEXT constructs may be nested within any other control structures
+ *      to any depth.  The only requirement is that each control structure is
+ *      properly nested.
+ *  
+ *  $EXAMPLES$
+ *      .  This example traverses an array in ascending order:
+ *
+ *      nLenArray := LEN(aArray)
+ *      FOR i := 1 TO nLenArray
+ *         <statements>...
+ *      NEXT
+ *
+ *      .  To traverse an array in descending order:
+ *
+ *      nLenArray := LEN(aArray)
+ *      FOR i := nLenArray TO 1 STEP -1
+ *         <statements>...
+ *      NEXT
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This is Clipper compliant
+ *  $PLATFORMS$
+ *      All
+ *  $SEEALSO$
+ *      WHILE,FOR EACH,IF
+ *  $END$
+ */
+/*  $DOC$
+ *  $FUNCNAME$
+ *      FUNCTION
+ *  $CATEGORY$
+ *      Statement
+ *  $ONELINER$
+ *      Declare a user-defined function name and formal parameters
+ *  $SYNTAX$
+ *      [STATIC] FUNCTION <idFunction>[(<idParam list>)]
+ *      [LOCAL <identifier> [[:= <initializer>], ... ]]
+ *      [STATIC <identifier> [[:= <initializer>], ... ]]
+ *      [FIELD <identifier list> [IN <idAlias>]]
+ *      [MEMVAR <identifier list>]
+ *      .
+ *      . <executable statements>
+ *      .
+ *      RETURN <exp>
+ *  $ARGUMENTS$
+ *      <idFunction> is the name of the user-defined function to be
+ *      declared.  User-defined function names can be any length,(up to  an max to
+ *      63 characters) are significant.  Names can contain any combination
+ *      of characters, numbers, or underscores, but must begin with a character
+ *      or an underscore.  Leading underscores are not recommended since they
+ *      are reserved for internal functions.
+ *  
+ *      <idParam list> is the declaration of one or more parameter
+ *      variables.  Variables specified in this list are declared local.
+ *  
+ *      STATIC FUNCTION declares a user-defined function that can be invoked
+ *      only by procedures and user-defined functions declared in the same
+ *      program (.prg) file.
+ *  
+ *      LOCAL declares and optionally initializes a list of variables or
+ *      arrays whose visibility and lifetime is the current function.
+ *  
+ *      STATIC declares and optionally initializes a list of variables or
+ *      arrays whose visibility is the current user-defined function and
+ *      lifetime is the duration of the program.
+ *  
+ *      FIELD declares a list of identifiers to use as field names whenever
+ *      encountered.  If the IN clause is specified, referring to the declared
+ *      name includes an implicit reference to the specified alias.
+ *  
+ *      MEMVAR declares a list of identifiers to use as private or public
+ *      memory variables or arrays whenever encountered.
+ *  
+ *      <identifier> and <identifier list> are labels to be used as
+ *      variable or array names.
+ *  
+ *      <initializer> is a value to which an array or variable is originally
+ *      set in an inline expression.
+ *  
+ *      RETURN <exp> passes control back to the calling procedure or
+ *      user-defined function, returning the result of <exp> as the value of the
+ *      function.  Each function must have at least one RETURN statement that
+ *      returns a value.  RETURN statements can occur anywhere in the body of a
+ *      function.
+ *  $RETURNS$
+ *      <exp> The value especified on RETURN <exp>
+ *  $DESCRIPTION$
+ *      The FUNCTION statement declares a user-defined function and an optional
+ *      list of local variables to receive parameters often referred to as
+ *      formal parameters.  A user-defined function is a subprogram comprised of
+ *      a set of declarations and statements executed whenever you refer to
+ *      <idFunction> followed by an open and closed parentheses pair.  A function
+ *      definition begins with a FUNCTION statement which is the FUNCTION
+ *      declaration and ends with the next FUNCTION statement, PROCEDURE
+ *      statement, or end of file.
+ *  
+ *      Functions encapsulate a computational block of code and then later
+ *      create expressions using the value returned.  Functions and procedures
+ *      increase both readability and modularity, isolate change, and help
+ *      manage complexity.
+ *  
+ *      A function in xharbour is the same as a procedure, except that it must
+ *      return a value.  The returned value can be any data type including an
+ *      array, a code block, or NIL.  Each function must begin with a FUNCTION
+ *      statement and contain at least one RETURN statement with an argument.
+ *      Function declarations cannot be nested within other function
+ *      definitions.  A user-defined function can be used wherever standard
+ *      functions are supported, including expressions.
+ *  
+ *      The visibility of function names falls into two classes.  Functions that
+ *      are visible anywhere in a program are referred to as public functions
+ *      and declared with a FUNCTION statement.  Functions that are visible only
+ *      within the current program (.prg) file are referred to as static
+ *      functions and declared with a STATIC FUNCTION statement.  Static
+ *      functions have filewide scope.
+ *  
+ *      Static functions limit visibility of a function name, thereby
+ *      restricting access to the function.  Because of this, subsystems defined
+ *      within a single program (.prg) file can provide an access protocol with
+ *      a series of public functions and conceal the implementation details of
+ *      the subsystem within static functions and procedures.  Since the static
+ *      function references are resolved at compile time, they preempt
+ *      references to public functions which are resolved at link time.  This
+ *      ensures that within a program file, a reference to a static function
+ *      executes that function if there is a name conflict with a public
+ *      function.
+ *  $EXAMPLES$
+ *      FUNCTION SUM(x,y)
+ *      RETURN x+y
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This is Clipper compliant
+ *  $PLATFORMS$
+ *      All
+ *  $SEEALSO$
+ *      LOCAL,PARAMETERS,PCOUNT(),PRIVATE,PROCEDURE,RETURN 
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      IF
+ *  $CATEGORY$
+ *      Statement
+ *  $ONELINER$
+ *      Execute one of several alternative blocks of statements
+ *  $SYNTAX$
+ *      IF <lCondition1>
+ *         <statements>...
+ *      [ELSEIF <lCondition2>]
+ *         <statements>...
+ *      [ELSE]
+ *         <statements>...
+ *      END[IF]
+ *  $ARGUMENTS$
+ *      <lCondition> is a logical control expression.  If it evaluates to
+ *      true (.T.), all following statements are executed until an ELSEIF, ELSE,
+ *      or ENDIF is encountered.
+ *  
+ *      ELSEIF <lCondition> identifies statements to execute if the
+ *      associated condition evaluates to true (.T.) and all preceding IF or
+ *      ELSEIF conditions evaluate to false (.F.).  Any number of ELSEIF
+ *      statements can be specified within the same IF...ENDIF control
+ *      structure.
+ *  
+ *      ELSE identifies statements to execute if the IF and all preceding
+ *      ELSEIF conditions evaluate to false (.F.).
+ *  $RETURNS$
+ *      None
+ *  $DESCRIPTION$
+ *      The IF control structure works by branching execution to statements
+ *      following the first true (.T.) evaluation of the IF or any ELSEIF
+ *      condition.  Execution then continues until the next ELSEIF, ELSE, or
+ *      ENDIF is encountered whereupon execution branches to the first statement
+ *      following the ENDIF.
+ *  
+ *      If no condition evaluates to true (.T.), control passes to the first
+ *      statement following the ELSE statement.  If an ELSE statement is not
+ *      specified, control branches to the first statement following the ENDIF
+ *      statement.
+ *  
+ *      IF...ENDIF structures may be nested within IF...ENDIF structures and
+ *      other control structure commands.  These structures, however, must be
+ *      nested properly.
+ *  
+ *      The IF...ELSEIF...ENDIF form of the IF construct is identical to DO
+ *      CASE...ENDCASE.  There is no specific advantage of one syntax over the
+ *      other.  The IF construct is also similar to the IF() function which can
+ *      be used within expressions.
+ *  $EXAMPLES$
+ *      n := 50
+ *      y := 100
+ *      IF n < y
+ *         ? "n is smaller"
+ *      ELSE
+ *         ? "n is greater"
+ *      ENDIF 
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This is Clipper compliant
+ *  $PLATFORMS$
+ *      All
+ *  $SEEALSO$
+ *      BEGIN,SEQUENCE,DO CASE,DO WHILE,FOR,IF() 
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      PUBLIC
+ *  $CATEGORY$
+ *      Statement
+ *  $ONELINER$
+ *      Create and initialize public memory variables and arrays
+ *  $SYNTAX$
+ *      PUBLIC <identifier> [[:= <initializer>], ... ]
+ *  $ARGUMENTS$
+ *      If the <identifier> is followed by square brackets ([ ]), it is created
+ *      as an array.  If the <identifier> is an array, the syntax for specifying
+ *      the number of elements for each dimension can be array[<nElements>,
+ *      <nElements2>,...] or array[<nElements>][<nElements2>]....  The maximum
+ *      number of elements per dimension is limited only by available memory.  The maximum number of
+ *      dimensions per array is limited only by available memory.
+ *  
+ *      <initializer> is the optional assignment of a value to a new public
+ *      variable.  Array identifiers, however, cannot be given values with an
+ *      <initializer>.  An <initializer> for a public variable consists of the
+ *      inline assignment operator (:=) followed by any valid Xharbour
+ *      expression including a literal array.  Except for arrays, if no
+ *      <initializer> is specified, public variables are initialized to false
+ *      (.F.).  This is an exception to the general rule that uninitialized
+ *      variables are NIL.  With arrays, however, the initial value of each
+ *      element is NIL.
+ *  
+ *      A list of variables and arrays can be created and, optionally,
+ *      initialized with one PUBLIC statement if each definition is separated by
+ *      a comma.
+ *  $DESCRIPTION$
+ *      The PUBLIC statement creates variables and arrays visible to all
+ *      procedures and user-defined functions in a program.  Public variables
+ *      exist for the duration of the program or until explicitly released with
+ *      CLEAR ALL, CLEAR MEMORY, or RELEASE.  Declaring private, local, or
+ *      static variables or arrays with the same name as existing public
+ *      variables temporarily hides those public variables until the overriding
+ *      variables are released or are no longer visible.  An attempt to create a
+ *      public variable with the same name as an existing and visible private
+ *      variable is simply ignored (see Notes below for an exception).
+ *  
+ *      Attempting to specify a PUBLIC variable that conflicts with a previous
+ *      FIELD, LOCAL, or STATIC declaration of the same name results in a fatal
+ *      compiler error.  This is true regardless of the scope of the
+ *      declaration.
+ *  
+ *      PUBLIC statements are executable statements and, therefore, must be
+ *      specified within the body of a procedure or user-defined function
+ *      definition.  They also must follow all compile-time declarations, such
+ *      as FIELD, LOCAL, MEMVAR, and STATIC.  
+ *  $EXAMPLES$
+ *      .  This example creates two PUBLIC arrays and one PUBLIC
+ *         variable:
+ *         PUBLIC aArray1[10, 10], var2
+ *         PUBLIC aArray2[20][10]
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This is Clipper compliant
+ *  $PLATFORMS$
+ *      All
+ *  $SEEALSO$
+ *      LOCAL,MEMVAR,PARAMETERS,PRIVATE,STATIC 
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      PROCEDURE
+ *  $CATEGORY$
+ *      Statement
+ *  $ONELINER$
+ *      Declare a procedure name and formal parameters
+ *  $SYNTAX$
+ *      [STATIC] PROCEDURE <idProcedure> [(<idParam list>)]
+ *      [FIELD <idField list> [IN <idAlias>]
+ *      [LOCAL <identifier> [[:= <initializer>], ... ]]
+ *      [MEMVAR <identifier list>]
+ *      [STATIC <identifier> [[:= <initializer>], ... ]]
+ *      .
+ *      . <executable statements>
+ *      .
+ *      [RETURN]
+ *  $ARGUMENTS$
+ *      <idProcedure> is the name of the procedure to be declared.
+ *      Procedure names can be any length, (up to  an max to 63 characters) are
+ *      significant.  Names can contain any combination of characters, numbers,
+ *      or underscores, but leading underscores are reserved.
+ *  
+ *      <idParam list> is the declaration of one or more parameter
+ *      variables.  Variables specified in this list are declared local.
+ *  
+ *      STATIC PROCEDURE declares a procedure that can be called only by
+ *      procedures and user-defined functions declared in the same program
+ *      (.prg) file.
+ *  
+ *      FIELD declares a list of identifiers, <idField list>, to use as
+ *      field names whenever encountered.  If the IN clause is specified,
+ *      referring to the declared name, <idAlias> is a reference to the
+ *      appropriate work area of the specified database.
+ *  
+ *      LOCAL declares and optionally initializes a list of variables or
+ *      arrays whose visibility and lifetime is the current procedure.
+ *  
+ *      <identifier>, <identifier list> is a label or labels used as
+ *      variable or array names.  If the <identifier> is followed by square
+ *      brackets ([ ]), it is created as an array.  If the <identifier> is an
+ *      array, the syntax for specifying the number of elements for each
+ *      dimension can be array[<nElements>, <nElements2>,...] or
+ *      array[<nElements>][<nElements2>]...  The maximum number of elements per
+ *      dimension is limited only by available memory.  The maximum number of dimensions per array is
+ *      limited only by available memory.
+ *  
+ *      <initializer> is the value to which an optional inline assignment
+ *      sets the <identifier> variable--essentially, the assignment operator,
+ *      (:=) --followed by any valid Xharbour expression, including a literal
+ *      array.  If no <initializer> is specified, variables are initialized to
+ *      NIL.  In the case of arrays, all element are initialized to NIL.
+ *  
+ *      MEMVAR declares a list of identifiers, <identifier list>, to use as
+ *      private or public memory variables or arrays whenever encountered.
+ *  
+ *      STATIC declares and, optionally, initializes a list of variables or
+ *      arrays whose visibility is the current procedure and whose lifetime is
+ *      the duration of the program.
+ *  
+ *      RETURN passes control back to the calling procedure or user-defined
+ *      function.  If a RETURN is not specified, control passes back to the
+ *      calling routine when the procedure definitions ends.  In all cases, the
+ *      compiler terminates the procedure definition when it encounters another
+ *      PROCEDURE statement, FUNCTION statement, or end of file character.
+ *  $DESCRIPTION$
+ *      The PROCEDURE statement declares a procedure and an optional list of
+ *      local variables to receive parameters passed from a calling routine.  A
+ *      procedure is a subprogram comprised of a set of declarations and
+ *      statements executed whenever you refer to <idProcedure>, followed by an
+ *      open and close parentheses pair or with the DO statement.  A procedure
+ *      definition begins with a PROCEDURE statement and ends with the next
+ *      PROCEDURE statement, FUNCTION statement, or end of file.
+ *  
+ *      Procedures that encapsulate computational blocks of code provide
+ *      readability and modularity, isolate change, and help manage complexity.
+ *  
+ *      A procedure in Xharbour is the same as a user-defined function, with
+ *      the exception that it always returns NIL.  Each procedure must begin
+ *      with a PROCEDURE statement and may, optionally, contain a RETURN
+ *      statement to return control to the calling procedure or user-defined
+ *      function.  A RETURN statement, however, is not required.  Procedure
+ *      declarations cannot be nested within other procedure definitions.
+ *  
+ *      The visibility of procedure names falls into two classes.  Procedures
+ *      that are visible anywhere in a program are referred to as public
+ *      procedures and declared with a PROCEDURE statement.  Procedures that are
+ *      visible only within the current program (.prg) file are referred to as
+ *      static procedures and declared with a STATIC PROCEDURE statement.
+ *      Static procedures have filewide scope.
+ *  
+ *      Static procedures are quite useful for a number of reasons.  First, they
+ *      limit visibility of a procedure name thereby restricting access to the
+ *      procedure.  Because of this, subsystems defined within a single program
+ *      (.prg) file can provide an access protocol with a series of public
+ *      procedures and conceal the implementation details of the subsystem
+ *      within static procedures and functions.  Second, since the static
+ *      procedure references are resolved at compile time, they preempt
+ *      references to public procedures and functions which are resolved at link
+ *      time.  This ensures that, within a program file, a reference to a static
+ *      procedure executes that procedure if there is a name conflict with a
+ *      public procedure or function.
+ *  
+ *      For more information on procedures, variable declarations, and parameter
+ *      passing, refer to the "Basic Concepts" chapter in the Programming and
+ *      Utilities Guide.
+ *  $EXAMPLES$
+ *      PROCEDURE Skeleton( cName, cClassRoom, nBones, ;
+ *                                 nJoints )
+ *         LOCAL nCrossBones, aOnHand := {"skull", ;
+ *                                         "metacarpals"}
+ *         STATIC nCounter := 0
+ *         .
+ *         . <executable statements>
+ *         .
+ *      RETURN
+ *
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This is Clipper compliant
+ *  $PLATFORMS$
+ *      All
+ *  $SEEALSO$
+ *      FUNCTION,LOCAL,PARAMETERS,PCOUNT(),RETURN,STATIC 
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      RETURN
+ *  $CATEGORY$
+ *      Statement
+ *  $ONELINER$
+ *      Terminate a procedure, user-defined function, or program
+ *  $SYNTAX$
+ *      RETURN [<exp>]
+ *  $ARGUMENTS$
+ *      <exp> is an expression of any type that evaluates to the return
+ *      value for user-defined functions.  If a user-defined function terminates
+ *      without executing a RETURN statement, the return value is NIL.
+ *  $DESCRIPTION$
+ *      RETURN terminates a procedure, user-defined function, or program by
+ *      returning control to either the calling procedure or user-defined
+ *      function.  When RETURN executes in the highest level procedure, control
+ *      passes to the operating system.  All private variables created and local
+ *      variables declared in the current procedure or user-defined function are
+ *      released when control returns to the calling procedure.
+ *  
+ *      There can be more than one RETURN in a procedure or user-defined
+ *      function.  A procedure or user-defined function need not, however, end
+ *      with a RETURN.  Since user-defined functions must return values, each
+ *      must contain at least one RETURN statement with an argument.
+ *  
+ *      Note:  A procedure or user-defined function definition is terminated
+ *      by a PROCEDURE statement, a FUNCTION statement, or end of file but not
+ *      by a RETURN statement.
+ *  
+ *      Notes
+ *  
+ *      .  Arrays: Since array is a data type like any other data type,
+ *         instances of array type are really values like character strings and,
+ *         therefore, can be RETURNed from a user-defined function.
+ *  $EXAMPLES$
+ *      FUNCTION SUM( X, Y )
+ *      RETURN X + Y
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This is Clipper compliant
+ *  $PLATFORMS$
+ *      All
+ *  $SEEALSO$
+ *      BEGIN SEQUENCE,FUNCTION,LOCAL,PRIVATE,PROCEDURE
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      STATIC
+ *  $CATEGORY$
+ *      Statement
+ *  $ONELINER$
+ *      Declare and initialize static variables and arrays
+ *  $SYNTAX$
+ *      STATIC <identifier> [[:= <initializer>], ... ]
+ *  $ARGUMENTS$
+ *      <identifier> is the name of the variable or array to declare static.
+ *      If the <identifier> is followed by square brackets ([ ]), it is created
+ *      as an array.  If the <identifier> is an array, the syntax for specifying
+ *      the number of elements for each dimension can be array[<nElements>,
+ *      <nElements2>,...] or array[<nElements>] [<nElements2>]...  The maximum
+ *      number of elements is limited by avaliable memory.  The maximum number of 
+ *      dimensions is limited only by available memory.
+ *
+ *      <initializer> is the optional assignment of a value to a new static
+ *      variable.  An <initializer> for a static variable consists of the inline
+ *      assignment operator (:=) followed by a compile-time constant expression
+ *      consisting entirely of constants and operators or a literal array.  If
+ *      no explicit <initializer> is specified, the variable is given an initial
+ *      value of NIL.  In the case of an array, each element is NIL.  Array
+ *      identifiers cannot be given values with an <initializer>.
+ *  
+ *      Note:  The macro operator (&) cannot be used in a STATIC declaration
+ *      statement.
+ *  $DESCRIPTION$
+ *      The STATIC statement declares variables and arrays that have a lifetime
+ *      of the entire program but are only visible within the entity that
+ *      creates them.  Static variables are visible only within a procedure or
+ *      user-defined function if declared after a PROCEDURE or FUNCTION
+ *      statement.  Static variables are visible to all procedures and functions
+ *      in a program (.prg) file (i.e., have filewide scope) if they are
+ *      declared before the first procedure or user-defined function definition
+ *      in the file.  Use the /N compiler option to compile a program with
+ *      filewide variable scoping.
+ *  
+ *      All static variables in a program are created when the program is first
+ *      invoked, and all values specified in a static <initializer> are assigned
+ *      to the variable before the beginning of program execution.
+ *  
+ *      Declarations of static variables within a procedure or user-defined
+ *      function must occur before any executable statement including PRIVATE,
+ *      PUBLIC, and PARAMETERS.  If a variable of the same name is declared
+ *      FIELD, LOCAL, or MEMVAR within the body of a procedure or user-defined
+ *      function, a compiler error occurs and no object (.OBJ) file is
+ *      generated.
+ *  
+ *      The maximum number of static variables in a program is limited only by
+ *      available memory.
+ *  $EXAMPLES$
+ *      STATIC aTemp := {1,2,3,4}
+ *
+ *      FUNCTION MAIN
+ *         ? aTemp[ 1 ]
+ *      RETURN NIL
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This is Clipper compliant
+ *  $PLATFORMS$
+ *      All
+ *  $SEEALSO$
+ *      FUNCTION,LOCAL,PARAMETERS,PRIVATE,PROCEDURE,PUBLIC 
+ *  $END$
+ */

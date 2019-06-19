@@ -1,0 +1,234 @@
+#===============================================================================
+#
+# $Id: makefile.vc 10241 2018-08-18 18:58:28Z lculik $
+#
+# MAKEFILE FOR MSVC
+#
+# This is Generic File, do not change it. If you should require your own build
+# version, changes should only be made on your local copy.(AJ:2008-04-26)
+#
+#===============================================================================
+!include winmake\msvcerr.vc
+!include winmake\common.mak
+
+RC        =RC
+CC        =CL
+LINKEXE   =LINK
+LIBEXE    =LIB
+
+!if ("$(HB_DEBUG)"=="d")
+CC_DEBUGFLAGS =-Zi
+LNK_DEBUGFLAGS=-DEBUG
+!endif
+
+!if ("$(HB_ARCH)"=="64")
+ACE_LIB   =$(ACE64_LIB)
+HB_MACHINE=X64
+!else
+ACE_LIB   =$(ACE32_LIB)
+HB_MACHINE=X86
+CPLUSPLUS =1
+!endif
+
+!if ("$(__MSC__)"=="6")
+OPTFLAGS    =-Ogt2yb1p -G6
+WARNINGFLAGS=-W3
+!else if ("$(__MSC__)"=="7") || ("$(__MSC__)"=="71")
+OPTFLAGS    =-Otyb1p -G7
+WARNINGFLAGS=-W4 -wd4127 -wd4054 -wd4055 -wd4244
+! if ("$(__MSC__)"=="71")
+IGNOREFLAGS =-IGNORE:4078
+!endif
+!else
+OPTFLAGS    =-Otyb1
+!if ("$(__MSC__)"=="8") || ("$(__MSC__)"=="9")
+WARNINGFLAGS=-W4 -wd4127 -wd4054 -wd4055 -wd4244
+!else
+WARNINGFLAGS=-W4 -wd4127 -wd4054 -wd4055
+!endif
+!endif
+
+!if ("$(__MSC__)"=="8") || ("$(__MSC__)"=="9") || ("$(__MSC__)"=="10") || ("$(__MSC__)"=="11")
+!if ("$(USE_MSVCRT)"=="1")
+MANIFESTFLAGS=-MANIFEST -MANIFESTFILE:"$(OBJ_DIR)\intermediate.manifest"
+MT_CMD_DLL   =MT -nologo -manifest "$(OBJ_DIR)\intermediate.manifest" -outputresource:$@;2
+MT_CMD       =MT -nologo -manifest "$(OBJ_DIR)\intermediate.manifest" -outputresource:$@;1
+!else
+MANIFESTFLAGS=-MANIFEST:NO
+!endif
+!endif
+
+!if ("$(CPLUSPLUS)"=="1")
+CPPFLAGS  =-TP
+!endif
+
+!if ("$(__MSC__)"=="9") || ("$(__MSC__)"=="10") || ("$(__MSC__)"=="11")
+LINKERFLAGS=-NXCOMPAT -DYNAMICBASE -FIXED:NO
+!endif
+
+OPTFLAGS    =-c -GA -Gs -EHsc -nologo $(OPTFLAGS)
+
+!if ("$(USE_MSVCRT)"=="1")
+CMODEFLAGS  =-MD
+!else
+CMODEFLAGS  =-MT
+!endif
+
+CLIBFLAGS   =$(CMODEFLAGS) $(CLIBFLAGS) -D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE
+
+!include winmake\common3.mak
+
+#*******************************************************************************
+!if ("$(__BLD__)"=="CORE_BLD")
+#*******************************************************************************
+
+HBDOC_EXE_OBJS=\
+	$(HBDOC_EXE_OBJS)\
+	$(HBDOC_PDF_OBJS)
+
+!if !("$(HB_GTALLEG)"=="")
+HB_GT_LIBS=\
+	$(HB_GT_LIBS)\
+	$(GTALLEG_LIB)
+!endif
+
+!if ("$(HB_MT)"=="")
+PROJECT=$(ST_PROJECT)
+!else
+PROJECT=$(MT_PROJECT)
+!endif
+
+ALL: $(PROJECT)
+
+LINKERFLAGS=$(LINKERFLAGS)\
+	-NOLOGO -LIBPATH:"$(CC_DIR)\LIB" -LIBPATH:$(LIB_DIR) -SUBSYSTEM:CONSOLE $(IGNOREFLAGS) $(LFLAGS)
+
+!if ("$(USE_MSVCRT)"=="")
+LINKERFLAGS=$(LINKERFLAGS) -FORCE:MULTIPLE
+!endif
+
+VM_LIB_OBJS=\
+	$(VM_LIB_OBJS)\
+	$(VM_MAIN_OBJS)
+
+#*******************************************************************************
+!elseif ("$(__BLD__)"=="DLL_BLD")
+#*******************************************************************************
+# Uncomment this line if linking with MSVCRT is preferred
+# USE_MSVCRT=1
+
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(TIFF_LIB_OBJS)
+
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(GTWVW_LIB_OBJS)
+	
+!if !("$(HB_DIR_ADS)"=="")
+!if ("$(HB_DLL_HAVE_ADS)"=="1")
+INCLUDE_DIR=-I"$(HB_DIR_ADS)" $(INCLUDE_DIR)
+!if ("$(HB_ADS_IMPLIB)"=="no")
+!else
+!if ("$(HB_ARCH)"=="64")
+COMPILERLIBS=\
+    "$(HB_DIR_ADS)\ace64.lib"
+!else
+COMPILERLIBS=\
+    "$(HB_DIR_ADS)\ace32.lib"
+!endif
+ACE_LIBPATH=\
+    -LIBPATH:"$(HB_DIR_ADS)"
+!endif
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(RDDADS_LIB_OBJS)
+!endif
+!endif
+
+DLLFLAGS=\
+  	-MAP\
+	-DEF:$(EXPORT_DEF)\
+	-OUT:$(HARBOUR_DLL)\
+	-DLL\
+	$(IGNOREFLAGS)\
+	-IMPLIB:$(HARBOUR_DLL_LIB)\
+	-MACHINE:$(HB_MACHINE)\
+	-NOLOGO\
+        -LIBPATH:"$(CC_DIR)\LIB" -LIBPATH:$(LIB_DIR) $(ACE_LIBPATH)\
+	-SUBSYSTEM:WINDOWS\
+	$(LINKERFLAGS)\
+	$(LFLAGS) $(MANIFESTFLAGS)\
+	$(HARBOUR_DLL_OBJS)\
+	$(HARBOUR_DLL_RES)
+
+EXEFLAGS=\
+	-NOLOGO $(LINKERFLAGS) $(IGNOREFLAGS) -MACHINE:$(HB_MACHINE) -LIBPATH:"$(CC_DIR)\LIB"\
+	-LIBPATH:$(LIB_DIR)\
+	-SUBSYSTEM:CONSOLE
+
+ALL: $(DLL_PROJECT)
+
+#*******************************************************************************
+!elseif ("$(__BLD__)"=="CONTRIB_BLD")
+#*******************************************************************************
+
+!if ("$(HB_ADS_IMPLIB)"=="no")
+RDDADS_LIB_OBJS=\
+	$(RDDADS_LIB_OBJS)\
+	$(OBJ_DIR)\ace32$(OBJEXT)
+!endif
+
+!include winmake\common1.mak
+
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(HBSQLIT3_LIB)
+
+!if !("$(HB_ARCH)"=="64")
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(GTWVW_LIB)\
+	$(XWT_LIB)\
+	$(GTWVG_LIB)\
+	$(HBZIP_LIB)
+!endif
+
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(OPTIONAL_PRJ)
+
+!if ("$(HB_DEBUG)"=="d")
+ZIP_DEBUGFLAGS=$(CC_DEBUGFLAGS)
+!else
+ZIP_DEBUGFLAGS=-DNDEBUG
+!endif
+
+ALL: $(CONTRIB_PROJECT)
+
+!endif
+
+RC_CMD         =$(RC) -r -i"$(CC_DIR)\include" -fo $@ $**
+HB_CMD         =$(HARBOUR_EXE) -n1 $(HARBOURFLAGS) $** -o$@
+HB_CMD_MAIN    =$(HARBOUR_EXE) -n0 $(HARBOURFLAGS) -d_USE_APPMAIN_ $** -o$@
+CC_CMD         =$(CC) $(CLIBFLAGS) $(CPPFLAGS) -Fo$@ $**
+CC_CMD_HARBOUR =$(CC) $(CLIBFLAGS) -D__HB_COMPILER__ $(CC_COMP_DEFINES) $(CPPFLAGS) -Fo$@ $**
+CCC_CMD        =$(CC) $(CLIBFLAGS) -Fo$@ $**
+LIB_CMD        =$(LIBEXE) -MACHINE:$(HB_MACHINE) -NOLOGO -OUT:$@ $**
+LIB_CMD_1      =$(LIB_CMD)
+LINK_CMD       =$(LINKEXE) $(LNK_DEBUGFLAGS) -MACHINE:$(HB_MACHINE) -NOLOGO -OUT:$@ $** $(LINKERFLAGS) $(MANIFESTFLAGS)
+HRB_LINK_CMD   =$(LINKEXE) $(LNK_DEBUGFLAGS) -MACHINE:$(HB_MACHINE) -NOLOGO -OUT:$(HARBOUR_EXE) $(HARBOUR_EXE_OBJS) $(HRB_LIBS) $(HARBOUR_EXE_RES) $(LINKERFLAGS) $(MANIFESTFLAGS)
+DLL_LINK_CMD   =$(LINKEXE) $(LNK_DEBUGFLAGS) $(DLLFLAGS)
+DLLEXE_LINK_CMD=$(LINKEXE) $(LNK_DEBUGFLAGS) $(EXEFLAGS) $(LFLAGS) -OUT:$@ $** $(PDFLITE_LIB) $(HARBOUR_DLL_LIB)
+CC_CMD_ZIP     =$(CC)\
+	$(OPTFLAGS) $(CMODEFLAGS) -W3 -I"$(HBZIP_DIR)\INCLUDE" -I"include" -I"$(CC_DIR)\include" -TP\
+	-D_WIN32 $(ZIP_DEBUGFLAGS) -D_MBCS -D"_LIB"\
+	-Fp"$(OBJ_DIR)\hbzip.pch" -Fd"$(OBJ_DIR)\\"\
+	-D_CRT_SECURE_NO_WARNINGS -Fo$@ $**
+
+#===============================================================================
+# Building rules of Object files
+#===============================================================================
+
+!include winmake\common2.mak
+!include winmake\compile.mak

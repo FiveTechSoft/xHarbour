@@ -1,0 +1,234 @@
+#===============================================================================
+#
+# $Id: makefile.bc 10236 2018-06-09 20:33:50Z enricomaria $
+#
+# MAKEFILE FOR BORLAND C++
+#
+# This is Generic File, do not change it. If you should require your own build
+# version, changes should only be made on your local copy.(AJ:2008-04-26)
+#
+#===============================================================================
+!include winmake\common.mak
+
+RC        =BRC32
+
+!if ("$(HB_ARCH)"=="64")
+ACE_LIB   =$(ACE64_LIB)
+CC        =bcc64
+LINKEXE   =ilink64
+LIBEXE    =tlib64
+IMPLIBEXE =MKEXP
+!else
+ACE_LIB   =$(ACE32_LIB)
+CC        =BCC32
+LINKEXE   =ILINK32
+LIBEXE    =TLIB
+IMPLIBEXE =IMPLIB
+!endif
+
+OPTFLAGS=-q -d -6 -a8
+
+!if ( ( ("$(HB_CG32)"=="1") || ("$(HB_DEBUG)"=="d") ) && !defined( HB_OS_WIN_64 ) )
+COMPILERLIBS=\
+	cg32.lib\
+	$(COMPILERLIBS)
+OPTFLAGS              =-Od $(OPTFLAGS)
+LINEFLAGS             =
+CC_DEBUGFLAGS         =-y -v -vG
+CC_LINKER_DEBUG_FLAGS =-v
+HB_CG32               =1
+!endif
+
+!if ( ( "$(HB_DEBUG)"=="d" ) && defined( HB_OS_WIN_64 ) )
+LINEFLAGS             =
+CC_DEBUGFLAGS         =-g
+CC_LINKER_DEBUG_FLAGS =-v
+!endif
+
+!if ("$(HB_ARCH)"=="64")
+OPTFLAGS              =-O2 $(OPTFLAGS)
+!else
+OPTFLAGS              =-O2 -OS -Ov -Oi -Oc -Ve -b -k- $(OPTFLAGS)
+!endif
+
+!if !("$(HB_DIR_ADS)"=="")
+!if ("$(HB_ARCH)"=="64")
+ACE_DLL="$(HB_DIR_ADS)\ace64.dll"
+!else
+ACE_DLL="$(HB_DIR_ADS)\ace32.dll"
+!endif
+!if !("$(HB_ADS_IMPLIB)"=="no") && !("$(HB_ADS_IMPLIB)"=="0")
+HB_ADS_CREATEIMPLIB=1
+!else
+HB_ADS_CREATEIMPLIB=0
+!endif
+
+!endif
+
+!if ("$(ARFLAGS)"=="")
+ARFLAGS=/0 /C /P256
+!endif
+
+!if ("$(HB_ARCH)"=="64")
+ARFLAGS        =/A $(ARFLAGS)
+BCC_STARTUP_OBJ=c0x64.o
+COMPILERLIBS   =\
+	$(COMPILERLIBS)\
+	ws2_32.a\
+	cw64mt.a\
+	import64.a
+!else
+BCC_STARTUP_OBJ=c0x32.obj
+COMPILERLIBS   =\
+	$(COMPILERLIBS)\
+	ws2_32.lib\
+	cw32mt.lib\
+	import32.lib
+!endif
+
+!if ("$(WARNINGFLAGS)"=="")
+WARNINGFLAGS =-w -w-8027 -w-8071 -w-8121
+
+!if ("$(HB_DEBUG)"=="d")
+WARNINGFLAGS =-w -w-8027 -w-8080 -w-8121
+!endif
+
+!endif
+
+!include winmake\common3.mak
+
+#*******************************************************************************
+!if ("$(__BLD__)"=="CORE_BLD")
+#*******************************************************************************
+VM_LIB_OBJS=\
+	$(VM_LIB_OBJS)\
+	$(VM_MAIN_OBJS)
+
+HBDOC_EXE_OBJS=\
+	$(HBDOC_EXE_OBJS)\
+	$(HBDOC_PDF_OBJS)
+
+!if ("$(HB_GTALLEG)"=="1")
+HB_GT_LIBS=\
+	$(HB_GT_LIBS)\
+	$(GTALLEG_LIB)
+!endif
+
+!if ("$(HB_MT)"=="")
+PROJECT=\
+	$(HBLIB_EXE)\
+	$(ST_PROJECT)
+!if ("$(HB_ADS_CREATEIMPLIB)"=="1")
+PROJECT=\
+	$(PROJECT)\
+	$(ACE_LIB)
+!endif
+!else
+PROJECT=$(MT_PROJECT)
+!endif
+
+ALL: $(PROJECT)
+
+#*******************************************************************************
+!elif ("$(__BLD__)"=="DLL_BLD")
+#*******************************************************************************
+
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(TIFF_LIB_OBJS)
+
+!if !("$(HB_DIR_ADS)"=="")
+!if ("$(HB_DLL_HAVE_ADS)"=="1")
+INCLUDE_DIR =-I"$(HB_DIR_ADS)" $(INCLUDE_DIR)
+!if ("$(HB_ADS_CREATEIMPLIB)"=="0")
+RDDADS_LIB_OBJS=\
+	$(RDDADS_LIB_OBJS)\
+	$(OBJ_DIR)\ace32$(OBJEXT)
+!else
+COMPILERLIBS=\
+	$(COMPILERLIBS)\
+	$(LIB_DIR)$(DIR_SEP)ace32$(LIBEXT)
+!endif
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(RDDADS_LIB_OBJS)
+!endif
+!endif
+
+!if ("$(HB_WVG)"=="1")
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(GTWVG_LIB_OBJS)
+!endif
+
+#!if ("$(HB_WVW)"=="1")
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(GTWVW_LIB_OBJS)
+#!endif
+
+DLL_PROJECT=\
+	$(DLL_PROJECT)
+
+!if ("$(HB_ADS_CREATEIMPLIB)"=="1")
+DLL_PROJECT=\
+	$(ACE_LIB)\
+	$(DLL_PROJECT)
+!endif
+
+ALL: $(DLL_PROJECT)
+
+#*******************************************************************************
+!elif ("$(__BLD__)"=="CONTRIB_BLD")
+#*******************************************************************************
+!include winmake\common1.mak
+
+!if ("$(HB_ARCH)"=="64")
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(HBSQLIT3_LIB)\
+	$(HBZIP_LIB)\
+	\
+	$(OPTIONAL_PRJ)
+!else
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(GTWVW_LIB)\
+	$(XWT_LIB)\
+	$(HBSQLIT3_LIB)\
+	$(GTWVG_LIB)\
+	$(HBZIP_LIB)\
+	\
+	$(OPTIONAL_PRJ)
+!endif
+
+ALL: $(CONTRIB_PROJECT)
+
+!endif
+
+## THIS SHOULD BE REMOVED AND BACK TO STANDARD MACRO
+## THIS IS FOR TESTING ONLY
+
+DLLFLAGS       =-C -aa -Tpd -Gn -Gi -L$(LIB_DIR) -L$(BIN_DIR) $(LFLAGS)
+LINKERFLAGS    =$(LINKERFLAGS) $(LFLAGS)
+HB_CMD         =$(HARBOUR_EXE) -n1 $(HARBOURFLAGS) $** -o$@
+HB_CMD_MAIN    =$(HARBOUR_EXE) -n0 $(HARBOURFLAGS) -d_USE_APPMAIN_ $** -o$@
+CC_CMD         =$(CC) -c -tWM $(CLIBFLAGS) -o$@ $**
+CC_CMD_HARBOUR =$(CC) -c -tWM -D__HB_COMPILER__ $(CC_COMP_DEFINES) $(CLIBFLAGS) -o$@ $**
+CCC_CMD        =$(CC_CMD)
+CC_CMD_ZIP     =$(CC) -c $(CC_DEBUGFLAGS) -I"$(HBZIP_DIR)\include" -I"include" -vi -R- -H- $(OPTFLAGS) -w- -X- -o$@ $**
+LINK_CMD       =$(LINKEXE) $(CC_LINKER_DEBUG_FLAGS) -ap -Tpe -x -Gn -C -L$(LIB_DIR) $(LFLAGS) $(BCC_STARTUP_OBJ) $**,$@,,
+HRB_LINK_CMD   =$(LINKEXE) $(CC_LINKER_DEBUG_FLAGS) -ap -Tpe -x -Gn -C -L$(LIB_DIR) $(LFLAGS) $(BCC_STARTUP_OBJ) $(HARBOUR_EXE_OBJS),$(HARBOUR_EXE),,$(HRB_LIBS),,$(HARBOUR_EXE_RES)
+LIB_CMD        =$(HBLIB_EXE) __BORLANDC__ $(LIBEXE) "$(ARFLAGS)" $@ $**
+LIB_CMD_1      =$(HBLIB_EXE) __BORLANDC__ $(LIBEXE) "$(ARFLAGS)" $@ "winmake\rtl.lst" $(OBJ_DIR)
+DLL_LINK_CMD   =@$(HBLIB_EXE) __BORLANDC__ $(LINKEXE) "-C -aa -Tpd -Gn -Gi" $@ "winmake\dll.lst" $(OBJ_DIR) DLL $(RTL_DIR)\bcc.def $(HARBOUR_DLL_RES) $(VM_LIB_OBJS) $(TIFF_LIB_OBJS)
+DLLEXE_LINK_CMD=$(LINKEXE) $(CC_LINKER_DEBUG_FLAGS) $(LINKERFLAGS) $(BCC_STARTUP_OBJ) $**,$@,,$(PDFLITE_LIB) $(HARBOUR_DLL_LIB) $(COMPILERLIBS)
+IMPLIB_CMD     =$(IMPLIBEXE) $@ $**
+RC_CMD         =$(RC) -r -i"$(CC_DIR)\include" $** -fo$@
+
+#===============================================================================
+# Building rules of Object files
+#===============================================================================
+
+!include winmake\common2.mak
+!include winmake\compile.mak

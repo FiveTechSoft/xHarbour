@@ -1,0 +1,135 @@
+#===============================================================================
+#
+# $Id: makefile.dc 9931 2013-05-07 09:16:54Z zsaulius $
+#
+# MAKEFILE FOR DIGITALMARS
+#
+# This is Generic File, do not change it. If you should require your own build
+# version, changes should only be made on your local copy.(AJ:2008-04-26)
+#
+#===============================================================================
+!include winmake\common.mak
+
+RC        =RCC
+CC        =SCPPN
+LINKEXE   =LINK
+LIBEXE    =LIB
+IMPLIBEXE =IMPLIB
+CPPFLAGS  =-cpp
+ARFLAGS   =-c -n -p256
+
+!if ("$(HB_MT)"=="mt") || ("$(HB_THREAD_SUPPORT)"=="1")
+CC_DEFINES     =D_MT
+!endif
+
+!if ("$(HB_DEBUG)"=="d")
+CC_DEBUGFLAGS         =-g
+CC_LINKER_DEBUG_FLAGS =-map -co
+!endif
+
+CC_DEFINES     =-DSTRICT -DNULL=0 $(CC_DEFINES)
+INCLUDE_DIR    =-I"$(CC_DIR)\include\win32" $(INCLUDE_DIR)
+OPTFLAGS       =-o+s -mn -c -6 -WD
+HB_STARTUP_OBJ =$(OBJ_DIR)\mainstd$(OBJEXT)
+DMC_IMPORT_LIB =$(HARBOUR_DLL_LIB)
+!include winmake\common3.mak
+
+#*******************************************************************************
+!if ("$(__BLD__)"=="CORE_BLD")
+#*******************************************************************************
+!if !("$(HB_GTALLEG)"=="")
+HB_GT_LIBS=\
+	$(HB_GT_LIBS)\
+	$(GTALLEG_LIB)
+!endif
+
+# Redefined becaue there are some file thet DMC cannot built
+# TIFF Library 4.02 is not working with DMC
+
+!if ("$(HB_MT)"=="")
+PROJECT=$(HBLIB_EXE) $(ST_PROJECT)
+!else
+PROJECT=$(MT_PROJECT)
+!endif
+
+ACE_DLL="$(HB_DIR_ADS)\ace32.dll"
+ACE_LIB=$(ACE32_LIB)
+
+!if !("$(HB_DIR_ADS)"=="")
+PROJECT=\
+	$(PROJECT)\
+	$(ACE_LIB)
+!endif
+
+ALL: $(PROJECT)
+
+#*******************************************************************************
+!elif ("$(__BLD__)"=="DLL_BLD")
+#*******************************************************************************
+
+### Just wonder why the linker complain 'cannot find ace32.lib' eventhough
+### ace32.lib is there. A TODO :-(
+!ifdef __FORCEBUG__
+!if !("$(HB_DIR_ADS)"=="")
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(RDDADS_LIB_OBJS)
+INCLUDE_DIR     =-I"$(HB_DIR_ADS)" $(INCLUDE_DIR)
+!if ("$(HB_ADS_IMPLIB)"=="yes")
+COMPILERLIBS=\
+	$(LIB_DIR)\ace32.lib
+!endif
+!endif
+!endif
+
+ALL: $(DLL_PROJECT)
+
+#*******************************************************************************
+!elif ("$(__BLD__)"=="CONTRIB_BLD")
+#*******************************************************************************
+
+!if "$(HB_ADS_IMPLIB)"=="no"
+RDDADS_LIB_OBJS=\
+	$(RDDADS_LIB_OBJS)\
+	$(OBJ_DIR)\ace32$(OBJEXT)
+!endif
+
+!include winmake\common1.mak
+
+# Digital Mars cannot build hbzlip.lib
+# HB_ZIP=1
+
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+        $(GTWVW_LIB)\
+	$(XWT_LIB)\
+	\
+	$(OPTIONAL_PRJ)
+
+ALL: $(CONTRIB_PROJECT)
+
+!endif
+
+LINK_CMD       =$(LINKEXE) $(CC_LINKER_DEBUG_FLAGS) -exetype:nt -subsystem:console -noi $**,$@,,
+HRB_LINK_CMD   =$(LINKEXE) $(CC_LINKER_DEBUG_FLAGS) -exetype:nt -subsystem:console -noi $(HARBOUR_EXE_OBJS),$(HARBOUR_EXE),,$(HRB_LIBS),,$(HARBOUR_EXE_RES)
+HB_CMD         =$(HARBOUR_EXE) -n1 $(HARBOURFLAGS) $** -o$@
+HB_CMD_MAIN    =$(HARBOUR_EXE) -n0 $(HARBOURFLAGS) -d_USE_APPMAIN_ $** -o$@
+DLLEXE_LINK_CMD=$(LINKEXE) $(CC_LINKER_DEBUG_FLAGS) -exetype:nt -subsystem:console -noi $**,$@,,$(PDFLITE_LIB) $(HARBOUR_DLL_LIB)
+CC_CMD         =$(CC) $(CLIBFLAGS) $(CPPFLAGS) -o$@ $**
+CC_CMD_HARBOUR =$(CC) $(CLIBFLAGS) -D__HB_COMPILER__ $(CC_COMP_DEFINES) $(CPPFLAGS) -o$@ $**
+CCC_CMD        =$(CC) $(CLIBFLAGS) -o$@ $**
+CC_CMD_ZIP     =$(CC) -o+s -cpp -mn -I"include" -I"$(CC_DIR)\include\win32" -I"$(CC_DIR)\include" -I"$(HBZIP_DIR)\include" -c -6 -WD -D"__WIN32__" -D"_WIN32" -D"NULL=0" -D"STRICT" -D"snprintf=_snprintf" -o$@ $**
+LIB_CMD        =$(LIBEXE) $(ARFLAGS) $@ $**
+LIB_CMD_1      =$(HBLIB_EXE) __DMC__ $(LIBEXE) "$(ARFLAGS)" $@ "winmake\rtl.lst" $(OBJ_DIR)
+DLL_LINK_CMD   =$(HBLIB_EXE) __DMC__ $(LINKEXE) "-exetype:nt -su:console -noi" $@ "winmake\dll.lst" $(OBJ_DIR) DLL $(EXPORT_DEF) $(HARBOUR_DLL_RES) $(VM_LIB_OBJS)
+IMPLIB_CMD     =$(IMPLIBEXE) $@ $** /system /noi /p:64
+RC_CMD         =$(RC) $** -32 -r -o$@
+
+#===============================================================================
+# Building rules of Object files
+#===============================================================================
+$(DMC_IMPORT_LIB) : $(HARBOUR_DLL)
+	$(IMPLIBEXE) $(DMC_IMPORT_LIB) $(HARBOUR_DLL) /system /noi
+
+!include winmake\common2.mak
+!include winmake\compile.mak

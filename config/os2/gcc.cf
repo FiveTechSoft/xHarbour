@@ -1,0 +1,164 @@
+#
+# $Id: gcc.cf 9279 2011-02-14 18:06:32Z druzus $
+#
+
+include $(TOP)$(ROOT)config/$(HB_ARCHITECTURE)/global.cf
+
+ifeq ($(HB_CMP),)
+ifeq ($(HB_COMPILER),gpp)
+   HB_CMP = g++
+else
+   HB_CMP = $(HB_COMPILER)
+endif
+endif
+
+OBJ_EXT = .o
+EXE_EXT = .exe
+LIB_PREF =
+LIB_EXT = .a
+
+CC = $(HB_CCACHE) $(HB_CMP)
+CC_IN = -c
+CC_OUT = -o
+CPPFLAGS = -I. -I$(TOP)include -I$(HB_INC_COMPILE)
+# 26/03/2004 - <maurilio.longo@libero.it>
+# added -DTCPV40HDRS to compile with GCC 3.2.2 on OS/2 v4.0 with mixed 16/32 bit tcp/ip stack
+# to be removed if compiled on a tcp/ip stack >= 4.1 (eComStation, for example)
+CFLAGS = -DHB_OS_OS2 -Wall -fsigned-char -O2 -DTCPV40HDRS
+
+ifeq ($(HB_LEX),SIMPLEX)
+CFLAGS += -DSIMPLEX
+endif
+
+ifeq ($(HB_LIBCOMP_MT),)
+#always add thread support if not compiling a lib and using vmmt
+ifeq ($(findstring vmmt,$(LIBS)),vmmt)
+CFLAGS += -DHB_THREAD_SUPPORT -D_THREAD_SAFE -D__ST_MT_ERRNO__ -Zmt
+endif
+else
+#Add thread support to lib compilation only if compiling a _mt lib
+ifeq ($(HB_LIBCOMP_MT),YES)
+CFLAGS += -DHB_THREAD_SUPPORT -D_THREAD_SAFE -D__ST_MT_ERRNO__ -Zmt
+HB_MT_FLAGS = -DHB_THREAD_SUPPORT
+endif
+endif
+
+LD = $(HB_CCACHE) $(HB_CMP)
+LD_OUT = -o $(SPACE)
+
+#ifeq ($(HB_MT),MT)
+#LDFLAGS += -Zmt
+#else
+#LDFLAGS =
+#endif
+
+
+ifeq ($(C_MAIN),)
+ifeq ($(HB_GT_LIB),os2pm)
+# If building a PM program, override the main object.
+LDFLAGS +=$(TOP)$(ROOT)source/vm/$(ARCH_DIR)/mainpm.o
+endif
+endif
+
+# Add all libraries specified in CONTRIBS and LIBS.
+ifeq ($(HB_LIB_COMPILE),)
+LINKPATHS += $(foreach lib, $(CONTRIBS), -L$(TOP)$(ROOT)contrib/$(lib)/$(ARCH_DIR))
+LINKPATHS += $(foreach lib, $(LIBS), -L$(TOP)$(ROOT)source/$(lib)/$(ARCH_DIR))
+
+#Adding MT libs on need
+ifeq ($(findstring vmmt,$(LIBS)),vmmt)
+LINKPATHS += $(foreach lib, $(LIBS), -L$(TOP)$(ROOT)source/$(lib)/$(ARCH_DIR)_mt/)
+endif
+
+else
+LINKPATHS += -L$(HB_LIB_COMPILE)
+endif
+#LINKLIBS += -Wl,-(
+LINKLIBS += $(foreach lib, $(CONTRIBS), -l$(subst lib,,$(lib)))
+LINKLIBS += $(foreach lib, $(LIBS), -l$(lib))
+
+# If LIBS specifies the rdd library, add all DB drivers.
+ifeq ($(findstring rddmt,$(LIBS)),rddmt)
+LINKPATHS += $(foreach drv, $(HB_DB_DRIVERS), -L$(TOP)$(ROOT)source/rdd/$(drv)/$(ARCH_DIR)_mt)
+LINKLIBS += $(foreach drv, $(HB_DB_DRIVERS), -l$(drv)mt)
+# add a last round of rtl/vm to solve positional interdependencies (at the moment hbrun requires this)
+LINKLIBS += -lrtlmt -lvmmt
+else
+ifeq ($(findstring rdd,$(LIBS)),rdd)
+LINKPATHS += $(foreach drv, $(HB_DB_DRIVERS), -L$(TOP)$(ROOT)source/rdd/$(drv)/$(ARCH_DIR))
+LINKLIBS += $(foreach drv, $(HB_DB_DRIVERS), -l$(drv))
+# add a last round of rtl/vm to solve positional interdependencies (at the moment hbrun requires this)
+LINKLIBS += -lrtl -lvm
+endif
+endif
+
+# Add the specified GT driver library and other RTLs
+ifeq ($(findstring rtl,$(LIBS)),rtl)
+
+LINKPATHS += -L$(TOP)$(ROOT)source/rtl/pcre/$(ARCH_DIR)
+LINKLIBS += -lpcrepos
+LINKPATHS += -L$(TOP)$(ROOT)source/rtl/zlib/$(ARCH_DIR)
+LINKLIBS += -lzlib
+
+ifeq ($(C_MAIN),)
+ifeq ($(HB_GT_LIB),os2pm)
+# Special handling for PM mode
+LINKPATHS += -L$(TOP)$(ROOT)contrib/hgf/$(HB_GT_LIB)/$(ARCH_DIR)
+LINKLIBS += -l$(HB_GT_LIB)
+LINKPATHS += -L$(TOP)$(ROOT)source/rtl/gtos2/$(ARCH_DIR)
+LINKLIBS += -lgtos2
+else
+
+#ifeq ($(HB_MULTI_GT),yes)
+#LINKPATHS += -L$(TOP)$(ROOT)source/rtl/gtnul/$(ARCH_DIR)
+#LINKLIBS += -lgtnul
+#endif
+
+LINKPATHS += -L$(TOP)$(ROOT)source/rtl/$(HB_GT_LIB)/$(ARCH_DIR)
+LINKLIBS += -l$(HB_GT_LIB) -lrtl
+
+endif
+endif
+endif
+
+
+# Add all libraries specified in HB_USER_LIBS.
+LINKPATHS += $(foreach lib, $(HB_USER_LIBS), -L$(TOP)$(ROOT)source/$(lib)/$(ARCH_DIR))
+LINKLIBS += $(foreach lib, $(HB_USER_LIBS), -l$(lib))
+
+
+#LINKLIBS += -Wl,-)
+# statical linking with GCC 3.2.2 libc as not require its presence on user system
+LDFLAGS += $(LINKPATHS) -s
+
+ifeq ($(C_MAIN),)
+ifeq ($(HB_GT_LIB),os2pm)
+# Override the default link rule in order to add a call to emxbind
+LD_RULE = $(LD) $(CFLAGS) $(LD_OUT)$@ $(^F) $(LDFLAGS) $(L_USR) $(LINKLIBS) & emxbind -ep $@
+endif
+endif
+
+# Note: The empty line directly before 'endef' HAVE TO exist!
+# It causes that every echo command will be separated by LF
+define lib_object
+echo ADDMOD $(file) >> __lib__.tmp
+
+endef
+
+# We have to use a script to overcome the AR limit of max 850 characters
+# in commmand line
+define create_library
+IF EXIST $@ $(RM) $@
+echo CREATE $@ > __lib__.tmp
+$(foreach file, $(^F), $(lib_object))
+echo SAVE >> __lib__.tmp
+echo END >> __lib__.tmp
+$(AR) -M < __lib__.tmp
+endef
+
+# Under OS/2 || isn't a command separator (inside a shell, that is); correct separator is &
+AR = ar
+ARFLAGS = $(A_USR)
+AR_RULE = $(create_library) & $(RM) __lib__.tmp
+
+include $(TOP)$(ROOT)config/rules.cf

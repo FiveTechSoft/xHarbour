@@ -1,0 +1,35 @@
+#
+# $Id: global.cf 9279 2011-02-14 18:06:32Z druzus $
+#
+
+GRANDP = ../../
+HB_ARCH := $(HB_ARCHITECTURE)/$(HB_COMPILER)
+
+HB_DB_DRIVERS=\
+	nulsys \
+	bmdbfcdx \
+	dbfntx \
+	dbfnsx \
+	dbfcdx \
+	dbffpt \
+	hbsix \
+	hsx \
+	usrrdd \
+
+ifneq ($(HB_DB_DRVEXT),)
+HB_DB_DRIVERS += $(HB_DB_DRVEXT)
+endif
+
+ifeq ($(HB_BIN_COMPILE),)
+HB_BIN_COMPILE := $(TOP)$(ROOT)source/compiler/$(HB_ARCH)
+endif
+
+ifeq ($(HB_INC_COMPILE),)
+HB_INC_COMPILE := $(TOP)$(ROOT)include
+endif
+
+ifeq ($(HB_LIB_COMPILE),)
+HB_LIB_COMPILE :=
+endif
+
+include $(TOP)$(ROOT)config/$(HB_ARCH).cf

@@ -1,0 +1,22 @@
+#===============================================================================
+# $Id: msvcerr.vc 10227 2018-04-11 16:57:04Z lculik $
+# MSVC MAKEFILE ERROR CHECKER
+#===============================================================================
+!if ("$(__MSC__)"=="")
+!message WARNING: __MSC__ is not defined
+!if ("$(USE_MSVCRT)"=="1")
+!message Compiling with -MD required __MSC__ defined
+!message __MSC__ must be set as follows:
+!message __MSC__=6  -> MSVC 6  Visual Studio 2000 (_MSC_VER=1200)
+!message __MSC__=7  -> MSVC 7  Visual Studio 2003 (_MSC_VER=1300)
+!message __MSC__=71 -> MSVC 71 MS Driver Tool Kit (_MSC_VER=1310)
+!message __MSC__=8  -> MSVC 8  Visual Studio 2005 (_MSC_VER=1400)
+!message __MSC__=9  -> MSVC 9  Visual Studio 2008 (_MSC_VER=1500)
+!message __MSC__=10 -> MSVC 10 Visual Studio 2010 (_MSC_VER=1600)
+!message __MSC__=11 -> MSVC 11 Visual Studio 2012 (_MSC_VER=1700)
+!message __MSC__=12 -> MSVC 12 Visual Studio 2013 (_MSC_VER=1800)               
+!message __MSC__=14 -> MSVC 14 Visual Studio 2015 Update 3 (_MSC_VER=1900)       
+!message __MSC__=15 -> MSVC 15 Visual Studio 2017 Update 5 (_MSC_VER=1914)             
+!error
+!endif
+!endif

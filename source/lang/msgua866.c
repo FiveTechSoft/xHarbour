@@ -1,0 +1,206 @@
+/*
+ * $Id: msgua866.c 9279 2011-02-14 18:06:32Z druzus $
+ */
+
+/*
+ * Harbour Project source code:
+ * Language Support Module (UA866)
+ *
+ * Copyright 2004 Pavel Tsarenko <tpe2@mail.ru>
+ * www - http://www.xharbour.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this software; see the file COPYING.  If not, write to
+ * the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307 USA (or visit the web site http://www.gnu.org/).
+ *
+ * As a special exception, the Harbour Project gives permission for
+ * additional uses of the text contained in its release of Harbour.
+ *
+ * The exception is that, if you link the Harbour libraries with other
+ * files to produce an executable, this does not by itself cause the
+ * resulting executable to be covered by the GNU General Public License.
+ * Your use of that executable is in no way restricted on account of
+ * linking the Harbour library code into it.
+ *
+ * This exception does not however invalidate any other reasons why
+ * the executable file might be covered by the GNU General Public License.
+ *
+ * This exception applies only to the code released by the Harbour
+ * Project under the name Harbour.  If you copy code from other
+ * Harbour Project or Free Software Foundation releases into a copy of
+ * Harbour, as the General Public License permits, the exception does
+ * not apply to the code that you add in this way.  To avoid misleading
+ * anyone as to the status of such modified files, you must delete
+ * this exception notice from them.
+ *
+ * If you write modifications of your own for Harbour, it is your choice
+ * whether to permit this exception to apply to your modifications.
+ * If you do not wish that, delete this exception notice.
+ *
+ */
+
+/* Language name: Ukrainian */
+/* ISO language code (2 chars): UA */
+/* Codepage: 866 */
+
+#include "hbapilng.h"
+
+static HB_LANG s_lang =
+{
+   {
+      /* Identification */
+
+      "UA866",                     /* ID */
+      "Ukrainian",                 /* Name (in English) */
+      "Українська",                /* Name (in native language) */
+      "UA",                        /* RFC ID */
+      "866",                       /* Codepage */
+      "$Revision: 9279 $ $Date: 2011-02-14 18:06:32 +0000 (Mon, 14 Feb 2011) $",         /* Version */
+
+      /* Month names */
+
+      "Сiчень",
+      "Лютий",
+      "Березень",
+      "Квiтень",
+      "Травень",
+      "Червень",
+      "Липень",
+      "Серпень",
+      "Вересень",
+      "Жовтень",
+      "Листопад",
+      "Грудень",
+
+      /* Day names */
+
+      "Недiля",
+      "Понедiлок",
+      "Вiвторок",
+      "Середа",
+      "Четвер",
+      "П'ятниця",
+      "Субота",
+
+      /* CA-Cl*pper compatible natmsg items */
+
+      "Файли даних       # Записи     Остання зм.     Розмiр",
+      "Потрiбнi ще приклади ?",
+      "Стор.N",
+      "** Subtotal **",
+      "* Subsubtotal *",
+      "*** Total ***",
+      "Вст",
+      "   ",
+      "Помилкова дата",
+      "Дiапазон: ",
+      " - ",
+      "Т/Н",
+      "ПОМИЛКОВИЙ ВИРАЗ",
+
+      /* Error description names */
+
+      "Невiдома помилка",
+      "Помилковий аргумент",
+      "Переповнення масиву",
+      "Переповнення рядка",
+      "Переповнення числа",
+      "Дiлення на нуль",
+      "Числова помилка",
+      "Синтаксична помилка",
+      "Дуже складна операцiя",
+      "",
+      "",
+      "Не вистачає пам'ятi",
+      "Невiдома функцiя",
+      "Метод не експортований",
+      "Змiнна не iснує",
+      "Алiас не iснує",
+      "Змiнна не експортована",
+      "Недопустимi символи у iменi алiаса",
+      "Алiас вже використовується",
+      "",
+      "Помилка пiд час створення",
+      "Помилка пiд час вiдкриття",
+      "Помилка пiд час закриття",
+      "Помилка пiд час читання",
+      "Помилка пiд час запису",
+      "Помилка пiд час друку",
+      "",
+      "",
+      "",
+      "",
+      "Операцiя не пiдтримується",
+      "Лiмiт перевищено",
+      "Виявлено пошкодження",
+      "Помилка в типi даних",
+      "Помилка в розмiрi даних",
+      "Файл не вiдкритий",
+      "Файл не проiндексований",
+      "Потрiбен ексклюзивний доступ",
+      "Потрiбне блокування",
+      "Запис не заборонено",
+      "Збiй блокування пiд час додавання запису",
+      "Заблокувати не вдалося",
+      "",
+      "",
+      "",
+      "",
+      "Помилкова кiлькiсть аргументiв",
+      "Доступ до масиву",
+      "присвоювання масиву",
+      "не масив",
+      "порiвняння",
+      "Invalid self",
+
+
+      /* Internal error names */
+
+      "Невиправна помилка %lu: ",
+      "Помилка пiд час вiдновлення",
+      "Не визначено ERRORBLOCK() для помилки",
+      "Перевищена межа рекурсивних викликiв обробника помилок",
+      "Не вдається завантажити RDD",
+      "Помилковий тип методу %s",
+      "hb_xgrab не може розподiлити пам'ять",
+      "hb_xrealloc викликано з NULL вказiвником",
+      "hb_xrealloc викликано с помилковим вказiвником",
+      "hb_xrealloc не може перерозподiлити пам'ять",
+      "hb_xfree викликано з помилковим вказiвником",
+      "hb_xfree викликано з NULL вказiвником",
+      "Не знайдена стартова процедура: \'%s\'",
+      "Вiдсутня стартова процедура",
+      "VM: Невiдомий код",
+      "%s: очiкувався символ",
+      "%s: помилковий тип символу для self",
+      "%s: очiкувався блок коду",
+      "%s: помилковий тип елементу на вершинi стеку",
+      "Вихiд за межi стеку",
+      "%s: спроба копiювати елемент на себе",
+      "%s: помилкове iм'я змiнної",
+      "Переповнення буферу пам'ятi",
+      "hb_xgrab requested to allocate zero bytes",
+      "hb_xrealloc requested to resize to zero bytes",
+      "hb_xalloc requested to allocate zero bytes",
+
+      /* Texts */
+
+      "РРРР/ММ/ДД",
+      "Т",
+      "Н"
+   }
+};
+
+#define HB_LANG_ID  UA866
+#include "hbmsgreg.h"

@@ -1,0 +1,62 @@
+/*
+ * $Id: TODO,v 1.3 2002/05/08 23:44:16 ronpinkas Exp $
+ */
+
+                  Harbour Project To-Do list
+
+=======================================================================
+Tasks for v.1 beta:
+_______________________________________________________________________
+
+          Topic                              Responsible developer(s)
+===================================          =========================
+
+DBFCDX support                               Horacio, Ron
+
+Remove #pragma pack() tricks                 ???
+from rdd .h files.
+
+OO system                                    Jean-Francois Lefebvre (JFL)
+   Adding Class Method
+   Adding Multiple Constructor
+   Adding Class init Support
+
+Is memofile support complete?
+[more info ???]
+
+
+=======================================================================
+Tasks for v.1 release:
+_______________________________________________________________________
+
+Rewrite filesys.c to use native platform     ???
+specific file I/O with unlimited number
+of file handles, while maintaining
+compatibility with the CA-Cl*pper legacy
+handle numbering system. This either
+involves adding a linked list for the
+translation table, or we should state that
+only handles 0-4 are number compatible.
+[Optimization]
+
+Optimize out the need for the PUSHNIL        Ron
+opcode before each function call.
+[Optimization]
+
+
+=======================================================================
+Tasks for after v.1 release:
+_______________________________________________________________________
+
+
+Dynamic multi-language compiler/runtime      ???
+support
+
+UNICODE support.                             ???
+
+Multithreading support.                      ???
+
+=======================================================================
+Detail descriptions for Tasks:
+_______________________________________________________________________
+

@@ -1,0 +1,15 @@
+/*
+ * $Id: rddmisc.txt 9279 2011-02-14 18:06:32Z druzus $
+ */
+
+/*
+ * The following parts are Copyright of the individual authors.
+ * www - http://www.harbour-project.org
+ *
+ * Copyright 1999 Luiz Rafael Culik <culik@sl.conex.net>
+ *    DB*() documentation
+ *    ORD*() documentation
+ *    RDD*() documentation
+ * Copyright 2003 Luiz Rafael Culik <culik@sl.conex.net>
+ *    Use and inde Command Documentation
+ * See doc/license.txt for licensing terms.

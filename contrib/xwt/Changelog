@@ -1,0 +1,841 @@
+/*
+ * $Id: Changelog 9282 2011-02-14 18:48:05Z druzus $
+ */
+
+/* Use this format for the entry headers:
+   YYYY-MM-DD HH:MM UTC[-|+]hhmm Your Full Name <your_email@address>
+   For example:
+   2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
+*/
+
+2004-08-21 19:25 UTC+0200 Lorenzo Fiorini <lorenzo_fiorini/at/teamwork.it>
+  + contrib/xwt/src/notebook.prg 
+  + contrib/src/xwt_gtk/xwt_gtk_notebook.c
+    * added notebook (folder) widget
+  + contrib/xwt/src/editbox.prg
+  + contrib/src/xwt_gtk/xwt_gtk_editbox.c
+    * added editbox (text_view) widget with scrollbars
+  * contrib/xwt/src/xwt_gtk/xwt_gtk.c
+  * contrib/xwt/src/xwt_gtk/xwt_gtk.h
+  * contrib/xwt/include/xwt.ch
+    * added support of new widgets
+  * contrib/xwt/xwt_gtk/xwt_gtk_textbox.c
+    * xwt_createTextbox renamed to xwt_createTextBox
+  * contrib/xwt/test/xwt_text.prg
+    * added the new widgets to the test
+
+2004-08-07 19:25 UTC+0200 Lorenzo Fiorini <lorenzo_fiorini/at/teamwork.it>
+  * contrib/xwt/rules.make
+    * updated to mingw32/gcc 3.4.1
+    * added new win32 required
+    * added HB_MULTI_GT support
+    * with these xwt_test.prg builds with msys/mingw32 
+    * and run with gtk-runtime 2.4.4 from http://gladewin32.sourceforge.net/
+
+2003-06-28 14:05 UTC-0500 Paul Tucker <ptucker@sympatico.ca>
+   * src/xwt_win/xwt_win.c
+     * Cast on DestroyMenu
+   * src/xwt_win/xwt_win.h
+     * Changed Struct decl to compile in C++ mode.
+
+2004-02-08 11:00 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+   * src/xwt_gtk/xwt_gtk.c 
+     src/xwt_gtk/xwt_gtk.h 
+     ! updated to include new controls 
+   + src/xwt_gtk/xwt_gtk_colorselect.c 
+   + src/xwt_gtk/xwt_gtk_progressbar.c 
+     + New colorselect  and progress bar control(this two is work in progress)
+
+2004-01-30 16:30 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  + src/listbox.prg
+    class for list boxes
+  + source/xwt_gtk/xwt_gtk_listbox.c
+    !list box routines
+  * src/xwt_api.c
+    src/xwt_gtk/xwt_gtk.c
+    src/xwt_gtk/xwt_gtk.h
+    ! support for list boxes
+
+2004-01-26 18:40 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  * src/xwt_gtk/xwt_gtk_combobox.c
+    ! added signal to get text select on entry
+  ! include/xwtapi.h
+    ! minor fix to property
+  * src/xwt_api.c
+    src/xwt_gtk/xwt_gtk.c
+    src/xwt_gtk/xwt_gtk.h
+    ! support for combo box signal and get/set events 
+
+2004-01-26 12:00 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  + src/combobox.prg
+    class for combo boxes
+  + source/xwt_gtk/xwt_gtk_combobox.c
+    !combo box routines
+  * src/xwt_api.c
+    src/xwt_gtk/xwt_gtk.c
+    src/xwt_gtk/xwt_gtk.h
+    ! support for combo boxes
+    + src/xwt_gtk/xwt_gtk_calendar.c
+    ! minor ajusts
+  * test/xwt_test.prg
+    ! added test for calendar and combo box    
+        
+2004-01-25 00:40 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  + src/xwt_gtk/xwt_calendar.h
+    src/xwt_gtk/xwt_calendar.c
+    + Basic Calendar modal widget
+  * src/xwt_api.c
+    src/xwt_gtk/xwt_gtk.c
+    src/xwt_gtk/xwt_gtk.h
+    ! support for calendar widget
+  + xwt_gtk_calendar.c
+    ! calendar widget routined
+  + include/xwt.ch
+    include/xwt_api.h
+    !added new properties required by calendar
+    + src/calendar.prg
+      * source code to calendar class
+      please note this an change on progress  
+              
+2003-12-18 15:31 UTC+0100 Giancarlo Niccolai <antispam /at/
+  * contrib/xwt/Rules.make
+  * contrib/xwt/test/Makefile.linux
+    ! Added the variable TARGETS that is able to build
+      more than one sample in the test directory.
+      Please, mingw users are warned to update
+      Makefile.mingw accordingly
+
+2003-12-14 10:22 UTC+0100 Francesco Saverio Giudice <info@fsgiudice.com>
+  * makefile.bc
+    * fixed typo
+
+2003-11-28 15:16 UTC+0100 Lorenzo Fiorini <lorenzo_fiorini@tin.it>
+  * Rules.make
+    ! added support to msys/mingw32
+  * test/Makefile
+    ! added support to msys/mingw32
+    + test/Makefile.mingw32
+    + test/Makefile.linux
+
+2003-11-27 00:00 UTC+0100 Giancarlo Niccolai <antispam /at/ niccolai [dot] ws>
+  * src/browse.prg
+    ! hb_IsNum() is no longer supported; using hb_IsNumeric
+  * src/xwt_gtk/xwt_gtk_browse.c
+    ! using hb_objSendMsg() to access object data
+
+2003-11-15 18:10 UTC+0100 Giancarlo Niccolai <antispam /at/ niccolai [dot] ws>
+  * makefile.bc
+    ! Fixes from Gianluca Piemonte
+
+2003-11-08 01:41 UTC+0100 Giancarlo Niccolai <antispam /at/ niccolai [dot] ws>
+  * include/xwtcmd.ch
+    ! fixed a mispelling
+
+  * include/xwt.ch
+  * src/xwt_api.c
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+  + src/bcolumn.prg
+  + src/browse.prg
+  + src/xwt_gtk_browse.c
+    + Added the HBR TBrowse like widget. It is basically a table whose cells
+      can be rendered using codeblocks and also executable arrays. Both
+      visualization and update can be managed with a powerfull yet simple
+      callback system.
+      There still a little more to do (like i.e. live setting change
+      management), but the system is already useable. With a minimal effort,
+      it could be applied to a DBEDIT.
+      Have a look, it is worth.
+
+  * src/xwt_gtk/xwt_gtk_treelist.c
+
+  * test/Makefile
+  + test/t_browse
+    + added a test for xwtbrowse. Makefiles have been changed so that it
+      works as xharbour/tests makefile; use the name of the program
+      you want to compile as a target, i.e. 'make t_browse';
+
+
+2003-10-15 01:10 UTC+0200 Giancarlo Niccolai <antispam /at/ niccolai [dot] ws>
+  * contrib/xwt/makefile.bc
+  * contrib/xwt/src/xwt_win/xwt_win.c
+  * contrib/xwt/src/xwt_win/xwt_win.h
+  * contrib/xwt/src/xwt_win/xwt_win_framewnd.c
+  + contrib/xwt/src/xwt_win/xwt_win_menu.c
+  + contrib/xwt/src/xwt_win/xwt_win_menuitem.c
+    ! added (basic) menu support for XWT-WIN
+
+  * contrib/xwt/test/wndtest.prg
+    + Added menu test
+
+2003-10-13 14:10 UTC+0200 Giancarlo Niccolai <antispam /at/ niccolai [dot] ws>
+  * src/msgbox.prg
+    ! added support for parent and caption (optional parameters).
+
+  * src/xwt_win/xwt_win_msgbox.c
+    + Messagebox is now active.
+
+  * src/xwt_win/xwt_win.c
+  * src/xwt_win/xwt_win.h
+    * Complete driver framework ready
+
+  * src/xwt_win/xwt_win_framewnd.c
+    ! Fixed close sequence.
+
+  * src/xwt_gtk/xwt_gtk_msgbox.c
+    ! some value checking in parameter parsing (buttons).
+
+  * test/wndtest.prg
+    ! Added test for Xwt_MsgBox on closing.
+
+
+2003-10-10 09:35 UTC-0500 Paul Tucker <ptucker@sympatico.ca>
+  * makefile.bc
+    * minor change to del command
+  * make_vc.bat
+    - gtk message
+  * makefile.nt
+  * makefile.vc
+    + src\xwt_win\*.*
+
+2003-10-10 02:00 UTC+0200 Giancarlo Niccolai <antispam /at/ niccolai [dot] ws>
+  * Rules.make
+    ! New dbfdbt lib added
+
+  * test/Makefile
+    ! compiling only xwt_test for now
+
+  * src/xwt_gtk/xwt_gtk.c
+    ! All strings taken from GTK widgets are static.
+
+2003-10-10 01:46 UTC+0200 Francesco Saverio Giudice <info@fsgiudice.com>
+  * test/bldtest.bat
+  * test/makefile.bc
+    * updated to build prg passing filename[ without .prg ] as parameter to bldtest.bat
+
+2003-10-10 01:12 UTC+0200 Giancarlo Niccolai <antispam /at/ niccolai [dot] ws>
+
+  + src/xwt_win/xwt_win.c
+  + src/xwt_win/xwt_win.h
+    + Added XWT driver for Windows
+
+  + src/xwt_win/xwt_win_framewnd.c
+    + Added minimal implementation of a frame window for XWT_WIN
+
+  * make_b32.bat
+  * makefile.bc
+    + Added xwt_win compilation
+
+  * src/xwt_api.c
+    ! Ingore NIL widgets to allow progressive driver implementations.
+
+  + test/bldtest.bat
+  + test/makefile.bc
+  + test/wndtest.prg
+    + Added test for windows
+
+  * include/xwt_api.h
+    ! style
+
+  * src/framewindow.prg
+    ! Do not delete menus when there are no menus...
+
+  + src/xwt_win/xwt_win_msgbox.c
+    + Added MessageBox (skeleton)
+
+  ! test/xwt_test.prg
+    ! Stylistic
+
+2003-09-04 22:21 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * src/xwt_gtk/xwt_gtk.c
+    ! Fixed warning from compiler gcc
+      wt_gtk.c:585: warning: passing arg 1 of `gtk_bin_get_child' from incompatible pointer type
+      Solution:  gtk_bin_get_child ( GTK_BIN(wSelf) )
+    ! Fixed warning gcc , unused variable 'i'
+  * src/xwt_gtk/xwt_gtk.h
+    ! Fixed warning the gcc from xwt_gtk.c, + added definition of xwt_gtk_createFontSelection( )
+
+2003-09-02 19:20 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  * include/xwt.ch
+    + Added new types and property
+  + src/fontsel.prg
+    + Added font Selection Widget
+  * src/xwt_gtk/xwt_gtk.c
+    + support for Font Selection widget
+    + minor fix to color support
+  + src/xwt_gtk/xwt_gtk_fontselect.c
+    * font selection base level code
+  * test/xwt_test.prg
+    + Added test to new font selection control
+
+2003-08-31 21:49 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * src/framewindow.prg
+    + New pass parameters for creation of menu in method New
+
+  * include/xwtcmd.ch
+    + Added support command DEFINE WINDOW ...
+
+  * test/xwt_test.prg
+    * Implemetation DEFINE WINDOW ...
+
+
+2003-08-31 21:49 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * test/xwt_test.prg
+    * The construction the menus from function BuildMenu()
+    * Example the +1 line the text in XWTMsgBox (Call from option menu About)
+
+
+2003-08-31 21:05 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  ! src/widget.prg
+    + Implementation method SetColor()
+
+  *Changed in prgs for support method SetColor()
+    src/label.prg
+    src/togglebutton.prg
+    src/radiobutton.prg
+    src/button.prg
+    src/checkbox.prg
+    src/menuitem.prg
+
+
+2003-08-30 18:40 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  * src/radiobutton.prg
+
+    ! Added support for color/fonts
+  * src/xwt_gtk/xwt_gtk.c
+    ! minor fixes
+  * test/xwt_test.prg
+    * now Radiobuttons  and checkbox has diferent colors
+   Please note this is an work in progress
+
+2003-08-30 11:59 UTC+0200 Giancarlo Niccolai <gian@niccolai.ws>
+  * include/xwtcmd.ch
+    + Added mapping Quit => XWTQuit()
+
+  * xwt_test.prg
+    ! added a QUIT sequence
+
+2003-08-29 15:30 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  *include/xwtcmd.ch
+   Changed TOGGLEBUTTON and CHECKBOX commands to handle color/font
+  * src/checkbox.prg
+    src/togglebutton.prg
+    ! Added support for color/fonts
+  * src/xwt_gtk/xwt_gtk.c
+    ! minor update
+  * test/xwt_test.prg
+    * now togglebuttons and checkbox has diferent colors
+   Please note this is an work in progress
+
+
+2003-08-28 23:20 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  *src/button.prg
+    ! Enhaced to accept font/fontsize and color parameter
+  *src/xwt_api.c
+    ! Changed XWT_SET_PROPERTY/XWT_GET_PROPERTY to handle the font/color properties on buttons
+  *src/xwt_gtk/xwt_gtk.c
+    ! xtw_drv_set_property changes to properly handle font/color properties on buttons
+  * test/xwt_test.prg
+    ! Now buttons can has diferent color
+  *include/xwtcmd.ch
+    ! buttons now can has color , as also other font and font size
+   Please note this is an work in progress
+
+>>>>>>> 1.30
+2003-08-27 17:50 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  *include/xwt.ch
+  *include/xwtcmd.ch
+    ! menuitems now can has color , as also other font and font size
+  *include/xwt_api.h
+    !small change to hold all 4 colors state
+  *src/menuitem.prg
+    ! Enhaced to accept font/fontsize and color parameter
+  *src/xwt_api.c
+    ! Changed XWT_SET_PROPERTY/XWT_GET_PROPERTY to handle the font/color properties on menutitems
+  *src/xwt_gtk/xwt_gtk.c
+    ! xtw_drv_set_property changes to properly handle font/color properties on menuitems
+  * test/xwt_test.prg
+    ! changes to menuitems so now it has colors or diferent font size
+   Please note this is an work in progress
+
+
+2003-08-27 18:03 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * src/xwt_gtk/xwt_gtk_image.c
+  * src/xwt_gtk/xwt_gtk_layout.c
+  * src/xwt_gtk/xwt_gtk_viewport.c
+  * src/xwt_gtk/xwt_gtk_window.c
+  * src/xwt_gtk/xwt_gtk_label.c
+    ! minor fix for compiler GNU C version >= 3
+
+
+2003-08-26 23:50 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  *include/xwt.ch
+  *include/xwtcmd.ch
+  *include/xwt_api.h
+    * Started changes to support color/font changeing on widgets
+      command define label/ @label enhaced to accept font name, fontsize and color
+  *src/label.prg
+    ! Enhaced to accept font/fontsize and color parameter
+  *src/xwt_api.c
+    ! Changed XWT_SET_PROPERTY/XWT_GET_PROPERTY to handle the font/color properties
+  *src/xwt_gtk/xwt_gtk.c
+    ! xtw_drv_set_property changes to properly handle font/color properties
+  * test/xwt_test.prg
+    ! changes to Define labels to show other font/sizes
+   Please note this is an work in progress
+
+
+2003-08-25 17:50 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  * src/xwt_gtk/xwt_gtk_image.c
+  * src/xwt_gtk/xwt_gtk_layout.c
+  * src/xwt_gtk/xwt_gtk_viewport.c
+  * src/xwt_gtk/xwt_gtk_window.c
+    ! minor fix
+
+2003-07-23 12:50 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  + include/xwtcmd.ch
+    * Removed commands from xtw.ch and created this new one
+
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+  * src/xwt_gtk/xwt_gtk_button.c
+  * src/xwt_gtk/xwt_gtk_checkbox.c
+  * src/xwt_gtk/xwt_gtk_fileselect.c
+  * src/xwt_gtk/xwt_gtk_framewnd.c
+  * src/xwt_gtk/xwt_gtk_grid.c
+  * src/xwt_gtk/xwt_gtk_image.c
+  * src/xwt_gtk/xwt_gtk_label.c
+  * src/xwt_gtk/xwt_gtk_layout.c
+  * src/xwt_gtk/xwt_gtk_menu.c
+  * src/xwt_gtk/xwt_gtk_menuitem.c
+  * src/xwt_gtk/xwt_gtk_pane.c
+  * src/xwt_gtk/xwt_gtk_radiobutton.c
+  * src/xwt_gtk/xwt_gtk_splitter.c
+  * src/xwt_gtk/xwt_gtk_textbox.c
+  * src/xwt_gtk/xwt_gtk_togglebutton.c
+  * src/xwt_gtk/xwt_gtk_treelist.c
+  * src/xwt_gtk/xwt_gtk_viewport.c
+  * src/xwt_gtk/xwt_gtk_window.c
+    * Now XWT can be compiled with Gcc 2.95.x
+  * test/xwt_test.prg
+    ! added include of xwtcmd.ch
+
+
+2003-07-22 18:03 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * src/image.prg
+  * src/menu.prg
+  * src/menuitem.prg
+    + Implementation nId automatic or manual.
+  * src/splitter.prg
+  * src/togglebutton.prg
+    + Added passed new parameters and support of parent WidGet
+
+  * test/xwt_test.prg
+    + Used news commands
+
+* /include/xwt.ch
+    + New commands preprocesador :
+      +DEFINE IMAGE <...>
+      +DEFINE SPLITTER <...>
+      +MENU <oMenu> PROMPT <cPrompt> OF <oMenu>
+      +MENUITEM <oMenuItem> ... OF <oMenu>
+
+2003-07-21 20:12 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * src/button.prg
+  * src/togglebutton.prg
+  * src/checkbox.prg
+  * src/label.prg
+  * src/textbox.prg
+    + Added passed news parameters and support of parent widget
+
+  * test/xwt_test.prg
+    + Used news commands
+
+  * /include/xwt.ch
+    + New commands preprocesador :
+      +DEFINE BUTTON <...>       and @x,y BUTTON <...>
+      +DEFINE TOGGLEBUTTON <...> and @x,y TOGGLEBUTTON <...>
+      +DEFINE LABEL <...>        and @x,y LABEL <...>
+      +DEFINE CHECKBOX <...>     and @x,y CHECLKBOX <...>
+      +DEFINE TEXTBOX <...>      and @x,y TEXTBOX <...>
+
+2003-07-20 22:45 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * src/pane.prg
+  * src/layout.prg
+    + Added passed news parameters and support of parent widget
+
+  * test/xwt_test.prg
+    + Used news commands prepro: DEFINE PANE & DEFINE LAYOUT
+      < example:
+        DEFINE PANE oPane OF oWindow     >
+
+  * /include/xwt.ch
+    + New commands preprocesador DEFINE PANE & DEFINE LAYOUT
+
+
+2003-07-06 00:33 UTC+0200 Rafa Carmona <thefull@wanadoo.es>
+  * doc/es/XwtMsgBox.txt
+    + Added documentation for Function XWTMsgBox in Spanish
+
+2003-06-08 16:00 UTC+0200 Giancarlo Niccolai <gian@niccolai.ws>
+  * include/xwt.ch
+  * include/xwt_api.h
+  * src/treelist.prg
+  * src/xwt_api.c
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+  * src/xwt_gtk/xwt_gtk_button.c
+  * src/xwt_gtk/xwt_gtk_checkbox.c
+  * src/xwt_gtk/xwt_gtk_fileselect.c
+  * src/xwt_gtk/xwt_gtk_framewnd.c
+  * src/xwt_gtk/xwt_gtk_grid.c
+  * src/xwt_gtk/xwt_gtk_image.c
+  * src/xwt_gtk/xwt_gtk_label.c
+  * src/xwt_gtk/xwt_gtk_layout.c
+  * src/xwt_gtk/xwt_gtk_menu.c
+  * src/xwt_gtk/xwt_gtk_menuitem.c
+  * src/xwt_gtk/xwt_gtk_pane.c
+  * src/xwt_gtk/xwt_gtk_radiobutton.c
+  * src/xwt_gtk/xwt_gtk_splitter.c
+  * src/xwt_gtk/xwt_gtk_textbox.c
+  * src/xwt_gtk/xwt_gtk_togglebutton.c
+  * src/xwt_gtk/xwt_gtk_treelist.c
+  * src/xwt_gtk/xwt_gtk_viewport.c
+  * src/xwt_gtk/xwt_gtk_window.c
+    * The owner memer has been moved inside the core xwt_api widget
+      structure.
+    * The xwt widget is created in the xwt_api.c file, and then
+      passed into the driver for adding local data. xwt_drv_create()
+      has changed consequently
+
+  * README
+    * Reflecting latest changes
+
+  * test/xwt_test.prg
+    * Reflecting latest changes
+
+2003-06-05 19:15 UTC+0200 Giancarlo Niccolai <gian@niccolai.ws>
+  + src/treeitem.prg
+  + src/treelist.prg
+  + src/xwt_gtk/xwt_gtk_treelist.c
+    + Started developement of the treelist widget, which can be a list,
+      a tree list, a table or a tree table.
+
+  * include/xwt.ch
+  * src/xwt_api.c
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+    + Added support for treelist
+
+  * test/xwt_test.prg
+    + Added a minimal test
+
+2003-05-14 10:28 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  + doc/es/createwidgets.txt
+    + added spanish docmumentation on how create an XWT widget,
+      provided by Rafa Carmona (TheFull)
+
+2003-04-22 21:20 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * src/button.prg
+  * src/checkbox.prg
+  * src/filesel.prg
+  * src/framewindow.prg
+  * src/grid.prg
+  * src/image.prg
+  * src/inputmask.prg
+  * src/label.prg
+  * src/layout.prg
+  * src/menu.prg
+  * src/menuitem.prg
+  * src/pane.prg
+  * src/radiobutton.prg
+  * src/splitter.prg
+  * src/textbox.prg
+  * src/viewport.prg
+  * src/widget.prg
+    + Added GetType() that returns widget numeric XWT type.
+      (it could have been done with getClassName(), but I think
+      a numeric ID is more flexible).
+
+  * include/xwt.ch
+  * src/xwt_gtk/xwt_gtk.h
+  * src/xwt_gtk/xwt_gtk.c
+  + src/togglebutton.prg
+  + src/xwt_gtk/xwt_gtk_togglebutton.c
+    + Added toggle button widget (a switchable button).
+    This commit was made by Rafa Carmona.
+
+  * test/xwt_test.prg
+    + Added a test for togglebuttons and Widget::GetType()
+
+2003-04-22 21:20 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * src/splitter.prg
+    ! Fixed a mispelled macro.
+
+2003-04-22 21:20 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+   * src/xwt_gtk/xwt_gtk_grid.c
+     ! One of the struct member was not set to null during creation,
+       causing misbehavior: fixed.
+
+   + src/splitter.prg
+   + src/xwt_gtk/xwt_gtk_splitter.c
+     + Added "splitter" widget, also known as "draggable pane" or
+       "double" view.
+
+   * include/xwt.ch
+   * src/xwt_api.c
+   * src/xwt_gtk/xwt_gtk.c
+   * src/xwt_gtk/xwt_gtk.h
+     + Added support for splitter widget
+
+   * test/xwt_test.prg
+     + Added test for splitter widget.
+
+
+2003-04-18 08:56 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * src/xwt_gtk/xwt_gtk_grid.c
+    ! Fixed a "potential" segfault
+
+  * src/xwt_gtk/xwt_gtk_radiobutton.c
+    + Added events for mouse enter and leave actions
+
+  + src/checkbox.prg
+  + src/xwt_gtk_checkbox.c
+    + Added checkbox widget and relative GTK drive routines
+
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+    + Support for checkbox
+
+  * include/xwt.ch
+    + Added XWT_TYPE_CHECKBOX
+
+  * test/xwt_test.prg
+    + Added an example of checkboxes
+
+
+2003-04-18 14:22 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * Rules.make
+    % Linking against gtcgi instead of gtstd
+
+  * include/xwt_api.h
+  * src/xwt_api.c
+    + Added support for MODAL dialogs
+
+  * src/filesel.prg
+    ! Using now support for modal dialogs
+
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+  * src/xwt_gtk/xwt_gtk_fileselect.c
+    + Added SetFile() method for FileSel class
+    ! Using now modal support in the new DoModal() method
+
+  * test/xwt_test.prg
+    ! Changed to reflect this updates.
+
+2003-04-17 20:35 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
+  * src/filesel.prg
+    + GetFile() Method
+  * src/xwt_gtk/xwt_gtk_fileselct.c
+    * Rewrited Ok_button call back
+  * include/xwt.ch
+    + XWT_PROP_FILENAME 81
+  * src/xwt_api.c
+  * src/xwt_gtk/xwt_gtk.c
+    * Added code to proper Get and Set Properties on FileSelection Dialog
+
+2003-04-15 00:35 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  + src/filesel.prg
+  + src/xwt_gtk/xwt_gtk_fileselct.c
+    + Started developement of file selection widget.
+      ( created by Luiz Culik )
+
+  * include/xwt.ch
+  * src/xwt_api.c
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+    + Added support for file selection widget
+
+  * test/xwt_test.prg
+    + Added test for file selection widget.
+
+
+2003-04-13 01:40 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  ! src/event.prg
+    ! Wrong Empty() check for the parameter. ::aParam was always
+      created empty. Fixed
+
+  * src/container.prg
+  + src/radiobutton.prg
+    + Added radiobutton object. A container is used to store a radio
+      button group: each group must belong to a container, and vice-versa.
+      So, the container class is now aware if a raidio group is inside
+      it with the member oRadioGroup. Also, all widgets are notified when
+      they are added to a container with the XWT_E_ADDEDTO event; this is
+      risen BEFORE the widget is really added, so it cannot propagated to
+      the new owner. A similar XWT_E_REMOVEFROM event is risen after the
+      widget has been removed
+
+  + src/viewport.prg
+    + Added scrollable viewport: it can hold just a container or a large
+      widget, wich is scrolled automatically by the viewport (if needed);
+      scrollbars are automatically added on need.
+
+  * src/widget.prg
+    + Added support for preventing ev ent propagation to parents using
+      ::bEventsToParent boolean member. If false, events are not
+      propagated. By default, this member is true, but it can be changed
+      depending on widgets and situations.
+
+  * include/xwt.ch
+  * src/xwt_api.c
+    + Implementation of new widgets and events
+
+  + src/xwt_gtk/xwt_gtk_radiobutton.c
+    + GTK implementation of radio buttons
+
+  + src/xwt_gtk/xwt_gtk_viewport.c
+    + GTK implementation of viewports
+
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+    + GTK implementations of new widgets
+
+  * src/grid.prg
+  * src/layout.prg
+  * src/xwt_gtk/xwt_gtk_button.c
+  * src/xwt_gtk/xwt_gtk_framewnd.c
+    ! Minor stylistic fix
+
+  * test/xwt_test.prg
+    + Added tests for new widgets.
+
+
+2003-04-08 20:30 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * contrib/xwt/src/xwt_gtk/xwt_gtk_image.c
+  * contrib/xwt/src/xwt_gtk/xwt_gtk_label.c
+  * contrib/xwt/src/xwt_gtk/xwt_gtk_layout.c
+  * contrib/xwt/src/xwt_gtk/xwt_gtk_pane.c
+  * contrib/xwt/src/xwt_gtk/xwt_gtk.c
+  * contrib/xwt/src/xwt_gtk/xwt_gtk.h
+  * contrib/xwt/src/xwt_gtk/xwt_gtk_container.c
+  * contrib/xwt/src/xwt_gtk/xwt_gtk_framewnd.c
+    ! Changed internal architecture of the widgets so that
+      they are able to be "aligned" in their owners.
+
+
+  * contrib/xwt/src/image.prg
+    ! Using now property XWT_PROP_IMAGE to set the image
+      (instead of XWT_PROP_TEXT)
+
+  * contrib/xwt/src/menuitem.prg
+  * contrib/xwt/src/xwt_gtk/xwt_gtk_menuitem.c
+    ! Menuitems are now supporting inline description images,
+      and are ready to support accelerator labels.
+
+  * contrib/xwt/src/grid.prg
+  + contrib/xwt/src/xwt_gtk/xwt_gtk_grid.c
+    + Added GRID widget support.
+
+  * contrib/xwt/include/xwt.ch
+    + Added properties to manage the grid widget
+
+  * contrib/xwt/src/xwt_api.c
+    + Added handling of properties for girds
+
+  * contrib/xwt/test/xwt_test.prg
+  + contrib/xwt/test/valley.png
+    + Added tests for the new features (grid, alignment
+      and icons for menu items).
+
+
+2003-04-08 00:04 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * include/xwt.ch
+  * src/grid.prg
+    * Internal driver is coded (still missing GTK implementation)
+      for GRID widget.
+
+  * src/container.prg
+  * src/widget.prg
+  * src/xwt_api.c
+    ! using now XWT_FastRiseEvent( iEvent, oSender, ... ), with
+      variable parameters from inside programs: this allows clearer
+      programming and better performances if events are not to
+      be arisen.
+
+  * src/xwt_gtk/xwt_gtk.c
+    ! Misreading of frame label in layout and container objects fixed
+
+
+2003-04-07 20:25 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * src/xwt_gtk/xwt_gtk.h
+  + src/xwt_gtk/xwt_gtk_container.c
+  + src/laycontainer.prg
+    + layout and panes have been subclassed with a laycontainer class
+      that implements some abstract behaviors common to all layout
+      like containers (resizing ability over child widgets).
+
+  * src/container.prg
+  * src/layout.prg
+  * src/pane.prg
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk_layout.c
+  * src/xwt_gtk/xwt_gtk_pane.c
+    ! Moved some of the function and the methods of this files
+      into the xwt_gtk_container.c and laycontainer.prg
+
+  * include/xwt.ch
+  + src/grid.prg
+  - src/gridpane.prg
+    + Name of XwtGridPane widget has been changed to XwtGrid
+
+2003-04-07 17:46 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * src/layout.prg
+  * src/xwt_gtk/xwt_gtk_layout.c
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+    ! Now layout is fully operational
+
+  * src/xwt_api.c
+  * src/xwt_gtk/xwt_gtk_pane.c
+  * src/pane.prg
+  * src/widget.prg
+    + Added support for "framed" pane ( a frame box can be drawn
+      around a fixed pane).
+
+  * test/xwt_test.prg
+    + Added test for vertical, horizontal, and fixed layouts
+
+
+2003-04-07 12:28 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  - src/hpane.prg
+  - src/vpane.prg
+  + src/layout.prg
+  + src/xwt_gtk/xwt_gtk_layout.c
+    ! The original idea of a vertical and an horizontal layout manager has been
+      converted in just one layout manager whose orientation must be decided
+      at creation moment.
+      Future implementation MAY alter this behavior and allow orientation
+      to be decided dynamically after widget creation.
+
+  * include/xwt.ch
+    + added defines for the layout object
+
+  * src/xwt_gtk/xwt_gtk.c
+  * src/xwt_gtk/xwt_gtk.h
+    + added management of layout object
+    ! fixed management of image object
+
+  - src/xwt_gtk/xwt_image.c
+  + src/xwt_gtk/xwt_gtk_image.c
+    ! fixed name of the file
+
+
+2003-04-03 13:04 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * README
+    + Added a technical note in README file. All interested develoers
+      are invited to read it.
+
+2003-04-02 02:51 UTC+0100 Giancarlo Niccolai <gian@niccolai.ws>
+  * INITIAL RELEASE

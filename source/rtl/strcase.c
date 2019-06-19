@@ -1,0 +1,220 @@
+/*
+ * $Id: strcase.c 10113 2015-02-24 13:50:10Z zsaulius $
+ */
+
+/*
+ * Harbour Project source code:
+ * Uppercase/lowercase string functions
+ *
+ * Copyright 1999 Antonio Linares <alinares@fivetech.com>
+ * www - http://www.harbour-project.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this software; see the file COPYING.  If not, write to
+ * the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307 USA (or visit the web site http://www.gnu.org/).
+ *
+ * As a special exception, the Harbour Project gives permission for
+ * additional uses of the text contained in its release of Harbour.
+ *
+ * The exception is that, if you link the Harbour libraries with other
+ * files to produce an executable, this does not by itself cause the
+ * resulting executable to be covered by the GNU General Public License.
+ * Your use of that executable is in no way restricted on account of
+ * linking the Harbour library code into it.
+ *
+ * This exception does not however invalidate any other reasons why
+ * the executable file might be covered by the GNU General Public License.
+ *
+ * This exception applies only to the code released by the Harbour
+ * Project under the name Harbour.  If you copy code from other
+ * Harbour Project or Free Software Foundation releases into a copy of
+ * Harbour, as the General Public License permits, the exception does
+ * not apply to the code that you add in this way.  To avoid misleading
+ * anyone as to the status of such modified files, you must delete
+ * this exception notice from them.
+ *
+ * If you write modifications of your own for Harbour, it is your choice
+ * whether to permit this exception to apply to your modifications.
+ * If you do not wish that, delete this exception notice.
+ *
+ */
+
+#include <ctype.h>
+
+#include "hbapi.h"
+#include "hbapiitm.h"
+#include "hbfast.h"
+#include "hbapierr.h"
+#include "hbapicdp.h"
+
+/* converts szText to lower case. Does not create a new string! */
+char * hb_strLower( char * szText, HB_SIZE ulLen )
+{
+   HB_TRACE( HB_TR_DEBUG, ( "hb_strLower(%s, %" HB_PFS "u)", szText, ulLen ) );
+
+   {
+      HB_SIZE i;
+
+#ifndef HB_CDP_SUPPORT_OFF
+      PHB_CODEPAGE cdp = hb_cdppage();
+
+      if( cdp && cdp->nChars )
+         for( i = 0; i < ulLen; i++ )
+            szText[ i ] = ( char ) cdp->s_lower[ ( UCHAR ) szText[ i ] ];
+      else
+#endif
+
+      for( i = 0; i < ulLen; i++ )
+         szText[ i ] = ( char ) HB_TOLOWER( ( BYTE ) szText[ i ] );
+   }
+
+   return szText;
+}
+
+char * hb_strLowerCopy( char * szText, HB_SIZE ulLen )
+{
+   char * szCopy = ( char * ) hb_xgrab( ulLen + 1 );
+
+   HB_TRACE( HB_TR_DEBUG, ( "hb_strLowerCopy(%s, %" HB_PFS "u)", szText, ulLen ) );
+
+   {
+      HB_SIZE i;
+
+#ifndef HB_CDP_SUPPORT_OFF
+      PHB_CODEPAGE cdp = hb_cdppage();
+
+      if( cdp && cdp->nChars )
+         for( i = 0; i < ulLen; i++ )
+            szCopy[ i ] = ( char ) cdp->s_lower[ ( UCHAR ) szText[ i ] ];
+      else
+#endif
+
+      for( i = 0; i < ulLen; i++ )
+         szCopy[ i ] = ( char ) HB_TOLOWER( ( BYTE ) szText[ i ] );
+      szCopy[ i ] = '\0';
+   }
+
+   return szCopy;
+}
+
+char * hb_strUpperCopy( char * szText, HB_SIZE ulLen )
+{
+   char * szCopy = ( char * ) hb_xgrab( ulLen + 1 );
+
+   HB_TRACE( HB_TR_DEBUG, ( "hb_strUpperCopy(%s, %" HB_PFS "u)", szText, ulLen ) );
+   {
+      HB_SIZE i;
+
+#ifndef HB_CDP_SUPPORT_OFF
+      PHB_CODEPAGE cdp = hb_cdppage();
+
+      if( cdp && cdp->nChars )
+         for( i = 0; i < ulLen; i++ )
+            szCopy[ i ] = ( char ) cdp->s_upper[ ( UCHAR ) szText[ i ] ];
+      else
+#endif
+
+      for( i = 0; i < ulLen; i++ )
+         szCopy[ i ] = ( char ) HB_TOUPPER( ( BYTE ) szText[ i ] );
+      szCopy[ i ] = '\0';
+   }
+
+   return szCopy;
+}
+
+/* converts szText to upper case. Does not create a new string! */
+char * hb_strUpper( char * szText, HB_SIZE ulLen )
+{
+   HB_TRACE( HB_TR_DEBUG, ( "hb_strUpper(%s, %" HB_PFS "u)", szText, ulLen ) );
+
+   {
+      HB_SIZE i;
+
+#ifndef HB_CDP_SUPPORT_OFF
+      PHB_CODEPAGE cdp = hb_cdppage();
+
+      if( cdp && cdp->nChars )
+         for( i = 0; i < ulLen; i++ )
+            szText[ i ] = ( char ) cdp->s_upper[ ( UCHAR ) szText[ i ] ];
+      else
+#endif
+
+      for( i = 0; i < ulLen; i++ )
+         szText[ i ] = ( char ) HB_TOUPPER( ( BYTE ) szText[ i ] );
+   }
+
+   return szText;
+}
+
+/* converts iChar to lower case */
+int hb_charLower( int iChar )
+{
+
+#ifndef HB_CDP_SUPPORT_OFF
+   PHB_CODEPAGE cdp = hb_cdppage();
+
+   if( cdp && cdp->nChars )
+      return ( unsigned char ) cdp->s_lower[ ( unsigned char ) iChar ];
+   else
+#endif
+
+   return HB_TOLOWER( iChar );
+}
+
+/* converts iChar to upper case */
+int hb_charUpper( int iChar )
+{
+
+#ifndef HB_CDP_SUPPORT_OFF
+   PHB_CODEPAGE cdp = hb_cdppage();
+
+   if( cdp && cdp->nChars )
+      return ( unsigned char ) cdp->s_upper[ ( unsigned char ) iChar ];
+   else
+#endif
+
+   return HB_TOUPPER( iChar );
+}
+
+/* converts string to lower case */
+HB_FUNC( LOWER )
+{
+   PHB_ITEM pText = hb_param( 1, HB_IT_STRING );
+
+   if( pText )
+   {
+      char *   pszBuffer   = hb_itemGetC( pText );
+      HB_SIZE  ulLen       = hb_itemGetCLen( pText );
+
+      hb_retclenAdopt( hb_strLower( pszBuffer, ulLen ), ulLen );
+   }
+   else
+      hb_errRT_BASE_SubstR( EG_ARG, 1103, NULL, "LOWER", 1, hb_paramError( 1 ) );
+}
+
+/* converts string to upper case */
+HB_FUNC( UPPER )
+{
+   PHB_ITEM pText = hb_param( 1, HB_IT_STRING );
+
+   if( pText )
+   {
+      char *   pszBuffer   = hb_itemGetC( pText );
+      HB_SIZE  ulLen       = hb_itemGetCLen( pText );
+
+      hb_retclenAdopt( hb_strUpper( pszBuffer, ulLen ), ulLen );
+   }
+   else
+      hb_errRT_BASE_SubstR( EG_ARG, 1102, NULL, "UPPER", 1, hb_paramError( 1 ) );
+}

@@ -1,0 +1,741 @@
+/*
+ * $Id: macro.slx 9834 2012-11-22 01:28:25Z andijahja $
+ */
+
+/*
+ * Harbour Project source code:
+ * Compiler MACRO SimpLex rules
+ *
+ * Copyright 2000 Ron Pinkas <ronpinkas@profit-master.com>
+ * www - http://www.harbour-project.org
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this software; see the file COPYING.  If not, write to
+ * the Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+ * Boston, MA 02111-1307 USA (or visit the web site http://www.gnu.org/).
+ *
+ * As a special exception, the Harbour Project gives permission for
+ * additional uses of the text contained in its release of Harbour.
+ *
+ * The exception is that, if you link the Harbour libraries with other
+ * files to produce an executable, this does not by itself cause the
+ * resulting executable to be covered by the GNU General Public License.
+ * Your use of that executable is in no way restricted on account of
+ * linking the Harbour library code into it.
+ *
+ * This exception does not however invalidate any other reasons why
+ * the executable file might be covered by the GNU General Public License.
+ *
+ * This exception applies only to the code released by the Harbour
+ * Project under the name Harbour.  If you copy code from other
+ * Harbour Project or Free Software Foundation releases into a copy of
+ * Harbour, as the General Public License permits, the exception does
+ * not apply to the code that you add in this way.  To avoid misleading
+ * anyone as to the status of such modified files, you must delete
+ * this exception notice from them.
+ *
+ * If you write modifications of your own for Harbour, it is your choice
+ * whether to permit this exception to apply to your modifications.
+ * If you do not wish that, delete this exception notice.
+ *
+ */
+
+//#define SHOW_LEX_TOKENS
+//#define DEBUG_LEX
+
+#ifdef DEBUG_LEX
+   #undef DEBUG_INFO
+      #define DEBUG_INFO(x) x
+#endif
+
+#undef LEX_ABBREVIATE
+   #define LEX_ABBREVIATE 4
+
+#undef YY_BUF_SIZE
+   #define YY_BUF_SIZE 1 /* Not needed because using the pMacro->String as input buffer. */
+
+/* declaration of yylex function
+ * NOTE: yylval_ptr is passed automaticaly by bison if %pure_parser is used
+*/
+#undef YY_DECL
+   #define YY_DECL int yylex( YYSTYPE *yylval_ptr, PHB_MACRO pMacro )
+
+#define YYLEX_PARAM pMacro
+
+#undef YY_INPUT
+   #define YY_INPUT( buf, result, max_size ) result = 0;
+
+#undef STREAM_EXCEPTION
+   #define STREAM_EXCEPTION( sPair, cChar ) \
+           hb_macroError( EG_SYNTAX, YYLEX_PARAM );
+
+#undef STREAM_APPEND
+   #define STREAM_APPEND(x) \
+      \
+      if( sStart[0] == 'E' ) \
+      { \
+         if( x == '\\' ) \
+         { \
+            char cCode; \
+            switch( *szBuffer ) \
+            { \
+               case '\\' : \
+               case '"'  : \
+               case '\'' : \
+                  sPair [ iPairLen++ ] = *szBuffer++; \
+                  iSize--; \
+                  break; \
+               \
+               case 'n' : \
+                  sPair [ iPairLen++ ] = '\n'; \
+                  szBuffer++; \
+                  iSize--; \
+                  break; \
+               \
+               case 't' : \
+                  sPair [ iPairLen++ ] = '\t'; \
+                  szBuffer++; \
+                  iSize--; \
+                  break; \
+               \
+               case 'b' : \
+                  sPair [ iPairLen++ ] = '\b'; \
+                  szBuffer++; \
+                  iSize--; \
+                  break; \
+               \
+               case 'r' : \
+                  sPair [ iPairLen++ ] = '\r'; \
+                  szBuffer++; \
+                  iSize--; \
+                  break; \
+               \
+               case '0' : case '1' : case '2' : case '3' : case '4' : case '5' : case '6' : case '7' : \
+                  cCode = *szBuffer++ - '0'; \
+                  iSize--; \
+                  if ( *szBuffer >= '0' && *szBuffer <= '7' ) \
+                  { \
+                     cCode = ( cCode << 3 ) | ( *szBuffer++ - '0' ); \
+                     iSize--; \
+                     if ( *szBuffer >= '0' && *szBuffer <= '7' ) \
+                     { \
+                        cCode = ( cCode << 3 ) | ( *szBuffer++ - '0' ); \
+                        iSize--; \
+                     } \
+                  } \
+                  sPair[ iPairLen++ ] = cCode; \
+                  break; \
+               \
+               case 'x' : \
+                  if ( szBuffer[ 1 ] >= '0' && szBuffer[ 1 ] <= '9' ) \
+                     cCode = *++szBuffer - '0'; \
+                  else if ( szBuffer[ 1 ] >= 'A' && szBuffer[ 1 ] <= 'F' ) \
+                     cCode = *++szBuffer - 'A'; \
+                  else if ( szBuffer[ 1 ] >= 'a' && szBuffer[ 1 ] <= 'f' ) \
+                     cCode = *++szBuffer - 'a'; \
+                  else break; \
+                  iSize -= 2; \
+                  if ( szBuffer[ 1 ] >= '0' && szBuffer[ 1 ] <= '9' ) \
+                     cCode = ( cCode << 4 ) | ( *++szBuffer - '0' ); \
+                  else if ( szBuffer[ 1 ] >= 'A' && szBuffer[ 1 ] <= 'F' ) \
+                     cCode = ( cCode << 4 ) | ( *++szBuffer - 'A' ); \
+                  else if ( szBuffer[ 1 ] >= 'a' && szBuffer[ 1 ] <= 'f' ) \
+                     cCode = ( cCode << 4 ) | ( *++szBuffer - 'a' ); \
+                  else break; \
+                  iSize--; \
+                  szBuffer++; \
+                  sPair[ iPairLen++ ] = cCode; \
+                  break; \
+               \
+               default :\
+                  sPair[ iPairLen++ ] = x; \
+            } \
+         } \
+         else \
+         { \
+            sPair[ iPairLen++ ] = x; \
+         } \
+      } \
+      else \
+      { \
+         char *sClose, cTermLen; \
+         \
+         if( sStart[1] == '\0' ) \
+         { \
+            sClose = strchr( szBuffer, sTerm[0] ); \
+            cTermLen = 1; \
+         } \
+         else \
+         { \
+            sClose = strstr( szBuffer, sTerm ); \
+            \
+            if( sClose == NULL ) \
+            { \
+               szBuffer--; iSize++; \
+               sClose = strchr( szBuffer, ']' ); \
+               cTermLen = 1; \
+            } \
+            else \
+            { \
+               cTermLen = 2; \
+            } \
+         } \
+         \
+         if( sClose ) \
+         { \
+            int iLen; \
+            \
+            szBuffer--; iSize++; \
+            \
+            iLen = ( int ) ( sClose - szBuffer ); \
+            \
+            if( iLen > iPairAllocated )\
+            { \
+               sPair = (char *) realloc( sPair, iLen + 1 ); \
+               iPairAllocated = iLen + 1; \
+            } \
+            \
+            hb_strncpy( sPair, szBuffer, iLen ); \
+            sPair[ iLen ] = '\0'; \
+            s_szBuffer = sClose + cTermLen; \
+            iSize -= ( int ) ( s_szBuffer - szBuffer ); \
+            pYYLVAL->valChar.string = hb_strdup( sPair ); \
+            pYYLVAL->valChar.length = iLen; \
+            \
+            /*printf( "Lit: <%s>, Rest: <%s>\n", sPair, s_szBuffer );*/ \
+            iPairToken = 0; \
+            return LITERAL + DONT_REDUCE ; \
+         } \
+         else \
+         { \
+            szBuffer--; \
+            szBuffer[strlen(szBuffer)-1] = '\0'; \
+            hb_macroError( EG_SYNTAX, YYLEX_PARAM ); \
+            pYYLVAL->valChar.string = hb_strdup( szBuffer ); \
+            pYYLVAL->valChar.length = ( int ) strlen( szBuffer ); \
+            iSize = 0; \
+            iPairToken = 0; \
+            return LITERAL + DONT_REDUCE; \
+         } \
+      }
+
+#undef IF_BELONG_LEFT
+   #define IF_BELONG_LEFT(chr) if( iLastToken == IDENTIFIER || iLastToken == ']' || iLastToken == MACROVAR || iLastToken == MACROTEXT || iLastToken == ')' || \
+                                   iLastToken == '}' || iLastToken == LITERAL || iLastToken == FIELD || /*iLastToken == SELF ||*/ iLastToken == QSELF || iLastToken == IIF )
+
+#define IS_NUM( x ) (                     \
+                      x == NUM_LONG    || \
+                      x == NUM_DOUBLE     \
+                    )
+
+static PHB_MACRO pMacro;
+static YYSTYPE *pYYLVAL;
+
+static int hb_macro_SLX_CustomAction( int x, int aiHold[], int *ptr_iHold, char *sToken );
+static int hb_macro_SLX_ElementToken( char* szToken, unsigned int iTokenLen );
+static int hb_comp_SLX_Str2Num( char* szNum, HB_LONG * lVal, double * dVal, int * iDec, int * iWidth, BOOL* pbError );
+
+void * yy_bytes_buffer( char * pBuffer, int iBufSize );
+
+/* -----------------------------------------------------  Language Definitions. ---------------------------------------------------- */
+
+/* Delimiters. */
+ACCEPT_TOKEN_AND_DROP_DELIMITER_IF_ONE_OF_THESE( " \t" );
+
+#define HB_CHK_BLOCK    LEX_CUSTOM_ACTION - 1
+
+#define USE_CONDITIONAL_DELIMITERS
+CONDITIONAL_DELIMITERS_ARE         {
+                                     LEX_DELIMITER( '.'  ) AS_TOKEN( '.' ),
+                                   };
+
+#undef IF_ACCEPT_AS_DELIMITER
+#undef IF_ACCEPT_AS_DELIMITER
+   /* We know chr to only be '.', so ignoring chr! */
+   #define IF_ACCEPT_AS_DELIMITER( chr ) BOOL bAccept = TRUE; \
+                                         \
+                                         if( iLen == 0 ) \
+                                         { \
+                                            bAccept = ! ( isdigit( szBuffer[0] ) || \
+                                                          ( szBuffer[0] == '.' && szBuffer[1] == '.' ) \
+                                                        ); \
+                                         } \
+                                         else \
+                                         { \
+                                            if( isdigit( sToken[0] ) ) \
+                                            { \
+                                              bAccept = FALSE; \
+                                            } \
+                                            else if( sToken[0] == '.' ) \
+                                            { \
+                                              bAccept = FALSE; \
+                                            } \
+                                            else \
+                                            { \
+                                              sToken[iLen] = '\0'; \
+                                              bAccept = strchr( sToken, '&' ) == NULL; \
+                                            } \
+                                         } \
+                                         \
+                                         if( bAccept )
+
+ACCEPT_TOKEN_AND_RETURN_DELIMITERS {
+                                     LEX_DELIMITER( ','  ) AS_TOKEN( ','          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '('  ) AS_TOKEN( '('                        ),
+                                     LEX_DELIMITER( ')'  ) AS_TOKEN( ')'                        ),
+                                     LEX_DELIMITER( '['  ) AS_TOKEN( '['                        ),
+                                     LEX_DELIMITER( ']'  ) AS_TOKEN( ']'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '}'  ) AS_TOKEN( '}'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( ':'  ) AS_TOKEN( ':'                        ),
+                                     LEX_DELIMITER( '='  ) AS_TOKEN( '='          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '#'  ) AS_TOKEN( NE1          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '@'  ) AS_TOKEN( '@'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '<'  ) AS_TOKEN( '<'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '>'  ) AS_TOKEN( '>'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '!'  ) AS_TOKEN( NOT          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '{'  ) AS_TOKEN( HB_CHK_BLOCK               ),
+                                     LEX_DELIMITER( '\\' ) AS_TOKEN( CBMARKER     + DONT_REDUCE ), /* CodeBlock Marker '|' converted to '\' */
+                                     LEX_DELIMITER( '|'  ) AS_TOKEN( BITOR        + DONT_REDUCE ),
+                                     LEX_DELIMITER( '^' )  AS_TOKEN( POWER        + DONT_REDUCE ),
+                                     LEX_DELIMITER( '%'  ) AS_TOKEN( '%'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '*'  ) AS_TOKEN( '*'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '/'  ) AS_TOKEN( '/'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '+'  ) AS_TOKEN( '+'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '-'  ) AS_TOKEN( '-'          + DONT_REDUCE ),
+                                     LEX_DELIMITER( '$'  ) AS_TOKEN( '$'          + DONT_REDUCE )
+				   };
+
+#define HB_AFTER_EXP    LEX_CUSTOM_ACTION - 2560 /* IN, LIKE, MATCH */
+
+/* Intermediate Token, needs CustomAction. */
+#define HB_LIT_ACT      LEX_CUSTOM_ACTION - 2
+
+/* Stream Pairs. */
+DEFINE_STREAM_AS_ONE_OF_THESE {
+                                START_WITH("\"")     END_WITH("\"" )  STOP_IF_ONE_OF_THESE("\n") TEST_LEFT(FALSE) AS_PAIR_TOKEN(HB_LIT_ACT),
+                                START_WITH("'")      END_WITH("'")    STOP_IF_ONE_OF_THESE("\n") TEST_LEFT(FALSE) AS_PAIR_TOKEN(HB_LIT_ACT),
+                                START_WITH("[")      END_WITH("]" )   STOP_IF_ONE_OF_THESE("\n") TEST_LEFT(TRUE ) AS_PAIR_TOKEN(HB_LIT_ACT),
+                                START_WITH("E\"")    END_WITH("\"" )  STOP_IF_ONE_OF_THESE("\n") TEST_LEFT(FALSE) AS_PAIR_TOKEN(HB_LIT_ACT)
+                              };
+
+START_NEW_LINE_IF_ONE_OF_THESE( "\n;" );
+
+#define HB_SELF         LEX_CUSTOM_ACTION - 3
+
+SELF_CONTAINED_WORDS_ARE {
+                           LEX_WORD( ".AND."  ) AS_TOKEN( AND        + DONT_REDUCE ),
+                           LEX_WORD( ".F."    ) AS_TOKEN( FALSEVALUE + DONT_REDUCE ),
+                           LEX_WORD( ".N."    ) AS_TOKEN( FALSEVALUE + DONT_REDUCE ),
+                           LEX_WORD( ".NOT."  ) AS_TOKEN( NOT        + DONT_REDUCE ),
+                           LEX_WORD( ".T."    ) AS_TOKEN( TRUEVALUE  + DONT_REDUCE ),
+                           LEX_WORD( ".Y."    ) AS_TOKEN( TRUEVALUE  + DONT_REDUCE ),
+                           LEX_WORD( ".OR."   ) AS_TOKEN( OR         + DONT_REDUCE ),
+                           LEX_WORD( ":="     ) AS_TOKEN( INASSIGN   + DONT_REDUCE ),
+                           LEX_WORD( "::"     ) AS_TOKEN( HB_SELF                  ),
+                           LEX_WORD( "=="     ) AS_TOKEN( EQ         + DONT_REDUCE ),
+                           LEX_WORD( "=>"     ) AS_TOKEN( HASHOP     + DONT_REDUCE ),
+                           LEX_WORD( "<<"     ) AS_TOKEN( BITSHIFTL  + DONT_REDUCE ),
+                           LEX_WORD( "<>"     ) AS_TOKEN( NE2        + DONT_REDUCE ),
+                           LEX_WORD( "<="     ) AS_TOKEN( LE         + DONT_REDUCE ),
+                           LEX_WORD( ">="     ) AS_TOKEN( GE         + DONT_REDUCE ),
+                           LEX_WORD( ">>"     ) AS_TOKEN( BITSHIFTR  + DONT_REDUCE ),
+                           LEX_WORD( "!="     ) AS_TOKEN( NE2        + DONT_REDUCE ),
+                           LEX_WORD( "++"     ) AS_TOKEN( INC        + DONT_REDUCE ),
+                           LEX_WORD( "+="     ) AS_TOKEN( PLUSEQ     + DONT_REDUCE ),
+                           LEX_WORD( "--"     ) AS_TOKEN( DEC        + DONT_REDUCE ),
+                           LEX_WORD( "-="     ) AS_TOKEN( MINUSEQ    + DONT_REDUCE ),
+                           LEX_WORD( "->"     ) AS_TOKEN( ALIASOP                  ),
+                           LEX_WORD( "*="     ) AS_TOKEN( MULTEQ     + DONT_REDUCE ),
+                           LEX_WORD( "**"     ) AS_TOKEN( POWER      + DONT_REDUCE ),
+                           LEX_WORD( "/="     ) AS_TOKEN( DIVEQ      + DONT_REDUCE ),
+                           LEX_WORD( "^="     ) AS_TOKEN( EXPEQ      + DONT_REDUCE ),
+                           LEX_WORD( "^^"     ) AS_TOKEN( BITXOR     + DONT_REDUCE ),
+                           LEX_WORD( "%="     ) AS_TOKEN( MODEQ      + DONT_REDUCE )
+                         };
+
+/* Intermediate Words when ambigious. */
+#define QSELF       801
+#define _IF_        802
+
+#define HB_FIELD_ALIAS  LEX_CUSTOM_ACTION - 4
+
+#define HB_H12AM        LEX_CUSTOM_ACTION - 5
+#define HB_H12PM        LEX_CUSTOM_ACTION - 6
+
+/* Words. */
+LANGUAGE_WORDS_ARE {
+                     LEX_WORD( "AM"           ) AS_TOKEN( HB_H12AM    ),
+                  /* LEX_WORD( "FIELD"        ) AS_TOKEN( FIELD       ), */
+                     LEX_WORD( "FIELD?WS?->"  ) AS_TOKEN( HB_FIELD_ALIAS     ),
+                     LEX_WORD( "HAS"          ) AS_TOKEN( HB_AFTER_EXP - MATCH      ),
+                     LEX_WORD( "IF"           ) AS_TOKEN( _IF_        ),
+                     LEX_WORD( "IIF"          ) AS_TOKEN( IIF         ),
+                     LEX_WORD( "IN"           ) AS_TOKEN( HB_AFTER_EXP - '$'        ),
+                     LEX_WORD( "LIKE"         ) AS_TOKEN( HB_AFTER_EXP - LIKE       ),
+                     LEX_WORD( "NIL"          ) AS_TOKEN( NIL        + DONT_REDUCE  ),
+                     LEX_WORD( "PM"           ) AS_TOKEN( HB_H12PM    ),
+                     LEX_WORD( "QSELF"        ) AS_TOKEN( QSELF       ),
+                  /* LEX_WORD( "SELF"         ) AS_TOKEN( SELF        ), */
+                  /* LEX_WORD( "_FIELD"       ) AS_TOKEN( FIELD       ),  */
+                     LEX_WORD( "_FIELD?WS?->" ) AS_TOKEN( HB_FIELD_ALIAS     ),
+                   };
+
+/* When reservered words are used as Identifier. */
+#define HB_MACRO_ERR    LEX_CUSTOM_ACTION - 7
+
+#define HB_ID_QSELF     LEX_CUSTOM_ACTION - 8
+#define HB_ID_IIF       LEX_CUSTOM_ACTION - 9
+#define HB_ID_IF        LEX_CUSTOM_ACTION - 10
+
+LANGUAGE_RULES_ARE {
+		    /* This _FIELD_ is NOT at BOL wants only ->. */
+                 /* IF_SEQUENCE_IS( FIELD       , ALIASOP     , 0      , 0          ) PASS_THROUGH(),
+                    IF_SEQUENCE_IS( FIELD       , 0           , 0      , 0          ) REDUCE_TO( HB_ID_FIELD       , 0             ), */
+
+                 /* IF_SEQUENCE_IS( SELF        , ':'         , 0      , 0          ) PASS_THROUGH(),
+                    IF_SEQUENCE_IS( SELF        , 0           , 0      , 0          ) REDUCE_TO( HB_ID_SELF        , 0             ), */
+
+                    IF_SEQUENCE_IS( QSELF       , '('         , ')'    , 0          ) REDUCE_TO( SELF + DONT_REDUCE, 0             ),
+                    IF_SEQUENCE_IS( QSELF       , 0           , 0      , 0          ) REDUCE_TO( HB_ID_QSELF       , 0             ),
+
+                    IF_SEQUENCE_IS( IIF         , '('         , 0      , 0          ) PASS_THROUGH(),
+                    IF_SEQUENCE_IS( IIF         , 0           , 0      , 0          ) REDUCE_TO( HB_ID_IIF         , 0             ),
+
+                    IF_SEQUENCE_IS( _IF_        , '('         , 0      , 0          ) REDUCE_TO( IIF + DONT_REDUCE , '('           ),
+                    IF_SEQUENCE_IS( _IF_        , 0           , 0      , 0          ) REDUCE_TO( HB_ID_IF          , 0             ),
+
+                    IF_SEQUENCE_IS( '&'         , '\''        , 0      , 0          ) REDUCE_TO( HB_MACRO_ERR  , 0        ),
+                    IF_SEQUENCE_IS( '&'         , '"'         , 0      , 0          ) REDUCE_TO( HB_MACRO_ERR  , 0        ),
+                    IF_SEQUENCE_IS( '&'         , '['         , 0      , 0          ) REDUCE_TO( HB_MACRO_ERR  , 0        )
+                   };
+
+/* -------------------------------------------------  End of Language Definitions. ------------------------------------------------ */
+
+#undef LEX_CASE
+   #define LEX_CASE(x) ( (  ( iRet = (x) ) > 96 && iRet < 123 ) ? iRet - 32 : iRet )
+
+#ifdef SHOW_LEX_TOKENS
+   #undef INTERCEPT_ACTION
+   	#define INTERCEPT_ACTION(x) \
+         if( x == IDENTIFIER ) \
+           TraceLog( NULL, "   IDENTIFIER = \"%s\"\n", pYYLVAL->string  ); \
+         else if( x == LITERAL ) \
+           TraceLog( NULL, "   LITERAL = \"%s\" (%d)\n", pYYLVAL->valChar.string, pYYLVAL->valChar.length  ); \
+         else if( x == MACROVAR ) \
+           TraceLog( NULL, "   MACROVAR = \"%s\"\n", pYYLVAL->string  ); \
+         else if( x == MACROTEXT ) \
+           TraceLog( NULL, "   MACROTEXT = \"%s\"\n", pYYLVAL->string  ); \
+         else if( x == NUM_LONG ) \
+           TraceLog( NULL, "   INTEGER = %li\n", pYYLVAL->valLong.lNumber  ); \
+         else if( x == NUM_DOUBLE ) \
+           TraceLog( NULL, "   DOUBLE = %f\n", pYYLVAL->valDouble.dNumber  ); \
+         else if( x < 256 ) \
+           if( x == '\n' || x == ';' ) \
+              TraceLog( NULL, "                  NEW LINE! \n" ); \
+           else if( iRet == -1 ) \
+              TraceLog( NULL, "!!!<EOF>\n" ); \
+           else \
+              TraceLog( NULL, "   DELIMITER = \"%c\"\n", x  ); \
+         else \
+           TraceLog( NULL, "   TOKEN = %i\n", x  );
+#endif
+
+#undef ELEMENT_TOKEN
+  #define ELEMENT_TOKEN(x,y) hb_macro_SLX_ElementToken(x,y)
+
+#undef CUSTOM_ACTION
+   #define CUSTOM_ACTION(x) hb_macro_SLX_CustomAction( x, aiHold, &iHold, (char*) sToken  )
+
+#undef LEX_USER_SETUP
+   #define LEX_USER_SETUP() if( pYYLVAL == NULL ){ pYYLVAL = yylval_ptr; } HB_SYMBOL_UNUSED( pMacro );
+
+static int hb_macro_SLX_ElementToken( char* szToken, unsigned int iTokenLen )
+{
+   extern char *yytext;
+   extern int yyleng;
+
+   char *tmpPtr;
+   int iRet;
+
+   yytext = szToken;
+   yyleng = iTokenLen;
+
+   if( ( *yytext >= 'A' && *yytext <= 'Z' ) || *yytext == '&' || *yytext == '_' )
+   {
+      /* Macro. */
+      if( ( tmpPtr = strrchr( yytext, '&' ) ) != NULL ) /* Right Search. */
+      {
+         /* Is '&' the first char? - Since its was right search that would be the only '&'. */
+         if( tmpPtr == yytext )
+         {
+            /* Maybe just the Macro Operator. */
+            if( yyleng == 1 )
+            {
+               if( IS_NUM( iLastToken ) || iLastToken == LITERAL ||
+                   iLastToken == IDENTIFIER ||  iLastToken == MACROVAR || iLastToken == MACROTEXT ||
+                   iLastToken == ')' || iLastToken == ']' || iLastToken == '}' )
+               {
+                  iRet = BITAND + DONT_REDUCE;
+               }
+               else
+               {
+                  iRet = '&' + DONT_REDUCE;
+               }
+            }
+            /* No '.' so Simple Macro. */
+            else if( ( tmpPtr = strchr( yytext, '.' ) ) == NULL ) /* Left Search. */
+            {
+               /* Remove the '&'. */
+               yytext++;
+               yyleng--;
+
+               pYYLVAL->string = hb_strdup( yytext );
+               iRet = MACROVAR;
+            }
+            else if( tmpPtr == yytext + yyleng - 1 )
+            {
+               /* The only '.' is last char, so Simple Macro. */
+
+               /* Remove the '&' and the '.' */
+               yytext++;
+               yyleng -= 2;
+               yytext[yyleng] = '\0';
+
+               pYYLVAL->string = hb_strdup( yytext );
+               iRet = MACROVAR;
+            }
+            else
+            {
+               yytext = hb_strdup( yytext );
+               pYYLVAL->string = yytext;
+               iRet = MACROTEXT;
+            }
+         }
+         else
+         {
+            yytext = hb_strdup( yytext );
+            pYYLVAL->string = yytext;
+            iRet = MACROTEXT;
+         }
+      }
+      else
+      {
+         if( yyleng > (int) YYLEX_PARAM->uiNameLen )
+         {
+            yytext[ YYLEX_PARAM->uiNameLen ] = '\0';
+            yyleng = YYLEX_PARAM->uiNameLen;
+         }
+
+         pYYLVAL->string = hb_strdup( yytext );
+         iRet = IDENTIFIER;
+      }
+   }
+   else
+   {
+      /* ConverNumber */
+
+      HB_LONG lNumber;
+      double dNumber;
+      int iDec, iWidth;
+      BOOL bError = FALSE;
+
+      iRet = hb_comp_SLX_Str2Num( yytext, &lNumber, &dNumber, &iDec, &iWidth, &bError );
+
+      if( bError )
+      {
+         hb_macroError( EG_SYNTAX, YYLEX_PARAM );
+         iRet = -1;
+      }
+      else if ( iRet == NUM_DOUBLE )
+      {
+         pYYLVAL->valDouble.dNumber = dNumber;
+         pYYLVAL->valDouble.bDec = ( unsigned char ) iDec;
+         pYYLVAL->valDouble.bWidth = ( unsigned char ) iWidth;
+         pYYLVAL->valDouble.szValue = yytext;
+      }
+      else
+      {
+         pYYLVAL->valLong.lNumber = lNumber;
+         pYYLVAL->valLong.szValue = yytext;
+      }
+   }
+
+   DEBUG_INFO( printf(  "Element \"%s\" is %i\n", sToken, iRet ) );
+   return iRet;
+}
+
+static int hb_comp_SLX_Str2Num( char* szNum, HB_LONG * plVal, double * pdVal, int * piDec, int * piWidth, BOOL* pbError )
+{
+   BOOL fDbl;
+
+   fDbl = hb_compStrToNumErr( szNum, strlen( szNum ), plVal, pdVal, piDec, piWidth, pbError );
+   return fDbl ? NUM_DOUBLE : NUM_LONG;
+}
+
+static int hb_macro_SLX_CustomAction( int x, int aiHold[], int *ptr_iHold, char *sToken )
+{
+   char *pTmp;
+
+   HB_SYMBOL_UNUSED( sToken );
+
+   if( x < HB_AFTER_EXP )
+   {
+      bIgnoreWords = FALSE;
+
+      if( IS_NUM( iLastToken ) || iLastToken == LITERAL ||
+          iLastToken == IDENTIFIER ||  iLastToken == MACROVAR || iLastToken == MACROTEXT ||
+          iLastToken == ')' || iLastToken == ']' || iLastToken == '}' ||
+          iLastToken == FIELD || iLastToken == QSELF || iLastToken == IIF )
+      {
+         return ( (-x) + (HB_AFTER_EXP) ) + DONT_REDUCE;
+      }
+      else
+      {
+         pYYLVAL->string = hb_strdup( sToken );
+         DEBUG_INFO( printf( "HB_AFTER_EXP, Identifier %s\n", sToken ) );
+         return IDENTIFIER;
+      }
+   }
+
+   switch ( x )
+   {
+      case HB_CHK_BLOCK :
+         pTmp = (char *) s_szBuffer;
+
+         /* Skip White Space. */
+         while( isspace( (BYTE) *pTmp ) )
+         {
+            pTmp++;
+         }
+
+         if( *pTmp == '|' )
+         {
+            *pTmp = '\\';
+
+            pTmp++;
+
+            while( *pTmp  )
+            {
+               if( *pTmp == '|' )
+               {
+                  *pTmp = '\\';
+                  break;
+               }
+
+               pTmp++;
+            }
+         }
+
+         return '{' + DONT_REDUCE;
+
+      case HB_LIT_ACT :
+         pYYLVAL->valChar.string = hb_strdup( sPair );
+         pYYLVAL->valChar.length = iPairLen;
+         return LITERAL + DONT_REDUCE;
+
+      case HB_FIELD_ALIAS :
+         aiHold[ (*ptr_iHold)++ ] = ALIASOP;
+         return FIELD;
+
+      case HB_ID_QSELF :
+         if( *ptr_iHold && aiHold[ (*ptr_iHold) - 1 ] == IDENTIFIER && pYYLVAL->string )
+         {
+            /*
+               <Id> <Id> is a syntax error so overriding pYYLVAL->string has no practical
+               significance. We only need to avoid memory leak.
+            */
+            hb_xfree( pYYLVAL->string );
+         }
+         pYYLVAL->string = hb_strdup( "QSELF" );
+         return IDENTIFIER + DONT_REDUCE;
+
+      case HB_ID_IIF :
+         if( *ptr_iHold && aiHold[ (*ptr_iHold) - 1 ] == IDENTIFIER && pYYLVAL->string )
+         {
+            /*
+               <Id> <Id> is a syntax error so overriding pYYLVAL->string has no practical
+               significance. We only need to avoid memory leak.
+            */
+            hb_xfree( pYYLVAL->string );
+         }
+         pYYLVAL->string = hb_strdup( "IIF" );
+         return IDENTIFIER + DONT_REDUCE;
+
+      case HB_ID_IF :
+         if( *ptr_iHold && aiHold[ (*ptr_iHold) - 1 ] == IDENTIFIER && pYYLVAL->string )
+         {
+            /*
+               <Id> <Id> is a syntax error so overriding pYYLVAL->string has no practical
+               significance. We only need to avoid memory leak.
+            */
+            hb_xfree( pYYLVAL->string );
+         }
+         pYYLVAL->string = hb_strdup( "IF" );
+         return IDENTIFIER + DONT_REDUCE;
+
+      case HB_SELF :
+         aiHold[ (*ptr_iHold)++ ] = ':' + DONT_REDUCE ;
+         pYYLVAL->string = hb_strdup( "SELF" );
+         return IDENTIFIER + DONT_REDUCE ;
+
+      case HB_H12AM :
+         if( IS_NUM( iLastToken ) )
+         {
+            return H12AM + DONT_REDUCE;
+         }
+         else
+         {
+            pYYLVAL->string = hb_strdup( "AM" );
+            return IDENTIFIER + DONT_REDUCE;
+         }
+
+      case HB_H12PM :
+         if( IS_NUM( iLastToken ) )
+         {
+            return H12PM + DONT_REDUCE;
+         }
+         else
+         {
+            pYYLVAL->string = hb_strdup( "PM" );
+            return IDENTIFIER + DONT_REDUCE;
+         }
+
+      case HB_MACRO_ERR :
+	 hb_macroError( EG_SYNTAX, YYLEX_PARAM );
+         return 0;
+
+      default:
+         printf( "ERROR! [MACRO.SLX] - No Handler for Custom Action %i\n", x );
+	 return 0;
+   }
+}
+
+void * hb_compFlexNew( PHB_MACRO pNewMacro )
+{
+   HB_TRACE(HB_TR_DEBUG, ("hb_compFlexNew(%s, %i)", pNewMacro->string, pNewMacro->length));
+
+   pYYLVAL = NULL;
+   pMacro = pNewMacro;
+
+   DEBUG_INFO( printf( "*** New Macro: >>>%s<<< Len: %i\n", pMacro->string, pMacro->length ) );
+   //TraceLog( NULL, "*** New Macro: >>>%s<<< Len: %i\n", pMacro->string, pMacro->length );
+
+   return yy_bytes_buffer( pMacro->string, (int) pMacro->length );
+}
+
+void hb_compFlexDelete( void * pBuffer )
+{
+   HB_SYMBOL_UNUSED( pBuffer );
+
+   RESET_LEX()
+}

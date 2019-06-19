@@ -1,0 +1,20 @@
+wvwtest9++
+wvwmouse.obj++
+winapi.obj++
+c:\software\borland\bcc55\lib\c0w32.obj, ++
+c:wvwtest9.exe,wvwtest9.map, ++
+..\..\..\lib\gtwvw.lib ++
+..\..\..\lib\rtl.lib ++
+..\..\..\lib\vm.lib ++
+..\..\..\lib\rdd.lib ++
+..\..\..\lib\dbfntx.lib ++
+..\..\..\lib\dbffpt.lib ++
+..\..\..\lib\hbsix.lib ++
+..\..\..\lib\lang.lib ++
+..\..\..\lib\macro.lib ++
+..\..\..\lib\debug.lib ++
+..\..\..\lib\common.lib ++
+..\..\..\lib\pp.lib ++
+c:\software\borland\bcc55\lib\cw32.lib ++
+c:\software\borland\bcc55\lib\import32.lib,
+wvwtest9.res

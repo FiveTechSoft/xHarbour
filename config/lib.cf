@@ -1,0 +1,70 @@
+#
+# $Id: lib.cf 9279 2011-02-14 18:06:32Z druzus $
+#
+
+ifneq ($(HB_ARCHITECTURE),)
+ifneq ($(HB_COMPILER),)
+
+include $(TOP)$(ROOT)config/global.cf
+include $(TOP)$(ROOT)config/c.cf
+include $(TOP)$(ROOT)config/prg.cf
+
+ifneq ($(LIBNAME),)
+LIB_NAME := $(LIB_PREF)$(LIBNAME)$(LIB_EXT)
+endif
+ifneq ($(MT_LIBNAME),)
+ifeq ($(HB_MT),MT)
+MT_LIB_NAME := $(LIB_PREF)$(MT_LIBNAME)$(LIB_EXT)
+endif
+endif
+
+LIB_ARCH := $(notdir $(ARCH_DIR))
+ifeq ($(LIB_ARCH),)
+# ARCH_DIR ends with a slash
+LIB_ARCH := $(ARCH_DIR)$(LIB_NAME)
+else
+# there is no slash at the end of ARCH_DIR
+LIB_ARCH := $(ARCH_DIR)/$(LIB_NAME)
+endif
+
+ALL_OBJS = $(ALL_C_OBJS) $(ALL_PRG_OBJS)
+
+#main configurable rule
+# 2003-04-19 - <maurilio.longo@libero.it>
+# This test fails if I don't want to compile mt code (at least on OS/2)
+#ifeq ($(MT_LIBNAME),)
+# This one is correct
+ifeq ($(MT_LIB_NAME),)
+first:: dirbase descend
+else
+ifeq ($(LIB_NAME),)
+first:: dirbase_mt descend_mt
+else
+first:: dirbase dirbase_mt descend descend_mt
+endif
+endif
+
+descend:: dirbase
+	+@$(MK) -C $(ARCH_DIR) -f $(GRANDP)Makefile 'TOP=$(GRANDP)' 'HB_LIBCOMP_MT=NO' $(LIB_NAME)
+
+descend_mt:: dirbase_mt
+	+@$(MK) -C $(ARCH_DIR)_mt -f $(GRANDP)Makefile 'TOP=$(GRANDP)' 'HB_LIBCOMP_MT=YES' $(MT_LIB_NAME)
+
+$(LIB_NAME) : $(ALL_OBJS)
+	$(AR_RULE)
+
+$(MT_LIB_NAME) : $(ALL_OBJS)
+	$(AR_RULE)
+
+ifeq ($(MT_LIB_NAME),)
+INSTALL_OBJS = $(LIB_ARCH)
+else
+INSTALL_OBJS = $(LIB_ARCH) $(ARCH_DIR)_mt/$(MT_LIB_NAME)
+endif
+
+INSTALL_DIR = $(HB_LIB_INSTALL)
+
+include $(TOP)$(ROOT)config/install.cf
+
+endif
+endif

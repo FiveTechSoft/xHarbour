@@ -1,0 +1,17 @@
+#
+# $Id: install.cf 9279 2011-02-14 18:06:32Z druzus $
+#
+
+include $(TOP)$(ROOT)config/$(HB_ARCHITECTURE)/global.cf
+
+define inst_file
+ECHO $(CP) $(file) $(INSTALL_OS2_DIR) >> _NSTALL.CMD
+
+endef
+
+
+INSTALL_LIST = $(subst /,\,$(INSTALL_OBJS))
+INSTALL_OS2_DIR = $(subst /,\,$(INSTALL_DIR))
+INSTALL_RULE = $(foreach file, $(INSTALL_LIST), $(inst_file)) \
+		$(COMSPEC) /c _NSTALL.CMD & $(RM) _NSTALL.CMD
+

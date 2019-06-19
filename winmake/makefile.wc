@@ -1,0 +1,368 @@
+#===============================================================================
+#
+# $Id: makefile.wc 9931 2013-05-07 09:16:54Z zsaulius $
+#
+# MAKEFILE FOR OPENWATCOM
+#
+# This is Generic File, do not change it. If you should require your own build
+# version, changes should only be made on your local copy.(AJ:2008-04-26)
+#
+#===============================================================================
+!include winmake\common.mak
+
+RC        =RC
+CC        =WCC386
+CCP       =WPP386
+LINKEXE   =LINK386
+LIBEXE    =LIB386
+IMPLIBEXE =WLIB
+
+ACE_DLL   ="$(HB_DIR_ADS)\ace32.dll"
+ACE_LIB   =$(ACE32_LIB)
+
+!if !("$(HB_DIR_ADS)"=="")
+!if !("$(HB_ADS_IMPLIB)"=="no") && !("$(HB_ADS_IMPLIB)"=="0")
+HB_ADS_CREATEIMPLIB=1
+!else
+HB_ADS_CREATEIMPLIB=0
+!endif
+!endif
+
+!if ("$(HB_DEBUG)"=="d")
+CC_DEBUGFLAGS =-d2
+LNK_DEBUGFLAGS=-debug
+!else
+CC_DEBUGFLAGS =-d0
+!endif
+
+INCLUDE_DIR   =-I"$(CC_DIR)\h" -I"$(CC_DIR)\h\nt" $(INCLUDE_DIR)
+OPTFLAGS      =-j -w3 -6s -fp6 -s -onaehtzr -oi -ei -zp8 -zq -zt0 -mf -bt=NT
+!if ("$(HB_MT)"=="mt") || ("$(HB_THREAD_SUPPORT)"=="1")
+OPTFLAGS      =-bm $(OPTFLAGS)
+!endif
+MAINWIN_OBJ   =$(OBJ_DIR)\mainstdW32$(OBJEXT)
+IMPLIB_CMD    =$(IMPLIBEXE) -io -c -n -o -fo $@ + $**
+
+!include winmake\common3.mak
+#*******************************************************************************
+!if ("$(__BLD__)"=="CORE_BLD")
+#*******************************************************************************
+
+!if !("$(HB_GTALLEG)"=="")
+HB_GT_LIBS=\
+	$(HB_GT_LIBS)\
+	$(GTALLEG_LIB)
+!endif
+
+HBDOC_EXE_OBJS=\
+	$(HBDOC_EXE_OBJS)\
+	$(HBDOC_PDF_OBJS)
+
+!if ("$(HB_MT)"=="")
+PROJECT=$(ST_PROJECT)
+!if ("$(HB_ADS_CREATEIMPLIB)"=="1")
+PROJECT=\
+	$(PROJECT)\
+	$(ACE32_LIB)
+!endif
+!else
+PROJECT=$(MT_PROJECT)
+!endif
+
+ALL: $(PROJECT)
+
+#*******************************************************************************
+!elseif ("$(__BLD__)"=="DLL_BLD")
+#*******************************************************************************
+
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(TIFF_LIB_OBJS)
+
+!if ("$(HB_DLL_HAVE_ADS)"=="1")
+!if !("$(HB_DIR_ADS)"=="")
+!if ("$(HB_ADS_CREATEIMPLIB)"=="1")
+COMPILERLIBS=\
+	$(ACE32_LIB)
+!endif
+HARBOUR_DLL_OBJS=\
+	$(HARBOUR_DLL_OBJS)\
+	$(RDDADS_LIB_OBJS)
+!endif
+!endif
+
+!if ("$(HB_DLL_ISMT)"=="1")
+CLIBFLAGS   =-bm $(CLIBFLAGS)
+!endif
+
+DLLFLAGS=\
+	-out:$(HARBOUR_DLL)\
+	-def:$(EXPORT_DEF)\
+	-dll\
+	-implib:$(HARBOUR_DLL_LIB)\
+	-nologo\
+	$(HARBOUR_DLL_OBJS)\
+	$(HARBOUR_DLL_RES)\
+	$(COMPILERLIBS)
+
+CLIBFLAGS      =$(CLIBFLAGS) -bd
+CLIBFLAGS_OW32 =$(CC_DEFINES) $(INCLUDE_DIR) $(OPTFLAGS)
+
+ALL: $(DLL_PROJECT)
+
+#
+# Unlike other compilers, Open Watcom does not like dll flag used for creating
+# application which using DLL. Hence the global DLL flag is invalid, and we have
+# to compile application without dll flag. This is why the following rules look
+# like redundancy of those in common.mak and compile.mak
+#
+
+HBDOCDLL_EXE_OBJS=\
+	$(MAINWIN_OBJ)\
+	$(OBJ_DIR)\hbdocOW32$(OBJEXT)\
+	$(OBJ_DIR)\genascOW32$(OBJEXT)\
+	$(OBJ_DIR)\teeascOW32$(OBJEXT)\
+	$(OBJ_DIR)\genhpcOW32$(OBJEXT)\
+	$(OBJ_DIR)\genhtmOW32$(OBJEXT)\
+	$(OBJ_DIR)\genchmOW32$(OBJEXT)\
+	$(OBJ_DIR)\genngOW32$(OBJEXT)\
+	$(OBJ_DIR)\genos2OW32$(OBJEXT)\
+	$(OBJ_DIR)\genrtfOW32$(OBJEXT)\
+	$(OBJ_DIR)\gentrfOW32$(OBJEXT)\
+	$(OBJ_DIR)\htmlOW32$(OBJEXT)\
+	$(OBJ_DIR)\ngOW32$(OBJEXT)\
+	$(OBJ_DIR)\os2OW32$(OBJEXT)\
+	$(OBJ_DIR)\rtfOW32$(OBJEXT)\
+	$(OBJ_DIR)\troffOW32$(OBJEXT)\
+	$(OBJ_DIR)\fclass1OW32$(OBJEXT)\
+	$(OBJ_DIR)\ffile1OW32$(OBJEXT)\
+	$(OBJ_DIR)\ft_funcsOW32$(OBJEXT)\
+	\
+	$(OBJ_DIR)\genpdf1OW32$(OBJEXT)\
+	$(OBJ_DIR)\pdfhbdocOW32$(OBJEXT)
+
+HBTESTDLL_EXE_OBJS=\
+	$(MAINWIN_OBJ)\
+	$(OBJ_DIR)\hbtestOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_hvmOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_hvmaOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_mathOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_dateOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_strOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_straOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_transOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_arrayOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_fileOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_miscOW32$(OBJEXT)\
+	$(OBJ_DIR)\rt_ccallOW32$(OBJEXT)
+
+HBMAKEDLL_EXE_OBJS=\
+	$(MAINWIN_OBJ)\
+	$(OBJ_DIR)\hbmakeOW32$(OBJEXT)\
+	$(OBJ_DIR)\tmakeOW32$(OBJEXT)\
+	$(OBJ_DIR)\hbmutilsOW32$(OBJEXT)\
+	$(OBJ_DIR)\checksOW32$(OBJEXT)\
+	$(OBJ_DIR)\pickarryOW32$(OBJEXT)\
+	$(OBJ_DIR)\pickfileOW32$(OBJEXT)\
+	$(OBJ_DIR)\prb_stakOW32$(OBJEXT)\
+	$(OBJ_DIR)\radiosOW32$(OBJEXT)\
+	$(OBJ_DIR)\hbmlangOW32$(OBJEXT)\
+	\
+	$(OBJ_DIR)\ft_funcsOW32$(OBJEXT)\
+	$(OBJ_DIR)\fclass1OW32$(OBJEXT)\
+	$(OBJ_DIR)\ffile1OW32$(OBJEXT)
+
+HBRUNDLL_EXE_OBJS=\
+	$(MAINWIN_OBJ)\
+	$(OBJ_DIR)\hbrunOW32$(OBJEXT)\
+	$(OBJ_DIR)\externalOW32$(OBJEXT)
+
+XBSCRIPTDLL_EXE_OBJS=\
+	$(MAINWIN_OBJ)\
+	$(OBJ_DIR)\xbscriptOW32$(OBJEXT)
+
+#*******************************************************************************
+!elseif ("$(__BLD__)"=="CONTRIB_BLD")
+#*******************************************************************************
+!include winmake\common1.mak
+
+!if ("$(HB_ADS_IMPLIB)" == "no")
+RDDADS_LIB_OBJS=\
+	$(RDDADS_LIB_OBJS)\
+	$(OBJ_DIR)\ace32$(OBJEXT)
+!endif
+
+!if ("$(HB_ZIP)"=="1")
+OPTIONAL_PRJ=$(OPTIONAL_PRJ) $(HBZIP_LIB)
+!endif
+
+# Reset CONTRIB_PROJECT because some modules cannot build
+
+CONTRIB_PROJECT=\
+	$(CONTRIB_PROJECT)\
+	$(GTWVW_LIB)\
+	$(XWT_LIB)\
+	$(HBSQLIT3_LIB)\
+	$(GTWVG_LIB)\
+	\
+	$(OPTIONAL_PRJ)
+
+ALL: $(CONTRIB_PROJECT)
+
+!endif
+
+RC_CMD          =$(RC) -r -i"$(CC_DIR)\include" -fo $@ $**
+HB_CMD          =$(HARBOUR_EXE) -n1 $(HARBOURFLAGS) $** -o$@
+HB_CMD_MAIN     =$(HARBOUR_EXE) -n0 $(HARBOURFLAGS) -d_USE_APPMAIN_ $** -o$@
+CC_CMD          =$(CC) $(CLIBFLAGS) -fo$@ $**
+CC_CMD_HARBOUR  =$(CC) $(CLIBFLAGS) -D__HB_COMPILER__ $(CC_COMP_DEFINES) -fo$@ $**
+CCC_CMD         =$(CC_CMD)
+CC_CMD_OW32     =$(CC) $(CLIBFLAGS_OW32) -fo$@ $**
+CC_CMD_ZIP      =$(CCP) $(CLIBFLAGS) -I$(HBZIP_DIR)\include -fo$@ $**
+LIB_CMD         =$(LIBEXE) -nologo -out:$@ $**
+LIB_CMD_1       =$(LIB_CMD)
+LINK_CMD        =$(LINKEXE) $(LNK_DEBUGFLAGS) -nologo -subsystem:console -out:$@ $**
+HRB_LINK_CMD    =$(LINKEXE) $(LNK_DEBUGFLAGS) -nologo -subsystem:console -out:$(HARBOUR_EXE) $(HARBOUR_EXE_OBJS) $(HRB_LIBS) $(HARBOUR_EXE_RES)
+DLL_LINK_CMD    =$(LINKEXE) $(LNK_DEBUGFLAGS) $(DLLFLAGS)
+DLLEXE_LINK_CMD =$(LINKEXE) $(LNK_DEBUGFLAGS) -nologo -subsystem:console -out:$@ $** $(HARBOUR_DLL_LIB) $(PDFLITE_LIB)
+
+#===============================================================================
+# Building rules of Object files
+#===============================================================================
+$(MAINWIN_OBJ) : $(VM_DIR)\mainstd.c
+	$(CC) $(INCLUDE_DIR) -j -w3 $(CC_DEBUGFLAGS) -6s -fp6 -s -onaehtzr -oi -ei -zp8 -zq -zt0 -mf -bt=NT -D__WIN32__ -fo$@ $**
+
+$(OBJ_DIR)\hbrunOW32$(OBJEXT) : $(OBJ_DIR)\hbrun.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\externalOW32$(OBJEXT) : $(OBJ_DIR)\external.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\hbtestOW32$(OBJEXT) : $(OBJ_DIR)\hbtest.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_hvmOW32$(OBJEXT) : $(OBJ_DIR)\rt_hvm.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_hvmaOW32$(OBJEXT) : $(OBJ_DIR)\rt_hvma.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_mathOW32$(OBJEXT) : $(OBJ_DIR)\rt_math.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_dateOW32$(OBJEXT) : $(OBJ_DIR)\rt_date.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_strOW32$(OBJEXT) : $(OBJ_DIR)\rt_str.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_straOW32$(OBJEXT) : $(OBJ_DIR)\rt_stra.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_transOW32$(OBJEXT) : $(OBJ_DIR)\rt_trans.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_arrayOW32$(OBJEXT) : $(OBJ_DIR)\rt_array.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_fileOW32$(OBJEXT) : $(OBJ_DIR)\rt_file.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_miscOW32$(OBJEXT) : $(OBJ_DIR)\rt_misc.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rt_ccallOW32$(OBJEXT) : $(OBJ_DIR)\rt_ccall.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\hbdocOW32$(OBJEXT) : $(OBJ_DIR)\hbdoc.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genascOW32$(OBJEXT) : $(OBJ_DIR)\genasc.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\teeascOW32$(OBJEXT) : $(OBJ_DIR)\teeasc.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genhpcOW32$(OBJEXT) : $(OBJ_DIR)\genhpc.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genhtmOW32$(OBJEXT) : $(OBJ_DIR)\genhtm.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genchmOW32$(OBJEXT) : $(OBJ_DIR)\genchm.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genngOW32$(OBJEXT) : $(OBJ_DIR)\genng.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genos2OW32$(OBJEXT) : $(OBJ_DIR)\genos2.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genrtfOW32$(OBJEXT) : $(OBJ_DIR)\genrtf.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\gentrfOW32$(OBJEXT) : $(OBJ_DIR)\gentrf.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\htmlOW32$(OBJEXT) : $(OBJ_DIR)\html.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\ngOW32$(OBJEXT) : $(OBJ_DIR)\ng.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\os2OW32$(OBJEXT) : $(OBJ_DIR)\os2.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\rtfOW32$(OBJEXT) : $(OBJ_DIR)\rtf.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\troffOW32$(OBJEXT) : $(OBJ_DIR)\troff.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\fclass1OW32$(OBJEXT) : $(OBJ_DIR)\fclass1.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\ffile1OW32$(OBJEXT) : $(OBJ_DIR)\ffile1.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\ft_funcsOW32$(OBJEXT) : $(OBJ_DIR)\ft_funcs.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\genpdf1OW32$(OBJEXT) : $(OBJ_DIR)\genpdf1.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\pdfhbdocOW32$(OBJEXT) : $(HBDOC_DIR)\pdfhbdoc.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\hbmakeOW32$(OBJEXT) : $(OBJ_DIR)\hbmake.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\tmakeOW32$(OBJEXT) : $(OBJ_DIR)\tmake.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\hbmutilsOW32$(OBJEXT) : $(OBJ_DIR)\hbmutils.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\radiosOW32$(OBJEXT) : $(OBJ_DIR)\radios.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\checksOW32$(OBJEXT) : $(OBJ_DIR)\checks.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\pickarryOW32$(OBJEXT) : $(OBJ_DIR)\pickarry.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\pickfileOW32$(OBJEXT) : $(OBJ_DIR)\pickfile.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\prb_stakOW32$(OBJEXT) : $(OBJ_DIR)\prb_stak.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\hbmlangOW32$(OBJEXT) : $(HBMAKE_DIR)\hbmlang.c
+	$(CC_CMD_OW32)
+
+$(OBJ_DIR)\xbscriptOW32$(OBJEXT) : $(OBJ_DIR)\xbscript.c
+	$(CC_CMD_OW32)
+
+!include winmake\common2.mak
+!include winmake\compile.mak

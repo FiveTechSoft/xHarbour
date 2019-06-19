@@ -1,0 +1,92 @@
+#
+# $Id: owatcom.cf 9279 2011-02-14 18:06:32Z druzus $
+#
+# The Harbour project
+# GNU MAKE file for OpenWatcom C/C++
+
+include $(TOP)$(ROOT)config/$(HB_ARCHITECTURE)/global.cf
+
+OBJ_EXT = .o
+EXE_EXT = 
+LIB_PREF = 
+LIB_EXT = .lib
+
+CC = wpp386
+CC_IN =
+CC_OUT = -fo=
+
+# important: -j is necessary for proper build
+#CPPFLAGS = -j -w3 -d1 -5s -5r -fp5 -oehtz -s -zq -zt0 -bt=linux
+CPPFLAGS = -j -w2 -d1 -zq -bt=linux
+
+#architecture flags
+CPPFLAGS += -5 -fp5
+
+# optimization flags
+# don't enable -ol optimization in OpenWatcom 1.1 - gives buggy code
+CPPFLAGS += -onaehtzr -oi+ -ei -zp8 -s -zt0
+
+CPPFLAGS += -i. -i$(TOP)include -i$(TOP)$(ROOT)include -iinclude
+ifneq ($(HB_LIB_COMPILE),)
+  CPPFLAGS += -i$(HB_INC_COMPILE)
+endif
+
+ifeq ($(HB_LEX),SIMPLEX)
+  CFLAGS += -DSIMPLEX
+endif
+
+empty:=
+space:= $(empty) $(empty)
+comma:= ,
+
+LD = wlink
+LDFLAGS = debug all sys Linux OP CASEEXACT
+
+HB_USER_LIBS := $(foreach lib, $(HB_USER_LIBS), $(TOP)$(ROOT)source/$(lib)/$(ARCH_DIR)/$(lib))
+
+ifeq ($(HB_LIB_COMPILE),)
+  LINKLIBS := $(foreach lib, $(CONTRIBS), $(TOP)$(ROOT)contrib/$(lib)/$(ARCH_DIR)/$(subst lib,,$(lib)))
+  LINKLIBS += $(foreach lib, $(LIBS), $(TOP)$(ROOT)source/$(lib)/$(ARCH_DIR)/$(lib))
+else
+  LINKLIBS := $(foreach lib, $(CONTRIBS), $(HB_LIB_COMPILE)/$(lib))
+  LINKLIBS += $(foreach lib, $(LIBS), $(HB_LIB_COMPILE)/$(lib))
+endif
+
+# If LIBS specifies the rdd library, add all DB drivers.
+ifeq ($(findstring rdd,$(LIBS)),rdd)
+  ifeq ($(HB_LIB_COMPILE),)
+    RDDLIBS := $(foreach drv, $(HB_DB_DRIVERS), $(TOP)$(ROOT)source/rdd/$(drv)/$(ARCH_DIR)/$(drv))
+  else
+    RDDLIBS := $(foreach drv, $(HB_DB_DRIVERS), $(HB_LIB_COMPILE)/$(drv))
+  endif
+endif
+
+ifeq ($(findstring rtl,$(LIBS)),rtl)
+  ifeq ($(HB_LIB_COMPILE),)
+    LINKLIBS += $(TOP)$(ROOT)source/rtl/pcre/$(ARCH_DIR)/pcrepos
+    GTLIBS := $(TOP)$(ROOT)source/rtl/$(HB_GT_LIB)/$(ARCH_DIR)/$(HB_GT_LIB)
+    ifeq ($(HB_MULTI_GT),yes)
+      GTLIBS += $(TOP)$(ROOT)source/rtl/gtnul/$(ARCH_DIR)/gtnul
+    endif
+  else
+    LINKLIBS += $(HB_LIB_COMPILE)/pcrepos
+    GTLIBS := $(HB_LIB_COMPILE)/$(HB_GT_LIB)
+    ifeq ($(HB_MULTI_GT),yes)
+      GTLIBS += $(HB_LIB_COMPILE)/gtnul
+    endif
+  endif
+endif
+
+LDFILES = $(subst $(space),$(comma) ,$(^F))
+LDLIBS  = $(subst $(space),$(comma) ,$(strip $(HB_USER_LIBS) $(LINKLIBS) $(RDDLIBS) $(GTLIBS)))
+LD_RULE = $(LD) $(LDFLAGS) NAME $@ FILE $(LDFILES)
+ifneq ($(LDLIBS),)
+  LD_RULE += LIB $(LDLIBS)
+endif
+
+AR = wlib
+# ARFLAGS = -c -n -fa $(A_USR)
+ARFLAGS = -c -n $(A_USR)
+AR_RULE = $(AR) $(ARFLAGS) $@ $(foreach file, $(^F), -+$(file))
+
+include $(TOP)$(ROOT)config/rules.cf

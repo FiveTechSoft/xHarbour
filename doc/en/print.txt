@@ -1,0 +1,228 @@
+/*  $DOC$
+ *  $FUNCNAME$
+ *      GETPRINTERS()
+ *  $CATEGORY$
+ *      Printer
+ *  $ONELINER$
+ *      Get an List of printers
+ *  $SYNTAX$
+ *      GetPrinters([ <lPorts> ]) -> <aPrint>
+ *  $ARGUMENTS$
+ *      [<lPorts>] = .T. or .F. ( default .F. )
+ *  $RETURNS$
+ *      <aPrint> A 1 dimension array of Printer names installed
+ *      if the optional <lPorts> parameter is passed .T. a 2 dimension array {Printer name , Printer Port}
+ *  $DESCRIPTION$
+ *      Getprinters() function return an list of printers instaled on your machine
+ *      this function is useful to get an printer list, and say to what printer the data should be send
+ *  $EXAMPLES$
+ *      CLS
+ *      ?? 'Test program for WINDOWS printing'
+ *      ?  '---------------------------------'
+ *      ? SET(_SET_DEVICE)
+ *      aPrinter:=GetPrinters()
+ *      IF EMPTY(aPrinter)
+ *       ? '----- No Printers installed'
+ *      ELSE
+ *        set printer to (GetDefaultPrinter())
+ *        ? SET(_SET_PRINTER)
+ *        ? SET(_SET_PRINTFILE)
+ *        set console off
+ *        set printer on
+ *        ? 'Default Printer'
+ *        ?'----------------'
+ *        ? GetDefaultPrinter()
+ *        ?
+ *        ? 'Printers Available'
+ *        ?'-------------------'
+ *        FOR x:= 1 TO LEN(aPrinter)
+ *          ? aPrinter[x]
+ *        NEXT x
+ *        aPrinter:= GetPrinters(.T.)
+ *        ? 'Printers and Ports'
+ *        ?'-------------------'
+ *        FOR x:= 1 TO LEN(aPrinter)
+ *          ? aPrinter[x,1]+' on '+aPrinter[x,2]
+ *        NEXT x
+ *        EJECT
+ *        set printer off
+ *        set console on
+ *        set printer to
+ *      ENDIF
+ *      ? SET(_SET_PRINTER)
+ *      ? SET(_SET_DEVICE)
+ *      WAIT
+ *      return nil
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This function is Xharbour extension
+ *  $PLATFORMS$
+ *      Windows
+ *  $FILES$
+ *      This function is part of Rtl library
+ *  $SEEALSO$
+ *      GETDEFAULTPRINTER(), PRINTFILERAW(), PRINTEREXISTS(), PRINTERPORTTONAME()
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      GETDEFAULTPRINTER()
+ *  $CATEGORY$
+ *      Printer
+ *  $ONELINER$
+ *      Return the computer default printer name
+ *  $SYNTAX$
+ *      GETDEFAULTPRINTER() -> <cPrinter>
+ *  $ARGUMENTS$
+ *      None
+ *  $RETURNS$
+ *      <cPrinter> The printer name
+ *  $DESCRIPTION$
+ *      GETDEFAULTPRINTER() return the default printer name that can be used with
+ *      SET PRINT TO (cPrinterName) to send data to this specific printer
+ *  $EXAMPLES$
+ *      FUNCTION MAIN()
+ *        Local cPrinter := GETDEFAULTPRINTER()
+ *        ? cPrinter
+ *      RETURN NIL
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This function is Xharbour extension
+ *  $PLATFORMS$
+ *      Windows
+ *  $FILES$
+ *      This function is part of Rtl library
+ *  $SEEALSO$
+ *      GETPRINTERS(), PRINTFILERAW(), PRINTEREXISTS(), PRINTERPORTTONAME()
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      PRINTFILERAW()
+ *  $CATEGORY$
+ *      Printer
+ *  $ONELINER$
+ *      Print a file to a windows printer in RAW mode
+ *  $SYNTAX$
+ *      PRINTFILERAW( <cPrinterName>, <cFileName> [, <cDocName>]) -> <nResult>
+ *  $ARGUMENTS$
+ *      <cPrinter> = a valid windows printer name
+ *      <cFileName>= a valid filename that exists and can be printed
+        <cDocName> = option text to appear as the document name in the spooler
+ *  $RETURNS$
+ *      <nResult> > 0 printed OK else if < 0 then error (See example)
+ *  $DESCRIPTION$
+ *      PRINTFILERAW() will print the contens of the file <cFileName> to the windows printer
+ *      <cPrinterName> in RAW mode. It display <cDocName> as the "Document Name" in the wondows
+ *      spooler. If <cDocName> is not specified then <cFileName> is used.
+ *  $EXAMPLES$
+ *      FUNCTION MAIN()
+ *        LOCAL cPrinter:= GETDEFAULTPRINTER(), cFileName:="MyFile.Txt"
+ *        LOCAL nPrn:= -1, cMess:= "PrintFileRaw(): "
+ *        IF !EMPTY(cPrinter)
+ *          IF (nPrn := PrintFileRaw(cPrinter,cFileName)) < 0
+ *            DO CASE
+ *            CASE nPrn = -1
+ *              Alert(cMess+"Incorrect parameters passed to function")
+ *            CASE nPrn = -2
+ *              Alert(cMess+"WINAPI OpenPrinter() call failed")
+ *            CASE nPrn = -3
+ *              Alert(cMess+"WINAPI StartDocPrinter() call failed")
+ *            CASE nPrn = -4
+ *              Alert(cMess+"WINAPI StartPagePrinter() call failed")
+ *            CASE nPrn = -5
+ *              Alert(cMess+"WINAPI malloc() of memory failed")
+ *            CASE nPrn = -6
+ *              Alert(cMess+"WINAPI CreateFile() failed - File "+cFileName+" not found??")
+              OTHERWISE
+ *              Alert(cFileName+" PRINTED OK!!!?")
+ *            ENDCASE
+ *          ENDIF
+ *        ENDIF
+ *        RETURN(NIL)
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This function is Xharbour extension
+ *  $PLATFORMS$
+ *      Windows
+ *  $FILES$
+ *      This function is part of Rtl library
+ *  $SEEALSO$
+ *      GETPRINTERS(), GETDEFAULTPRINTER(), PRINTEREXISTS(), PRINTERPORTTONAME()
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      PRINTEREXISTS()
+ *  $CATEGORY$
+ *      Printer
+ *  $ONELINER$
+ *      See if a printer is installed
+ *  $SYNTAX$
+ *      PRINTEREXISTS( <cPrinterName>) -> <bInstalled>
+ *  $ARGUMENTS$
+ *      <cPrinter> = a string that represents a printer name e.g. "HP LaserJet 1200 Series PCL"
+ *  $RETURNS$
+ *      <bInstalled> > .T. if the printer with the passed name is installed on the machine
+ *  $DESCRIPTION$
+ *      PRINTEREXISTS() is used to ensure that a printer is still available before attempting to
+ *      print to it
+ *  $EXAMPLES$
+ *      FUNCTION MAIN()
+          ? PRINTEREXISTS("HP LaserJet 1200 Series PCL")
+ *      RETURN(NIL)
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This function is Xharbour extension
+ *  $PLATFORMS$
+ *      Windows
+ *  $FILES$
+ *      This function is part of Rtl library
+ *  $SEEALSO$
+ *      GETPRINTERS(), GETDEFAULTPRINTER(), ISPRINTER(), XISPRINTER(), PRINTERPORTTONAME()
+ *  $END$
+ */
+
+/*  $DOC$
+ *  $FUNCNAME$
+ *      PRINTERPORTTONAME()
+ *  $CATEGORY$
+ *      Printer
+ *  $ONELINER$
+ *      Get the name of the printer attached to the cPortName
+ *  $SYNTAX$
+ *      PRINTERPORTTONAME( <cPortName>, [ < lPartialMatch> ]) -> cPrinterName
+ *  $ARGUMENTS$
+ *      <cPortName> = is a valid Windows printer port e.g. LPT1, COM1
+ *      <lPartialMatch> = optional parameter matches lpt1 to LPT1: ( i.e. only the first LEN( cPortName ) are used to match
+ *  $RETURNS$
+ *      < cPrinterName > e.g. "HP LaserJet 1200 Series PCL". IF not found then an empty string is returned ""
+ *  $DESCRIPTION$
+ *      PRINTERPORTTONAME() is used to help port legacy Clipper applications to Windows
+ *  $EXAMPLES$
+ *      FUNCTION MAIN()
+           IF EMPTY( PRINTERPORTTONAME( "lpt1", .T. ) )
+              Alert( "No printer installed - cannot continue" )
+              QUIT
+           ENDIF
+           // .....
+ *      RETURN(NIL)
+ *  $STATUS$
+ *      R
+ *  $COMPLIANCE$
+ *      This function is Xharbour extension
+ *  $PLATFORMS$
+ *      Windows
+ *  $FILES$
+ *      This function is part of Rtl library
+ *  $SEEALSO$
+ *      GETPRINTERS(), GETDEFAULTPRINTER(), ISPRINTER(), XISPRINTER(), PRINTEREXISTS()
+ *  $END$
+ */

@@ -1,0 +1,52 @@
+#
+# $Id: install.cf 9279 2011-02-14 18:06:32Z druzus $
+#
+
+ifeq ($(INSTALL_OBJS),) # Empty install list
+
+INSTALL_RULE = @echo Done
+
+else
+
+ifeq ($(SHLVL),) # COMMAND.COM or CMD.EXE
+
+# We have to use script to overcome the DOS limit of max 128 characters
+# NOTE: The empty line directly before 'endef' HAVE TO exist!
+# It causes that every commands will be separated by LF
+define inst_file
+$(CP) $(file) $(subst /,\,$(INSTALL_DIR))
+
+endef
+
+INSTALL_LIST = $(subst /,\,$(INSTALL_OBJS))
+INSTALL_RULE = $(foreach file, $(INSTALL_LIST), $(inst_file))
+
+#this is a little bit faster but creates problems with % / %%
+#ifeq ($(CMD_EXE),yes) # CMD.EXE no command line size limit
+#INSTALL_LIST = $(subst /,\,$(INSTALL_OBJS))
+#INSTALL_RULE = for %%f in ($(INSTALL_LIST)) do $(CP) %%f $(subst /,\,$(INSTALL_DIR))
+#endif
+
+else  # bash
+
+INSTALL_RULE =\
+	@$(MDP) $(INSTALL_DIR); \
+	if [ ! -d $(INSTALL_DIR) ]; \
+	then \
+	  echo "! Can't install, path not found:" $(INSTALL_DIR); \
+	else \
+	  for i in $(INSTALL_OBJS); \
+	  do \
+	    if [ -r $$i ]; \
+	    then \
+	      echo "! Installing $$i on $(INSTALL_DIR)"; \
+	      $(CP) $$i $(INSTALL_DIR); \
+	    else \
+	      echo "! Can't install $$i, not found"; \
+	    fi \
+	  done \
+	fi
+
+endif
+
+endif

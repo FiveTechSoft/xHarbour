@@ -1,0 +1,110 @@
+#
+# $Id: bcc32.cf 9858 2012-12-06 01:40:02Z druzus $
+#
+# The Harbour Project
+# GNU MAKE file for Borland C/C++ 32bit (4.x, 5.x)
+
+include $(TOP)$(ROOT)config/$(HB_ARCHITECTURE)/global.cf
+
+OBJ_EXT = .obj
+EXE_EXT = .exe
+LIB_PREF =
+LIB_EXT = .lib
+
+CC = bcc32
+CC_IN = -c
+CC_OUT = -o
+CPPFLAGS = -I. -I$(TOP)include -I$(HB_INC_COMPILE)
+CFLAGS = -O2 -d -5 -6 -a8
+
+ifeq ($(HB_LEX),SIMPLEX)
+CFLAGS += -DSIMPLEX
+endif
+
+# Add all libraries specified in CONTRIBS and LIBS.
+ifeq ($(HB_LIB_COMPILE),)
+LINKLIBS += $(foreach lib, $(CONTRIBS), $(TOP)$(ROOT)/contrib/$(lib)/$(ARCH_DIR)/$(subst lib,,$(lib))$(LIB_EXT))
+LINKLIBS += $(foreach lib, $(LIBS), $(TOP)$(ROOT)/source/$(lib)/$(ARCH_DIR)/$(lib)$(LIB_EXT))
+else
+LINKPATHS += -L$(HB_LIB_COMPILE)
+LINKLIBS += $(foreach lib, $(CONTRIBS), $(subst lib,,$(lib))$(lib)$(LIB_EXT))
+LINKLIBS += $(foreach lib, $(LIBS), $(lib)$(LIB_EXT))
+endif
+
+# If LIBS specifies the rdd library, add all DB drivers.
+ifeq ($(findstring rdd,$(LIBS)),rdd)
+ifeq ($(HB_LIB_COMPILE),)
+LINKLIBS += $(foreach drv, $(HB_DB_DRIVERS), $(TOP)$(ROOT)/source/rdd/$(drv)/$(ARCH_DIR)/$(drv)$(LIB_EXT))
+else
+LINKPATHS += -L$(HB_LIB_COMPILE)
+LINKLIBS += $(foreach drv, $(HB_DB_DRIVERS), $(drv)$(LIB_EXT))
+endif
+endif
+
+# Add the specified GT driver library and other RTLs
+ifeq ($(findstring rtl,$(LIBS)),rtl)
+LINKLIBS += $(foreach gt, $(HB_GT_LIBS), $(TOP)$(ROOT)source/rtl/$(gt)/$(ARCH_DIR)/$(gt)$(LIB_EXT))
+
+LINKLIBS += $(TOP)$(ROOT)source/rtl/pcre/$(ARCH_DIR)/pcrepos$(LIB_EXT)
+LINKLIBS += $(TOP)$(ROOT)source/rtl/zlib/$(ARCH_DIR)/zlib$(LIB_EXT)
+endif
+
+ifneq ($(HB_SCREEN_LIB),)
+LINKLIBS += $(HB_SCREEN_LIB)
+endif
+
+# Add the optional user path(s)
+ifneq ($(LNK_USR_PATH),)
+LINKPATHS += $(foreach path, $(LNK_USR_PATH), -L$(path))
+endif
+
+# Add the optional user libarary (or libraries)
+ifneq ($(LNK_USR_LIB),)
+LINKLIBS += $(foreach lib, $(LNK_USR_LIB), $(lib)$(LIB_EXT))
+endif
+
+# Note: The empty line directly before 'endef' HAVE TO exist!
+# It causes that the 'echo' command is separated by LF
+define link_file
+echo $(file) >> __link__.tmp
+
+endef
+
+define link_exe_file
+echo. > __link__.tmp
+$(foreach file, $(^F), $(link_file))
+$(foreach file, $(LINKLIBS), $(link_file))
+$(LD) $(LD_OUT)$@ $(LDFLAGS) @__link__.tmp
+endef
+
+#echo kernel32.lib, user32.lib, winspool.lib, oleaut32.lib, uuid.lib, comctl32.lib >> __link__.tmp
+
+LD = bcc32
+LDFLAGS = $(LINKPATHS) $(L_USR)
+LD_OUT = -e
+LD_RULE = $(LD) $(LD_OUT)$@ $(LDFLAGS) $(^F) $(LINKLIBS)
+
+#Note: The empty line below HAVE TO exist!
+define lib_object
+echo -+$(file) &>> __lib__.tmp
+
+endef
+
+define create_library
+$(foreach file, $(^F), $(lib_object))
+echo ->> __lib__.tmp
+$(AR) $(ARFLAGS) $@ @__lib__.tmp
+endef
+
+AR = tlib
+ARFLAGS = $(A_USR)
+AROBJS = $(foreach file, $(^F), -+$(file))
+AR_RULE = $(AR) $(ARFLAGS) $@ $(AROBJS)
+
+ifeq ($(COMMAND_COM),yes)
+# workarounf for command line size limit
+LD_RULE = $(link_exe_file)
+AR_RULE = $(create_library)
+endif
+
+include $(TOP)$(ROOT)config/rules.cf
