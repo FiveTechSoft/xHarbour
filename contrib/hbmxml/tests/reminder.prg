@@ -1,5 +1,5 @@
 /*
- * $Id: reminder.prg 9815 2012-11-09 19:56:40Z andijahja $
+ * $Id$
  */
 
 #include "hbmxml.ch"

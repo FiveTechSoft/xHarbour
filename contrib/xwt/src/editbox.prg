@@ -3,7 +3,7 @@
 
    (C) 2004 Lorenzo Fiorini
 
-   $Id: editbox.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Widget class - basic widget & event management
 */

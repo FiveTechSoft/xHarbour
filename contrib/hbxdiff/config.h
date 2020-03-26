@@ -1,5 +1,5 @@
 /*
- * $Id: config.h 10076 2014-12-17 12:25:57Z zsaulius $
+ * $Id$
  */
 
 #if ! defined( HB_CONFIG_H )

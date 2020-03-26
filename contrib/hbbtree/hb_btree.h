@@ -1,5 +1,5 @@
 /*
-   $Id: hb_btree.h 9729 2012-10-02 22:49:05Z andijahja $
+   $Id$
  */
 
 /*

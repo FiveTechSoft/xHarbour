@@ -1,5 +1,5 @@
 /*
- * $Id: fdi.h 9773 2012-10-19 08:29:51Z andijahja $
+ * $Id$
  */
 
 #ifndef INCLUDED_TYPES_FCI_FDI

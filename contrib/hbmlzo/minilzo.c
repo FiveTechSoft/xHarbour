@@ -1,5 +1,5 @@
 /*
- * $Id: minilzo.c 9554 2012-07-11 23:32:14Z andijahja $
+ * $Id$
  */
 /* minilzo.c -- mini subset of the LZO real-time data compression library
 
@@ -2348,7 +2348,7 @@ static const char __lzo_copyright[] =
     "$Copyright: LZO Copyright (C) 1996-2011 Markus Franz Xaver Johannes Oberhumer\n"
     "<markus@oberhumer.com>\n"
     "http://www.oberhumer.com $\n\n"
-    "$Id: minilzo.c 9554 2012-07-11 23:32:14Z andijahja $\n"
+    "$Id$\n"
     "$Info: " LZO_INFO_STRING " $\n";
 #endif
 

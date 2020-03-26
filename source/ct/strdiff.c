@@ -1,5 +1,5 @@
 /*
- * $Id: strdiff.c 9784 2012-10-23 21:26:49Z andijahja $
+ * $Id$
  */
 
 /*

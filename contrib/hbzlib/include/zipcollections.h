@@ -1,11 +1,11 @@
 /*
- * $Id: zipcollections.h 10235 2018-06-08 16:32:49Z enricomaria $
+ * $Id$
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // $RCSfile: ZipCollections.h,v $
-// $Revision: 10235 $ $Name:  $
-// $Date: 2018-06-08 16:32:49 +0000 (Fri, 08 Jun 2018) $ $Author: enricomaria $
+// $Revision$ $Name:  $
+// $Date$ $Author$
 ////////////////////////////////////////////////////////////////////////////////
 // This source file is part of the ZipArchive library source distribution and
 // is Copyrighted 2000-2005 by Tadeusz Dracz (http://www.artpol-software.com/)

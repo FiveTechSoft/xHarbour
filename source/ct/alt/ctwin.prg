@@ -4,7 +4,7 @@
 *   write by Adam Lubszczyk    alubszcz@rsw.pl                     *
 ********************************************************************
 /*
- * $Id: ctwin.prg 10058 2014-12-02 12:13:20Z zsaulius $
+ * $Id$
  */
 
 /*

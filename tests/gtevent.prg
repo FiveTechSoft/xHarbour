@@ -1,6 +1,6 @@
 ***********************************************************
 * gtevent.prg
-* $Id: gtevent.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for gt events caused by asynchronous GT operations
 *
 * Giancarlo Niccolai

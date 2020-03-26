@@ -1,5 +1,5 @@
 //
-// $Id: parexpr.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // The following code tests harbour's ability to cope with parenthesized

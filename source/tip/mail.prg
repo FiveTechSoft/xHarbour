@@ -1,5 +1,5 @@
 /*
- * $Id: mail.prg 10136 2015-09-29 08:59:06Z enricomaria $
+ * $Id$
  */
 
 /*

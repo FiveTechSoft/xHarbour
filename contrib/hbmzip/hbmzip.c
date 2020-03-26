@@ -1,5 +1,5 @@
 /*
- * $Id: hbmzip.c 10095 2015-02-12 10:12:07Z enricomaria $
+ * $Id$
  */
 
 /*

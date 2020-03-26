@@ -1,4 +1,4 @@
-/* $Id: scope1.prg 9279 2011-02-14 18:06:32Z druzus $ */
+/* $Id$ */
 
 /*
    This file is to be used as a secondary linked module along with tstscope.prg and scope2.prg.

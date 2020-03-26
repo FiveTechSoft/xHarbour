@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $Id: pack_src.sh 10218 2018-03-08 00:09:54Z lculik $
+# $Id$
 #
 # This script requires "TAR" utilities for compression.
 

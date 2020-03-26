@@ -1,5 +1,5 @@
 /*
- * $Id: lzfp_win.h 9542 2012-07-10 00:57:40Z andijahja $
+ * $Id$
  */
 /*
  * Copyright (c) 2000-2007 Marc Alexander Lehmann <schmorp@schmorp.de>

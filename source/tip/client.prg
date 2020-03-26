@@ -1,5 +1,5 @@
 /*
- * $Id: client.prg 10203 2017-08-24 08:21:55Z enricomaria $
+ * $Id$
  */
 
 /*

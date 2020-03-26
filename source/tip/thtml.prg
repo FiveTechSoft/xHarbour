@@ -1,5 +1,5 @@
 /*
- * $Id: thtml.prg 10191 2017-02-28 20:00:20Z lculik $
+ * $Id$
  */
 /*
  * Harbour Project source code:

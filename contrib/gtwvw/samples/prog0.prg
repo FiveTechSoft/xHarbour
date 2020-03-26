@@ -1,5 +1,5 @@
 /*
- * $Id: prog0.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 /*
    PROG0.PRG

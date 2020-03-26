@@ -1,5 +1,5 @@
 /*
- * $Id: ioapi.h 9668 2012-08-24 21:01:09Z andijahja $
+ * $Id$
  */
 
 /* ioapi.h -- IO base function header for compress/uncompress .zip

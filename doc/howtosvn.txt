@@ -1,5 +1,5 @@
 /*
- * $Id: howtosvn.txt 9899 2013-01-10 12:08:42Z andijahja $
+ * $Id$
  */
 
 HOW TO USE THE SOURCE REPOSITORY
@@ -179,7 +179,7 @@ by Maurilio Longo
 Add these three lines to the top of your source file:
 
 /*
- * $Id: howtosvn.txt 9899 2013-01-10 12:08:42Z andijahja $
+ * $Id$
  */
 
 As soon as you commit your file, SVN ID string will be expanded

@@ -1,5 +1,5 @@
 /*
- * $Id: postgres.c 9752 2012-10-14 03:33:16Z andijahja $
+ * $Id$
  */
 
 /*

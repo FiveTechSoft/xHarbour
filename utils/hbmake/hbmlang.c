@@ -1,5 +1,5 @@
 /*
- * $Id: hbmlang.c 10154 2016-04-26 01:15:01Z lculik $
+ * $Id$
  */
 /*
  * Harbour Project source code:
@@ -135,7 +135,7 @@ HB_FUNC(GETUSERLANG)
 }
 
 /*
- * $Id: hbmlang.c 10154 2016-04-26 01:15:01Z lculik $
+ * $Id$
  */
 
 /*

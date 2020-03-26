@@ -3,7 +3,7 @@
 # Shared object file creators
 # By Giancarlo Niccolai
 #
-# $Id: bld_solib.sh 9279 2011-02-14 18:06:32Z druzus $
+# $Id$
 #
 # Based on the work of Przemyslav Czerpak
 #

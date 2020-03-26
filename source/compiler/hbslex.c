@@ -1,5 +1,5 @@
 /*
- * $Id: hbslex.c 10080 2014-12-23 19:28:23Z zsaulius $
+ * $Id$
  */
 
 #define yylex hb_comp_yylex

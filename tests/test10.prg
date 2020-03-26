@@ -1,6 +1,6 @@
 //NOTEST
 //
-// $Id: test10.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // compile this using Harbour /10 flag

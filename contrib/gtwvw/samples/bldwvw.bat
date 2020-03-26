@@ -2,7 +2,7 @@
 rem ***********************************************************
 rem * bldwvw.bat
 rem *
-rem * $Id: bldwvw.bat 9280 2011-02-14 18:16:32Z druzus $
+rem * $Id$
 rem *
 rem * Batch file to build test programs in ST or MT environment
 rem *

@@ -1,5 +1,5 @@
 //
-// $Id: mousetst.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 /*
  * Copyright 2000 Alejandro de Garate <alex_degarate@hotmail.com>

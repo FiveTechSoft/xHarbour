@@ -1,6 +1,6 @@
 //NOTEST
 //
-// $Id: spawn.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 //

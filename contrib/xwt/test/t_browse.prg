@@ -3,7 +3,7 @@
 *
 * Giancarlo Niccolai et al.:
 *
-* $Id: t_browse.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 
 #include "xwt.ch"

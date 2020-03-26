@@ -3,7 +3,7 @@
 
    (C) 2003 Rafa Carmona ( Thefull )
 
-   $Id: xwt_gtk_togglebutton.c 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    GTK interface - management of toggle button widget
 */

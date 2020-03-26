@@ -1,5 +1,5 @@
 /*
- * $Id: crypt.h 9668 2012-08-24 21:01:09Z andijahja $
+ * $Id$
  */
 
 /* crypt.h -- base code for crypt/uncrypt ZIPfile

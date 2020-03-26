@@ -1,5 +1,5 @@
 /*
- * $Id: tinymt32.h 9773 2012-10-19 08:29:51Z andijahja $
+ * $Id$
  */
 
 #ifndef TINYMT32_H

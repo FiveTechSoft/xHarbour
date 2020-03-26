@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: radiobutton.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Radio box - A certain cooperation of the container widget is needed
 */

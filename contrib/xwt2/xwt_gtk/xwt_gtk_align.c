@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: xwt_gtk_align.c 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
   Align widget - block over unaligned widgets to provide them with alignment ability.
 */

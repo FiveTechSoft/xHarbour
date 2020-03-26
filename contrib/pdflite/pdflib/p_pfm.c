@@ -10,7 +10,7 @@
  |                                                                           |
  *---------------------------------------------------------------------------*/
 
-/* $Id: p_pfm.c 9529 2012-07-08 07:09:28Z andijahja $
+/* $Id$
  *
  * PDFlib routines for fast reading of PFM font metrics files
  *

@@ -1,5 +1,5 @@
 /*
- * $Id: lzfP.h 9858 2012-12-06 01:40:02Z druzus $
+ * $Id$
  */
 /*
  * Copyright (c) 2000-2007 Marc Alexander Lehmann <schmorp@schmorp.de>

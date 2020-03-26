@@ -1,5 +1,5 @@
 /*
- * $Id: dttest.prg 9334 2011-03-05 06:25:55Z andijahja $
+ * $Id$
  */
 
 /*

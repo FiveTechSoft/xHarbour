@@ -1,6 +1,6 @@
 ***************************************************
 * X harbour Inet demo client program
-* $Id: client.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Giancarlo Niccolai
 *

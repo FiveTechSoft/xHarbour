@@ -1,5 +1,5 @@
 /*
- * $Id: sqlite3_test.prg 9457 2012-06-17 12:29:09Z andijahja $
+ * $Id$
  */
 
 #include "sqlite3.ch"

@@ -1,6 +1,6 @@
 /*
  *
- * $Id: simple.prg 9757 2012-10-15 04:15:36Z andijahja $
+ * $Id$
  *
  */
 

@@ -1,6 +1,6 @@
 @echo off
 rem
-rem $Id: pack_bin.bat 9279 2011-02-14 18:06:32Z druzus $
+rem $Id$
 rem
 
 rem RDDADS separate from this, include headers and readme

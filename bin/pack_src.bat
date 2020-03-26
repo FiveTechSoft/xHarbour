@@ -1,6 +1,6 @@
 @echo off
 rem
-rem $Id: pack_src.bat 9279 2011-02-14 18:06:32Z druzus $
+rem $Id$
 rem
 
 rem This batch requires "Free ZIP" and/or "TAR" utilities for compression.

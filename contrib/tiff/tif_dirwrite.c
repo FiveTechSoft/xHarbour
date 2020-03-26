@@ -1,4 +1,4 @@
-/* $Id: tif_dirwrite.c 9763 2012-10-16 13:16:19Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

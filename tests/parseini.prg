@@ -1,7 +1,7 @@
 ******************************************************************
 * parseini.prg
 *
-* $Id: parseini.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for Ini file reading/writing
 *
 * Giancarlo Niccolai

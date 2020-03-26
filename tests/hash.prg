@@ -5,7 +5,7 @@
 *
 * This is a test that demonstrates how to use hashes
 *
-* $Id: hash.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 
 PROCEDURE Main()

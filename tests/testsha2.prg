@@ -1,5 +1,5 @@
 /*
- * $Id: testsha2.prg 9608 2012-07-28 22:13:31Z andijahja $
+ * $Id$
  */
 
 /*

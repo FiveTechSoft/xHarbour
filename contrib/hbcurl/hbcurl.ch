@@ -1,5 +1,5 @@
 /*
- * $Id: hbcurl.ch 9474 2012-06-21 01:36:43Z andijahja $
+ * $Id$
  */
 
 /*

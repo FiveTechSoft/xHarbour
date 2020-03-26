@@ -1,6 +1,6 @@
 ************************************************************
 * threadstress.prg
-* $Id: mtstress.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Stresstest for thread programs
 * Stress all those feature that are thread-critical:

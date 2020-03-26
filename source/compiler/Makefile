@@ -1,5 +1,5 @@
 #
-# $Id: Makefile 9824 2012-11-16 07:39:06Z andijahja $
+# $Id$
 #
 
 HB_LEX := SIMPLEX

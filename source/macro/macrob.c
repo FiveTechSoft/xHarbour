@@ -1,5 +1,5 @@
 /*
- * $Id: macrob.c 9722 2012-10-02 06:13:24Z andijahja $
+ * $Id$
  */
 
 /* hbexprb.c is also included from ../compiler/exproptb.c

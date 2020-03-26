@@ -1,6 +1,6 @@
 //NOTEST
 //
-// $Id: lnlenli1.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // ; Pushing Harbour preprocessor to the line length limit.

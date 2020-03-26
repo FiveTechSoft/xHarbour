@@ -1,5 +1,5 @@
 /*
- * $Id: harbouryy.c 10168 2016-11-03 01:03:49Z ronpinkas $
+ * $Id$
  */
 
 /* A Bison parser, made by GNU Bison 3.0.2.  */

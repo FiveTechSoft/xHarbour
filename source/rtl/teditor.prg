@@ -1,4 +1,4 @@
-/* $Id: teditor.prg 10058 2014-12-02 12:13:20Z zsaulius $
+/* $Id$
 *
 * Teditor Fix: teditorx.prg  -- V 3.0beta 2004/04/17
 * Copyright 2004 Giancarlo Niccolai <antispam /at/ niccolai /dot/ ws>

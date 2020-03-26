@@ -1,5 +1,5 @@
 /*
-   $Id: uni2utf8.prg 9342 2011-03-10 04:39:04Z andijahja $
+   $Id$
    Test program for Stand-Alone Unicode String Conversion
    WARNING: Must link HBCC.LIB
 */

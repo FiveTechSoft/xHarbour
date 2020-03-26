@@ -1,7 +1,7 @@
 # xHarbour project
 # Demo makefile for GNU MAKE in tests/ subdir
 #
-# $Id: Makefile 9279 2011-02-14 18:06:32Z druzus $
+# $Id$
 #
 # Copyright 2003 Giancarlo Niccolai
 #

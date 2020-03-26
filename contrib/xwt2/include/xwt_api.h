@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: xwt_api.h 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    XWT DRIVER PROGRAMMING INTERFACE - header
 */

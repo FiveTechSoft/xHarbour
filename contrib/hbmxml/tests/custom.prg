@@ -1,5 +1,5 @@
 /*
- * $Id: custom.prg 9815 2012-11-09 19:56:40Z andijahja $
+ * $Id$
  */
 
 #xtranslate _ENCODE( <xData> ) => ( hb_b64encode( hb_serialize( mxmlGetCustom( <xData> ) ) ) )

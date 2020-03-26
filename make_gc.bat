@@ -1,7 +1,7 @@
 @echo off
 rem ============================================================================
 rem
-rem $Id: make_gc.bat 10222 2018-03-11 19:29:29Z enricomaria $
+rem $Id$
 rem
 rem FILE: make_gc.bat
 rem BATCH FILE FOR MINGW32

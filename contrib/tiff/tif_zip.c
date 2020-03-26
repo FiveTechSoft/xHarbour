@@ -1,4 +1,4 @@
-/* $Id: tif_zip.c 9734 2012-10-09 19:54:17Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1995-1997 Sam Leffler

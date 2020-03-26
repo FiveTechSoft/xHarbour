@@ -1,5 +1,5 @@
 /*
- * $Id: screen3.prg 9692 2012-09-16 11:25:59Z andijahja $
+ * $Id$
  */
 
 /*

@@ -1,4 +1,4 @@
-/* $Id: mtset.prg 9279 2011-02-14 18:06:32Z druzus $ */
+/* $Id$ */
 
 /* This is a test for thread-safety of Set() */
 

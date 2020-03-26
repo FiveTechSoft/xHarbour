@@ -1,5 +1,5 @@
 /*
- * $Id: pickarry.prg 10068 2014-12-10 21:40:36Z enricomaria $
+ * $Id$
  */
  * xHarbour Project source code:
  * hbmake.prg xHarbour make utility main file

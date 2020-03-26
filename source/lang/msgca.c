@@ -1,5 +1,5 @@
 /*
- * $Id: msgca.c 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 /*
@@ -66,7 +66,7 @@ static HB_LANG s_lang =
       "Catal n",                   /* Name (in native language) */
       "CA",                        /* RFC ID */
       "850",                       /* Codepage */
-      "$Revision: 9279 $ $Date: 2011-02-14 18:06:32 +0000 (Mon, 14 Feb 2011) $",         /* Version */
+      "$Revision$ $Date$",         /* Version */
 
       /* Month names */
 

@@ -1,5 +1,5 @@
 //NOTEST
-// $Id: delimtst.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // Test program for COPY TO DELIMITED and APPEND FROM DELIMITED

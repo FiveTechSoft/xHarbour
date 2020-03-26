@@ -1,11 +1,11 @@
 /*
- * $Id: zipcentraldir.cpp 10096 2015-02-12 19:01:57Z lculik $
+ * $Id$
  */
 
 ///////////////////////////////////////////////////////////////////////////////
 // $Workfile: ZipCentralDir.cpp $
 // $Archive: /ZipArchive/ZipCentralDir.cpp $
-// $Date: 2015-02-12 19:01:57 +0000 (Thu, 12 Feb 2015) $ $Author: lculik $
+// $Date$ $Author$
 ////////////////////////////////////////////////////////////////////////////////
 // This source file is part of the ZipArchive library source distribution and
 // is Copyright 2000-2003 by Tadeusz Dracz (http://www.artpol-software.com/)

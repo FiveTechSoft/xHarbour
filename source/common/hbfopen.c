@@ -1,5 +1,5 @@
 /*
- * $Id: hbfopen.c 9885 2012-12-16 10:13:49Z andijahja $
+ * $Id$
  */
 
 /*

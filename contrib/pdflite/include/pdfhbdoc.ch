@@ -1,5 +1,5 @@
 /*
- * $Id: pdfhbdoc.ch 9541 2012-07-10 00:24:04Z andijahja $
+ * $Id$
  */
 
 /* Defines */

@@ -1,5 +1,5 @@
 /*
- * $Id: config.h 9554 2012-07-11 23:32:14Z andijahja $
+ * $Id$
  */
 
 #ifndef _HBMZLO_CONFIG_H

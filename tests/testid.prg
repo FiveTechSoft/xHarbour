@@ -1,6 +1,6 @@
 //NOTEST
 //
-// $Id: testid.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // Warning: This sample must be tested using /dTEST compiler flag

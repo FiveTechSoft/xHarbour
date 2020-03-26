@@ -1,6 +1,6 @@
 #===============================================================================
 #
-# $Id: compile.mak 10221 2018-03-11 15:41:48Z enricomaria $
+# $Id$
 #
 # FILE  : compile.mak
 # NOTES : please DO NOT convert TABS to SPACES of entries in this file.
@@ -173,13 +173,13 @@ $(HARBOUR_EXE_RES) : $(HARBOUR_EXE_RC)
 	$(RC_CMD)
 
 $(HARBOUR_EXE_RC) : ChangeLog
-	$(HBRC_EXE) $(HARBOUR_EXE_RC) "xHarbour Compiler" "harbour.exe" "1999-2018, http://www.xharbour.org/" "The xHarbour Team" "xHarbour Open Source" "resource/xhb.ico"
+	$(HBRC_EXE) $(HARBOUR_EXE_RC) "xHarbour Compiler" "harbour.exe" "1999-$Y, http://www.xharbour.org/" "The xHarbour Team" "xHarbour Open Source" "resource/xhb.ico"
 
 $(HARBOUR_DLL_RES) : $(HARBOUR_DLL_RC)
 	$(RC_CMD)
 
 $(HARBOUR_DLL_RC) : ChangeLog
-	$(HBRC_EXE) $(HARBOUR_DLL_RC) "xHarbour Runtime" "xharbour.dll" "1999-2018, http://www.xharbour.org/" "The xHarbour Team" "xHarbour Open Source"
+	$(HBRC_EXE) $(HARBOUR_DLL_RC) "xHarbour Runtime" "xharbour.dll" "1999-$Y, http://www.xharbour.org/" "The xHarbour Team" "xHarbour Open Source"
 
 #===============================================================================
 # HBCGI.LIB

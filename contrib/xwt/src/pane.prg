@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: pane.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Pane class. A basic void container.
    (Container is an abstract class, and have not a DRV method)

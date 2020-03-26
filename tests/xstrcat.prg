@@ -1,4 +1,4 @@
-* $Id: xstrcat.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * test program for hb_xstrcat()
 * not very useful in prg level but may be handy in c level

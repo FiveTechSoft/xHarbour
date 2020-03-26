@@ -1,5 +1,5 @@
 /*
- * $Id: uuencode.c 9726 2012-10-02 19:56:17Z andijahja $
+ * $Id$
  */
 
 #define HB_THREAD_OPTIMIZE_STACK

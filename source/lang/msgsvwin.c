@@ -1,5 +1,5 @@
 /*
- * $Id: msgsvwin.c 9481 2012-06-21 12:16:02Z andijahja $
+ * $Id$
  */
 /*
  * Harbour Project source code:
@@ -67,7 +67,7 @@ static HB_LANG s_lang =
       "svensk ANSI",                  /* Name (in native language) */
       "SVWIN",                        /* RFC ID */
       "ANSI",                         /* Codepage */
-      "$Revision: 9481 $ $Date: 2012-06-21 12:16:02 +0000 (Thu, 21 Jun 2012) $",         /* Version */
+      "$Revision$ $Date$",         /* Version */
 
       /* Month names */
 

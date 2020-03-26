@@ -1,5 +1,5 @@
 /*
- * $Id: strfile.c 9722 2012-10-02 06:13:24Z andijahja $
+ * $Id$
  */
 
 /*

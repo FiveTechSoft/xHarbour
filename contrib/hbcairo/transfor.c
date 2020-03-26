@@ -1,5 +1,5 @@
 /*
- * $Id: transfor.c 9476 2012-06-21 09:26:17Z andijahja $
+ * $Id$
  */
 
 /*

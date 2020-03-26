@@ -1,5 +1,5 @@
 /*
- * $Id: transfrm.txt 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 Addendum Clipper documentation. Original transform docs are too limited :

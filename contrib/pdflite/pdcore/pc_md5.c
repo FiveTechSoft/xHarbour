@@ -1,4 +1,4 @@
-/* $Id: pc_md5.c 9529 2012-07-08 07:09:28Z andijahja $
+/* $Id$
  *
  * PDFlib MD5 message digest routines
  *

@@ -1,5 +1,5 @@
 /*
- * $Id: ctnet.c 9834 2012-11-22 01:28:25Z andijahja $
+ * $Id$
  *
  * xHarbour Project source code:
  * CT3 NET functions to PC-LAN/MS-NET.

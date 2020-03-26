@@ -1,6 +1,6 @@
 ************************************************************
 * outdebug.prg
-* $Id: outdebug.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Test for HB_OutDebug() routine
 *

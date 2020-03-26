@@ -1,5 +1,5 @@
 /*
- * $Id: dummy.prg 9792 2012-10-31 11:36:40Z andijahja $
+ * $Id$
  */
 
 /*

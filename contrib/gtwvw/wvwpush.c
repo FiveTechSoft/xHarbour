@@ -1,5 +1,5 @@
 /*
-* $Id: wvwpush.c 10084 2014-12-29 00:46:23Z lculik $
+* $Id$
  */
 /*
  * WVWpush.C

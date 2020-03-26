@@ -1,5 +1,5 @@
 /*
- * $Id: expat_ex.h 9827 2012-11-17 13:21:47Z andijahja $
+ * $Id$
  */
 
 /* Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd

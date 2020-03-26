@@ -1,5 +1,5 @@
 /*
- * $Id: settime.c 10100 2015-02-16 19:59:32Z lculik $
+ * $Id$
  *
  * xHarbour Project source code:
  * CT3 Date & Time supplementary functions:

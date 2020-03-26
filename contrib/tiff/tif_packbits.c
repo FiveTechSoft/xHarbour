@@ -1,4 +1,4 @@
-/* $Id: tif_packbits.c 9746 2012-10-12 22:27:14Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

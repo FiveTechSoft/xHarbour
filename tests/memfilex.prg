@@ -1,5 +1,5 @@
 /*
- * $Id: memfilex.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 // ; Donated to the public domain by

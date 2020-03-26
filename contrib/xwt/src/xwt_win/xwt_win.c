@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: xwt_win.c 10235 2018-06-08 16:32:49Z enricomaria $
+   $Id$
 
    Global declarations, common functions
 

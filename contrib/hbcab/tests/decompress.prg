@@ -1,5 +1,5 @@
 /*
-   $Id: decompress.prg 9583 2012-07-20 13:31:25Z andijahja $
+   $Id$
    Sample program for extracting files from CAB file
    Andi Jahja
 */

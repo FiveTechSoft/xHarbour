@@ -1,5 +1,5 @@
 /*
- * $Id: tfile.prg 9726 2012-10-02 19:56:17Z andijahja $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: oleerr.ch 9482 2012-06-21 13:32:16Z andijahja $
+ * $Id$
  */
 
 #ifndef _OLEERR_CH

@@ -1,6 +1,6 @@
 ***********************************************************
 * gtclose.prg
-* $Id: gtclose.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for gt close callback and handler.
 *
 * Giancarlo Niccolai

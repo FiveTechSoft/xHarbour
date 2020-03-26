@@ -1,5 +1,5 @@
 /*
- * $Id: vidmode.prg 9686 2012-09-16 08:14:35Z andijahja $
+ * $Id$
  */
 /*
  * File......: VIDMODE.PRG

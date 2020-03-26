@@ -10,7 +10,7 @@
  |                                                                           |
  *---------------------------------------------------------------------------*/
 
-/* $Id: pdflib.h 9529 2012-07-08 07:09:28Z andijahja $
+/* $Id$
  *
  * Public function declarations for PDFlib Lite, PDFlib, PDFlib+PDI, and PPS;
  * see PDFlib API reference for details.

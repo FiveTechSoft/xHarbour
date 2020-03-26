@@ -1,5 +1,5 @@
 /*
- * $Id: hbtypes.h 9830 2012-11-20 03:13:35Z andijahja $
+ * $Id$
  */
 
 /*

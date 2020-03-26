@@ -1,6 +1,6 @@
 //NOTEST
 //
-// $Id: keywords.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 //DO NOT RUN THIS PROGRAM - ITS PURPOSE IS THE SYNTAX CHECK ONLY!

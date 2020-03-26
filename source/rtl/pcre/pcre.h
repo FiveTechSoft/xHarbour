@@ -1,4 +1,4 @@
 /*
- * $Id: pcre.h 9533 2012-07-09 20:49:04Z andijahja $
+ * $Id$
  */
 #include "pcre.h.generic"

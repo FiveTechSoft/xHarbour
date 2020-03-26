@@ -1,5 +1,5 @@
 /*
-* $Id: testblow.prg 9631 2012-08-06 03:23:17Z andijahja $
+* $Id$
 * Test program for blowfish routines
 */
 

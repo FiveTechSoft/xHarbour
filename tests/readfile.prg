@@ -1,5 +1,5 @@
 //
-// $Id: readfile.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // Test program for new class that reads a file one line at a time

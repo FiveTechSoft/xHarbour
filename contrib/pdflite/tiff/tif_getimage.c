@@ -1,5 +1,5 @@
 /* PDFlib GmbH cvsid:
- * $Id: tif_getimage.c 9763 2012-10-16 13:16:19Z andijahja $ */
+ * $Id$ */
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler

@@ -1,5 +1,5 @@
 /*
- * $Id: tbrowse.prg 10195 2017-06-28 21:24:21Z enricomaria $
+ * $Id$
  */
 
 /*

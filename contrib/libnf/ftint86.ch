@@ -1,5 +1,5 @@
 /*
- * $Id: ftint86.ch 9686 2012-09-16 08:14:35Z andijahja $
+ * $Id$
  */
 /*
  * File......: FTINT86.CH - Header file for users of FT_INT86() function

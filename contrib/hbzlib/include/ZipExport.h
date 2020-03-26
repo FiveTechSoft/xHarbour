@@ -1,5 +1,5 @@
 /*
- * $Id: ZipExport.h 9685 2012-09-16 05:42:35Z andijahja $
+ * $Id$
  */
 
 #if ! defined ( ZIP_EXPORT_H )

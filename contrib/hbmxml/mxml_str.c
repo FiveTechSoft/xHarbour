@@ -1,5 +1,5 @@
 /*
- * "$Id: mxml_str.c 9952 2013-05-07 11:03:58Z zsaulius $"
+ * "$Id$"
  *
  * String functions for Mini-XML, a small XML-like file parsing library.
  *
@@ -475,5 +475,5 @@ _mxml_vstrdupf(const char *format,	/* I - Printf-style format string */
 
 
 /*
- * End of "$Id: mxml_str.c 9952 2013-05-07 11:03:58Z zsaulius $".
+ * End of "$Id$".
  */

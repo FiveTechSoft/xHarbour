@@ -1,4 +1,4 @@
-/* $Id: tif_tile.c 9530 2012-07-09 16:31:56Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler

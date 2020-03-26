@@ -3,7 +3,7 @@
 
    (C) 2004 Luiz Rafael Culik
 
-   $Id: xwt_calendar.h 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    GTK interface - calendar widget
 */

@@ -1,5 +1,5 @@
 /*
-   $Id: namespace.prg 9335 2011-03-05 10:41:27Z andijahja $
+   $Id$
 */
 
 #ifdef __HRB__

@@ -1,7 +1,7 @@
 *****************************************************
 * TEST of TIP libs (for higher level URI interface)
 *
-* $Id: tiptest.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Usage: This file is similar to a wget command
 *

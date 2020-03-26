@@ -1,5 +1,5 @@
 /*
- * $Id: dirdrive.c 9867 2012-12-08 10:31:45Z andijahja $
+ * $Id$
  */
 
 /*

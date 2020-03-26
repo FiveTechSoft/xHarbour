@@ -1,5 +1,5 @@
 /*
- * $Id: zip.h 10094 2015-02-11 21:30:05Z lculik $
+ * $Id$
  */
 
 /* zip.h -- IO on .zip files using zlib

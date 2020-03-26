@@ -1,5 +1,5 @@
 /*
- * $Id: ucp.h 9852 2012-12-03 11:53:06Z andijahja $
+ * $Id$
  */
 /*************************************************
 *          Unicode Property Table handler        *

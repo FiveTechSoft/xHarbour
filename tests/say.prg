@@ -1,5 +1,5 @@
 //
-// $Id: say.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // Tests @ SAY with and without PICTURE clauses

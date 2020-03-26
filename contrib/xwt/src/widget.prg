@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: widget.prg 9939 2013-05-07 09:59:01Z zsaulius $
+   $Id$
 
    Widget class - basic widget & event management
 */

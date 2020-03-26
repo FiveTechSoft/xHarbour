@@ -1,5 +1,5 @@
 /*
- * $Id: errorapi.c 10249 2019-05-30 10:45:01Z enricomaria $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: fparse.c 10105 2015-02-17 18:46:58Z enricomaria $
+ * $Id$
  */
 
 /*

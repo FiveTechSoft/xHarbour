@@ -1,5 +1,5 @@
 /*
- * $Id: url.prg 9994 2014-04-28 15:31:55Z enricomaria $
+ * $Id$
  */
 
 /*

@@ -1,4 +1,4 @@
-/* $Id: tif_print.c 9744 2012-10-12 11:50:14Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

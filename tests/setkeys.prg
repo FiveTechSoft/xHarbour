@@ -1,5 +1,5 @@
 /*
- * $Id: setkeys.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
 
    Harbour Project source code - http://www.Harbour-Project.org
 

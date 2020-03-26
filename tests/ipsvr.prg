@@ -1,5 +1,5 @@
 /*
- * $Id: ipsvr.prg 9625 2012-08-05 15:10:28Z andijahja $
+ * $Id$
  */
 
 #include "common.ch"

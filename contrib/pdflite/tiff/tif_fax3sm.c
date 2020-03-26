@@ -2,7 +2,7 @@
     mkg3states program */
 
 /* PDFlib GmbH cvsid:
- * $Id: tif_fax3sm.c 9644 2012-08-11 05:55:52Z andijahja $ */
+ * $Id$ */
 
 #include "pdflite_tiff.h"
 #include "port.h"

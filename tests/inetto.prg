@@ -5,7 +5,7 @@
 *
 * Contributed by Giancarlo Niccolai and Charles Kwon
 *
-* $Id: inetto.prg 9524 2012-07-03 21:11:10Z andijahja $
+* $Id$
 *
 
 * This array contain the socket control objects that

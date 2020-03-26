@@ -1,5 +1,5 @@
 /*
- * $Id: smtpcln.prg 9962 2013-06-17 10:51:00Z zsaulius $
+ * $Id$
  */
 
 /*

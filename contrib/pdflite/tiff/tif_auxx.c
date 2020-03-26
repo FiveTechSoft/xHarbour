@@ -1,4 +1,4 @@
-/* PDFlib GmbH cvsid: $Id: tif_auxx.c 9746 2012-10-12 22:27:14Z andijahja $ */
+/* PDFlib GmbH cvsid: $Id$ */
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler

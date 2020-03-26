@@ -1,5 +1,5 @@
 /*
- * $Id: cgidefs.ch 9490 2012-06-23 22:43:02Z andijahja $
+ * $Id$
  */
 
 #xtranslate DEFAULT( <p>, <v> ) => ( <p> := IIF( <p> == NIL, <v>, <p> ) )

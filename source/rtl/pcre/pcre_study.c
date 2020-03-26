@@ -1,5 +1,5 @@
 /*
- * $Id: pcre_study.c 9852 2012-12-03 11:53:06Z andijahja $
+ * $Id$
  */
 /*************************************************
 *      Perl-Compatible Regular Expressions       *

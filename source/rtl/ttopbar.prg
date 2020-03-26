@@ -1,5 +1,5 @@
 /*
- * $Id: ttopbar.prg 10091 2015-02-06 20:05:33Z zsaulius $
+ * $Id$
  */
 
 /*

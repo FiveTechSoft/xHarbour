@@ -1,4 +1,4 @@
-/* PDFlib GmbH cvsid: $Id: pdflite_uvcode.h 9644 2012-08-11 05:55:52Z andijahja $ */
+/* PDFlib GmbH cvsid: $Id$ */
 
 /* Version 1.0 generated April 7, 1997 by Greg Ward Larson, SGI */
 #define UV_SQSIZ	(float)0.003500

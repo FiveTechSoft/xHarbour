@@ -1,5 +1,5 @@
 /*
-   $Id: 7zip.prg 9354 2011-03-13 06:15:00Z andijahja $
+   $Id$
    Test program with 7Zip Compression
    WARNING: Must link SEVENZIP.LIB
 */

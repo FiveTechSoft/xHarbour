@@ -1,4 +1,4 @@
-/* $Id: tif_extension.c 9734 2012-10-09 19:54:17Z andijahja $ */
+/* $Id$ */
 /* $Header: /cvs/maptools/cvsroot/libtiff/libtiff/tif_extension.c,v 1.7 2010-03-10 18:56:48 bfriesen Exp $ */
 
 /*

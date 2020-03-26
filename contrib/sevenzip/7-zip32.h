@@ -1,5 +1,5 @@
 /*
- * $Id: 7-zip32.h 9347 2011-03-12 10:08:15Z andijahja $
+ * $Id$
  */
 
 #if !defined(SEVENZIP_H)

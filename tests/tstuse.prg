@@ -1,5 +1,5 @@
 /*
- * $Id: tstuse.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 #define EOL chr(13)+chr(10)

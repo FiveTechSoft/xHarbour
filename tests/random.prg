@@ -1,5 +1,5 @@
 * Random.prg
-* $Id: random.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for the hb_random function
 *
 * Giancarlo Niccolai

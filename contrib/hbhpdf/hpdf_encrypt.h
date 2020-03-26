@@ -1,5 +1,5 @@
 /*
- * $Id: hpdf_encrypt.h 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 /*
  * << Haru Free PDF Library >> -- hpdf_encrypt.h

@@ -1,5 +1,5 @@
 /*
- * $Id: codebloc.c 9834 2012-11-22 01:28:25Z andijahja $
+ * $Id$
  */
 
 /*

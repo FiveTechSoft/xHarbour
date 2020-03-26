@@ -1,5 +1,5 @@
 /*
- * $Id: hbcompat.ch 10163 2016-10-08 17:08:24Z enricomaria $
+ * $Id$
  */
 
 /*

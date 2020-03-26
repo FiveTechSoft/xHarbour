@@ -1,5 +1,5 @@
 /*
- * $Id: descend.c 9773 2012-10-19 08:29:51Z andijahja $
+ * $Id$
  */
 
 /*

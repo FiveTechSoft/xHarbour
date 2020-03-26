@@ -1,5 +1,5 @@
 /*
- * $Id: calconst.c 9864 2012-12-08 08:07:52Z andijahja $
+ * $Id$
  */
 
 /*

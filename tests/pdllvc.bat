@@ -1,6 +1,6 @@
 @echo off
 rem
-rem $Id: pdllvc.bat 9888 2012-12-21 02:34:46Z andijahja $
+rem $Id$
 rem
 rem 旼컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴�
 rem � * this is a batch file for creating pCode DLL 넴

@@ -1,7 +1,7 @@
 #!/bin/sh
 [ "$BASH" ] || exec bash `which $0` ${1+"$@"}
 #
-# $Id: make_xmingw.sh 9279 2011-02-14 18:06:32Z druzus $
+# $Id$
 #
 # This script simplifies cross-compiling xHarbour for Windows from Unix systems.
 #

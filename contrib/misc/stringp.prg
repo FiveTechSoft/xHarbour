@@ -1,5 +1,5 @@
 /*
- * $Id: stringp.prg 9601 2012-07-27 00:50:47Z andijahja $
+ * $Id$
  */
 
 /*

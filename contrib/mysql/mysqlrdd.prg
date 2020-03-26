@@ -1,5 +1,5 @@
 /*
- * $Id: mysqlrdd.prg 9951 2013-05-07 10:34:13Z zsaulius $
+ * $Id$
  */
 
 /*

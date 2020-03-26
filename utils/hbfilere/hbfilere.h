@@ -1,4 +1,4 @@
-/*  $Id: hbfilere.h 9858 2012-12-06 01:40:02Z druzus $  */
+/*  $Id$  */
 
 /*
  * xHarbour Project source code:

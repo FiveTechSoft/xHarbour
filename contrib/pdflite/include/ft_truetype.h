@@ -10,7 +10,7 @@
  |                                                                           |
  *---------------------------------------------------------------------------*/
 
-/* $Id: ft_truetype.h 9529 2012-07-08 07:09:28Z andijahja $
+/* $Id$
  *
  * FONT TrueType typedefs, structures, and enums
  *

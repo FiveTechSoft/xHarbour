@@ -1,5 +1,5 @@
 /*
- * $Id: ascii.h 9511 2012-06-27 21:15:07Z andijahja $
+ * $Id$
  */
 
 /* Copyright (c) 1998, 1999 Thai Open Source Software Center Ltd

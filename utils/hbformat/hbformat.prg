@@ -1,5 +1,5 @@
 /*
- * $Id: hbformat.prg 9473 2012-06-20 22:56:04Z andijahja $
+ * $Id$
  */
 
 /*

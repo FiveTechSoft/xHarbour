@@ -1,6 +1,6 @@
 ***************************************************
 * X harbour Inet demo server program
-* $Id: server.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Giancarlo Niccolai
 *

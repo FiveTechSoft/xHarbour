@@ -1,5 +1,5 @@
 /*
- * $Id: keywords.ch 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 //This is test file for KEYWORDS.PRG

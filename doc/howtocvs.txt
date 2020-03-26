@@ -1,5 +1,5 @@
 /*
- * $Id: howtocvs.txt 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 HOW TO USE THE CVS
@@ -228,7 +228,7 @@ When a new file is added to cvs tree it has not a CVS ID.
 CVS IDs look like this:
 
 /*
- * $Id: howtocvs.txt 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 

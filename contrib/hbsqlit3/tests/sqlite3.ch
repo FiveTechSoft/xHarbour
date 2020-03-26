@@ -1,5 +1,5 @@
 /*
- * $Id: sqlite3.ch 9457 2012-06-17 12:29:09Z andijahja $
+ * $Id$
  */
 
 #define SQLITE_EXEC 					   0

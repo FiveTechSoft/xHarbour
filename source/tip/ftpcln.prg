@@ -1,5 +1,5 @@
 /*
- * $Id: ftpcln.prg 10242 2018-10-11 21:04:04Z enricomaria $
+ * $Id$
  */
 
 /*

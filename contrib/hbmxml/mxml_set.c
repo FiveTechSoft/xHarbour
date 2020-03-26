@@ -1,5 +1,5 @@
 /*
- * "$Id: mxml_set.c 9798 2012-11-04 05:04:53Z andijahja $"
+ * "$Id$"
  *
  * Node set functions for Mini-XML, a small XML-like file parsing library.
  *
@@ -315,5 +315,5 @@ mxmlSetUserData(mxml_node_t *node,	/* I - Node to set */
 
 
 /*
- * End of "$Id: mxml_set.c 9798 2012-11-04 05:04:53Z andijahja $".
+ * End of "$Id$".
  */

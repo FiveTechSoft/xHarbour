@@ -1,5 +1,5 @@
 * regexall.prg
-* $Id: regexall.prg 9852 2012-12-03 11:53:06Z andijahja $
+* $Id$
 * Test for regular expression functions using hb_RegExAll() function
 *
 * (C) 2005 - Francesco Saverio Giudice

@@ -1,5 +1,5 @@
 /*
- * $Id: genasc.prg 9941 2013-05-07 10:11:43Z zsaulius $
+ * $Id$
  */
 
 /*

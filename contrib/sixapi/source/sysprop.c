@@ -1,5 +1,5 @@
 /*
- * $Id: sysprop.c 9829 2012-11-19 17:15:34Z andijahja $
+ * $Id$
  */
 
 /*

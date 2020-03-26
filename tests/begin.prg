@@ -1,5 +1,5 @@
 //
-// $Id: begin.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 // This files demonstrates the use of BEGIN/RECOVER/END SEQUENCE
 // and BREAK statement

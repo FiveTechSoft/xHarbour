@@ -1,5 +1,5 @@
 /*
- * $Id: inpfocus.prg 10079 2014-12-20 14:45:46Z lculik $
+ * $Id$
  */
 /*
  * INPFOCUS.PRG

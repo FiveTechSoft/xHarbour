@@ -1,5 +1,5 @@
 /*
- * $Id: adsexternal.ch 9425 2012-02-01 19:34:15Z kaddath $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: cache.prg 9749 2012-10-13 04:18:06Z andijahja $
+ * $Id$
  */
 
 /*

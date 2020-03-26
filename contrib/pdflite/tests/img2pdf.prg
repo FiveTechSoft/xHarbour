@@ -1,5 +1,5 @@
 /*
- * $Id: img2pdf.prg 9644 2012-08-11 05:55:52Z andijahja $
+ * $Id$
  *
  * Test program for PDFLib
  *

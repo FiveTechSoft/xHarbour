@@ -1,5 +1,5 @@
 /*
- * $Id: pcrecpp_internal.h 9533 2012-07-09 20:49:04Z andijahja $
+ * $Id$
  */
 /*************************************************
 *       Perl-Compatible Regular Expressions      *

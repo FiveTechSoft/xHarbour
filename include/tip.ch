@@ -5,7 +5,7 @@
 * Base definitions
 *
 * (C) 2002 Giancarlo Niccolai
-* $Id: tip.ch 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 ************************************************/
 
 #ifndef TIP_H

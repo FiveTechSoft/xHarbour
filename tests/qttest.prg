@@ -1,5 +1,5 @@
 * QTTest.prg
-* $Id: qttest.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * A test for gtQTc - QT lib baset graphic terminal console
 *
 * Giancarlo Niccolai

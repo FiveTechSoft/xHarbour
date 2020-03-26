@@ -1,5 +1,5 @@
 /*
- * $Id: hbusage.c 10221 2018-03-11 15:41:48Z enricomaria $
+ * $Id$
  */
 
 /*
@@ -163,6 +163,6 @@ void hb_compPrintLogo( void )
 {
    char *pszVersion = hb_verHarbour();
    printf( "%s\n", pszVersion );
-   printf( "Copyright 1999-2018, http://www.xharbour.org http://www.harbour-project.org/\n" );
+   printf( "Copyright 1999-" _HB_CURR_YEAR ", http://www.xharbour.org http://www.harbour-project.org/\n" );
    hb_xfree( pszVersion );
 }

@@ -1,5 +1,5 @@
 /*
- * $Id: setkeys.prg 9935 2013-05-07 09:45:53Z zsaulius $
+ * $Id$
  */
 /*
  * xHarbour Project source code:

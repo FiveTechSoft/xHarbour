@@ -1,4 +1,4 @@
-/* $Id: tif_aux.c 9746 2012-10-12 22:27:14Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler

@@ -1,5 +1,5 @@
 //
-// $Id: inifiles.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 #define CRLF (Chr(13) + Chr(10))
 

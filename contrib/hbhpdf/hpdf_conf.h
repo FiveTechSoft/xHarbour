@@ -1,5 +1,5 @@
 /*
- * $Id: hpdf_conf.h 10218 2018-03-08 00:09:54Z lculik $
+ * $Id$
  */
 /*
  * << Haru Free PDF Library >> -- hpdf_conf.h

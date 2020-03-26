@@ -1,5 +1,5 @@
 /*
- * $Id: hberrors.h 9934 2013-05-07 09:30:03Z zsaulius $
+ * $Id$
  */
 
 /*

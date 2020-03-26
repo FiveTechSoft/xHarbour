@@ -1,5 +1,5 @@
 /*
- * $Id: cgiconfig.prg 9493 2012-06-24 00:39:57Z andijahja $
+ * $Id$
  */
 
 /*

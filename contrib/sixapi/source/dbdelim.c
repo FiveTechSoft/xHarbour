@@ -1,5 +1,5 @@
 /*
- * $Id: dbdelim.c 9753 2012-10-14 10:51:37Z andijahja $
+ * $Id$
  */
 
 /*

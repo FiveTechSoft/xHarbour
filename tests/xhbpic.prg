@@ -1,6 +1,6 @@
 **************************************************
 * xhbbit.prg
-* $Id: xhbpic.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for pcx,bmp,lbm,tga viewer with gtalleg
 *
 * Andi Jahja

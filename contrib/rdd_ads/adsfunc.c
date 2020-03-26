@@ -1,5 +1,5 @@
 /*
- * $Id: adsfunc.c 10255 2019-06-14 15:11:56Z enricomaria $
+ * $Id$
  */
 
 /*

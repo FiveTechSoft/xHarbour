@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: treelist.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    TreeList - A flexible list of items or tree of items.
 

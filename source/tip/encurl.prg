@@ -1,5 +1,5 @@
 /*
- * $Id: encurl.prg 9759 2012-10-15 14:02:59Z andijahja $
+ * $Id$
  */
 
 /*

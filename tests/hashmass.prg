@@ -6,7 +6,7 @@
 * This test demonstrates limits and advantages of
 * hashes.
 *
-* $Id: hashmass.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 
 PROCEDURE Main()

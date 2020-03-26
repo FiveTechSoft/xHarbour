@@ -1,5 +1,5 @@
 /*
- * $Id: hbclass.ch 9938 2013-05-07 09:52:30Z zsaulius $
+ * $Id$
  */
 
 /*

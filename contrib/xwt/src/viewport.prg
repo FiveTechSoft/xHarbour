@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: viewport.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    View port class. Should contain a single widget, most likely
    a container, but also html panes etc.

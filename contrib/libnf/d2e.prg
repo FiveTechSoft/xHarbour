@@ -1,5 +1,5 @@
 /*
- * $Id: d2e.prg 9686 2012-09-16 08:14:35Z andijahja $
+ * $Id$
  */
 /*
  * File......: D2E.PRG

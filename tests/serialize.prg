@@ -1,6 +1,6 @@
 ****************************************************
 * Serialize.prg
-* $Id: serialize.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for the hb_serial family function
 *
 * This serialization functions allow to store consistently any

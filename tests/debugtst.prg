@@ -1,5 +1,5 @@
 //
-// $Id: debugtst.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 /*
@@ -9,7 +9,7 @@
  * $Requirement$  source\tools\stringp.prg
  *                source\rtl\objfunc.prg
  *                source\rtl\asort.prg
- * $Date: 2011-02-14 18:06:32 +0000 (Mon, 14 Feb 2011) $
+ * $Date$
  * $End$
  *
  * Written by Eddie Runia <eddie@runia.com>

@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: splitter.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Splitter - a container with two resizable area;
    It is not really implemented as a container (in fact is a

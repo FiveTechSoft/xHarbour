@@ -1,5 +1,5 @@
 /*
- * $Id: video.c 9692 2012-09-16 11:25:59Z andijahja $
+ * $Id$
  *
  * xHarbour Project source code:
  *

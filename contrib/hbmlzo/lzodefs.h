@@ -1,5 +1,5 @@
 /*
- * $Id: lzodefs.h 9484 2012-06-22 05:59:16Z andijahja $
+ * $Id$
  */
 /* lzodefs.h -- architecture, OS and compiler specific defines
 

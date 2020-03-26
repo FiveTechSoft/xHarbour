@@ -1,5 +1,5 @@
 /*
- * $Id: readline.c 10245 2019-03-07 08:21:04Z enricomaria $
+ * $Id$
  */
 
 /*

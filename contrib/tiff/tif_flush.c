@@ -1,4 +1,4 @@
-/* $Id: tif_flush.c 9530 2012-07-09 16:31:56Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

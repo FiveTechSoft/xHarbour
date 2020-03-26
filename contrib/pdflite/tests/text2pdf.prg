@@ -1,5 +1,5 @@
 /*
- * $Id: text2pdf.prg 9573 2012-07-15 00:36:13Z andijahja $
+ * $Id$
  *
  * Test program for PDFLib
  *

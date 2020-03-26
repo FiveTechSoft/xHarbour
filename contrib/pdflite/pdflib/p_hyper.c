@@ -10,7 +10,7 @@
  |                                                                           |
  *---------------------------------------------------------------------------*/
 
-/* $Id: p_hyper.c 9734 2012-10-09 19:54:17Z andijahja $
+/* $Id$
  *
  * PDFlib routines for hypertext stuff:
  * named destination, bookmarks, document info

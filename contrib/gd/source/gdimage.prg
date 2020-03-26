@@ -1,5 +1,5 @@
 /*
- * $Id: gdimage.prg 9908 2013-01-13 05:23:04Z andijahja $
+ * $Id$
  */
 
 /*

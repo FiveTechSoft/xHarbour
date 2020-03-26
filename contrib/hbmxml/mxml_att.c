@@ -1,5 +1,5 @@
 /*
- * "$Id: mxml_att.c 9798 2012-11-04 05:04:53Z andijahja $"
+ * "$Id$"
  *
  * Attribute support code for Mini-XML, a small XML-like file parsing library.
  *
@@ -315,5 +315,5 @@ mxml_set_attr(mxml_node_t *node,	/* I - Element node */
 
 
 /*
- * End of "$Id: mxml_att.c 9798 2012-11-04 05:04:53Z andijahja $".
+ * End of "$Id$".
  */

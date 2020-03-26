@@ -8,7 +8,7 @@
 *
 * (C) 2003 Giancarlo Niccolai & Ron Pinkas
 *
-* $Id: mtgc.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * This programs allocates Garbage Collectable objects in
 * subthreads, and force the collection in a crossed thread

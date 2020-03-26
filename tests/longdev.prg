@@ -1,5 +1,5 @@
 //
-// $Id: longdev.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // Testing Harbour long string handling with device output.

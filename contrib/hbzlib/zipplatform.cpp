@@ -1,11 +1,11 @@
 /*
- * $Id: zipplatform.cpp 10131 2015-08-30 23:47:55Z lculik $
+ * $Id$
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // $Workfile: ZipPlatform.cpp $
 // $Archive: /ZipArchive/ZipPlatform.cpp $
-// $Date: 2015-08-30 23:47:55 +0000 (Sun, 30 Aug 2015) $ $Author: lculik $
+// $Date$ $Author$
 ////////////////////////////////////////////////////////////////////////////////
 // This source file is part of the ZipArchive library source distribution and
 // is Copyright 2000-2003 by Tadeusz Dracz (http://www.artpol-software.com/)

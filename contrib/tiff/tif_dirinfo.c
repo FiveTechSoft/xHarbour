@@ -1,4 +1,4 @@
-/* $Id: tif_dirinfo.c 10040 2014-11-04 13:09:53Z lculik $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

@@ -1,7 +1,7 @@
 ***********************************************************
 * bkgtest.prg
 *
-* $Id: bkgtest.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * This test demonstrates usage of BACKGROUND functions that are an extension of IDLE functions;
 * this is a variant of idle functions that runs only on idle state (as inkey(0) does)

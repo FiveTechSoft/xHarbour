@@ -3,7 +3,7 @@
 
    (C) 2004 Luiz Rafael Culik
 
-   $Id: calendar.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Text box Control. 
 */

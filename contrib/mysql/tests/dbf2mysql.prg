@@ -1,5 +1,5 @@
 /*
- * $Id: dbf2mysql.prg 9494 2012-06-24 07:20:41Z andijahja $
+ * $Id$
  */
 
 /*

@@ -1,4 +1,4 @@
-/* $Id: tiffiop.h 9740 2012-10-11 01:30:27Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

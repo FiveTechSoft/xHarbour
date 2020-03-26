@@ -1,4 +1,4 @@
-/*  $Id: hbip.c 10094 2015-02-11 21:30:05Z lculik $  */
+/*  $Id$  */
 /*
  * xHarbour Project source code:
  *    The internet protocol / TCP support

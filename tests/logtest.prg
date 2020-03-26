@@ -1,6 +1,6 @@
 ************************************************************
 * logtest.prg
-* $Id: logtest.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Demonstrates the standard log system
 * See inline help strings to know how to use this

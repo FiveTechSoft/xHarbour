@@ -1,6 +1,6 @@
 /*
    maximize.prg
-   $Id: maximize.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    sample on using Maximize Mode in gtwvw.
    budyanto@centrin.net.id

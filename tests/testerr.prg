@@ -1,5 +1,5 @@
 /*
-* $Id: testerr.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Sample program to direct error log to designated file name
 */
 

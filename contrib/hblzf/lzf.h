@@ -1,5 +1,5 @@
 /*
- * $Id: lzf.h 9484 2012-06-22 05:59:16Z andijahja $
+ * $Id$
  */
 /*
  * Copyright (c) 2000-2008 Marc Alexander Lehmann <schmorp@schmorp.de>

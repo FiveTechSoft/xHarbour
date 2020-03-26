@@ -19,7 +19,7 @@
 *
 * (C) 2003 Giancarlo Niccolai
 *
-* $Id: service.prg 10008 2014-07-18 13:58:25Z lculik $
+* $Id$
 *
 
 #include "hbserv.ch"

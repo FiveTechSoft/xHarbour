@@ -1,6 +1,6 @@
 ************************************************************
 * macrovars.prg
-* $Id: macrovars.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Test of SET MACRO BLOCK VARS [ON|OFF|XHARBOUR|CLIPPER]
 * This SET set the behavior of codeblock to share the PRIVATE memvars level

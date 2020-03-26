@@ -1,4 +1,4 @@
-* $Id: dirtest2.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Test program for extended Directory()
 *

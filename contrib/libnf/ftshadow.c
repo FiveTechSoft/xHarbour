@@ -1,5 +1,5 @@
 /*
- * $Id: ftshadow.c 9689 2012-09-16 08:28:37Z andijahja $
+ * $Id$
  */
 
 /*

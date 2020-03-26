@@ -1,5 +1,5 @@
 /*
- * $Id: readme.txt 9486 2012-06-23 13:54:44Z andijahja $
+ * $Id$
  */
 
                     Simple SQL Interface for Harbour

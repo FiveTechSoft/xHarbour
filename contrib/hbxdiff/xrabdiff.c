@@ -1,5 +1,5 @@
 /*
- * $Id: xrabdiff.c 9816 2012-11-11 18:35:45Z andijahja $
+ * $Id$
  */
 /*
  *  xrabdiff by Davide Libenzi (Rabin's polynomial fingerprint based delta generator)

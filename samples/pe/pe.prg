@@ -1,5 +1,5 @@
 /*
- * $Id: pe.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 #define EDIT_EDIT .T.
 #define EDIT_VIEW .F.

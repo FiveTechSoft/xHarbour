@@ -1,5 +1,5 @@
 /*
- * $Id: xmlparse.c 9752 2012-10-14 03:33:16Z andijahja $
+ * $Id$
  */
 
 /* Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd

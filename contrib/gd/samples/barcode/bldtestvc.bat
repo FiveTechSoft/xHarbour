@@ -2,7 +2,7 @@
 rem ***********************************************************
 rem * bldvc.bat
 rem *
-rem * $Id: bldtestvc.bat 9279 2011-02-14 18:06:32Z druzus $
+rem * $Id$
 rem *
 rem * Batch file to build test programs in ST or MT environment
 rem *

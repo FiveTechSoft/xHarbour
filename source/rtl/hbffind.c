@@ -1,5 +1,5 @@
 /*
- * $Id: hbffind.c 10216 2018-02-17 18:07:46Z enricomaria $
+ * $Id$
  */
 
 /*

@@ -1,4 +1,4 @@
-/* $Id: expandts.prg 9279 2011-02-14 18:06:32Z druzus $ */
+/* $Id$ */
 /*
  * Unit test for CT function EXPAND()
  * compare results when compiled with Clipper vs xHarbour

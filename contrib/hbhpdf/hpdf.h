@@ -1,5 +1,5 @@
 /*
- * $Id: hpdf.h 10218 2018-03-08 00:09:54Z lculik $
+ * $Id$
  */
 /*
  * << Haru Free PDF Library 2.0.8 >> -- hpdf.h

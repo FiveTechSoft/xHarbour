@@ -1,5 +1,5 @@
 /* PDFlib GmbH cvsid:
- * $Id: tif_fax3.c 10075 2014-12-16 19:10:54Z zsaulius $ */
+ * $Id$ */
 
 /*
  * Copyright (c) 1990-1997 Sam Leffler

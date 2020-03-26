@@ -1,5 +1,5 @@
 /*
- * $Id: hbmagit.prg 9513 2012-06-29 06:49:48Z andijahja $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: readme.txt 9768 2012-10-18 00:39:45Z andijahja $
+ * $Id$
  * Notes on building xHarbour
 */
 

@@ -1,6 +1,6 @@
 ***********************************************************
 * filestat.prg
-* $Id: filestat.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for filestat (and TimeOfDay) function.
 *
 * Giancarlo Niccolai

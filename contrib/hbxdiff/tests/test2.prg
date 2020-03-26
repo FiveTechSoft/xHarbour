@@ -1,5 +1,5 @@
 /*
- * $Id: test2.prg 9816 2012-11-11 18:35:45Z andijahja $
+ * $Id$
  */
 
 #include "hbxdiff.ch"

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // $Workfile: ZipFileMapping.h $
 // $Archive: /ZipArchive_Linux/ZipFileMapping.h $
-// $Date: 2011-02-14 18:06:32 +0000 (Mon, 14 Feb 2011) $ $Author: druzus $
+// $Date$ $Author$
 ////////////////////////////////////////////////////////////////////////////////
 // This source file is part of the ZipArchive library source distribution and
 // is Copyright 2000-2002 by Tadeusz Dracz (http://www.artpol-software.com/)

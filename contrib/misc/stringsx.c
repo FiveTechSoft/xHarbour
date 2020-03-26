@@ -1,5 +1,5 @@
 /*
- * $Id: stringsx.c 10165 2016-10-22 23:23:36Z lculik $
+ * $Id$
  */
 
 #include "hbapi.h"

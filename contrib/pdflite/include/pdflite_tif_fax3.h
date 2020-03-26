@@ -1,4 +1,4 @@
-/* PDFlib GmbH cvsid: $Id: pdflite_tif_fax3.h 9644 2012-08-11 05:55:52Z andijahja $ */
+/* PDFlib GmbH cvsid: $Id$ */
 
 /*
  * Copyright (c) 1990-1997 Sam Leffler

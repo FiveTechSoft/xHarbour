@@ -1,5 +1,5 @@
 /*
- * $Id: memoedit.prg 9944 2013-05-07 10:20:15Z zsaulius $
+ * $Id$
  */
 
 /*

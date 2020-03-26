@@ -1,5 +1,5 @@
 /*
- * $Id: tfirebird.prg 9765 2012-10-16 15:29:47Z andijahja $
+ * $Id$
  */
 
 /*

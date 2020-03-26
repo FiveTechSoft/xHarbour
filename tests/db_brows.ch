@@ -1,5 +1,5 @@
 /*
- * $Id: db_brows.ch 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 // Header file for db_brows.prg
 #define LI_LEN    42

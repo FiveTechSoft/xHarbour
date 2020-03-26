@@ -1,4 +1,4 @@
-/* $Id: tif_luv.c 9530 2012-07-09 16:31:56Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1997 Greg Ward Larson

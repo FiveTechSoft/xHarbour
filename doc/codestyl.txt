@@ -1,5 +1,5 @@
 /*
- * $Id: codestyl.txt 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 /* Please note the following comments we may use everywhere

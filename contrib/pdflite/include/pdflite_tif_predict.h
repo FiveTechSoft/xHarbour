@@ -1,5 +1,5 @@
 /* PDFlib GmbH cvsid:
- * $Id: pdflite_tif_predict.h 9644 2012-08-11 05:55:52Z andijahja $ */
+ * $Id$ */
 
 /*
  * Copyright (c) 1995-1997 Sam Leffler

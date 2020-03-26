@@ -1,5 +1,5 @@
 #
-# $Id: c.cf 9279 2011-02-14 18:06:32Z druzus $
+# $Id$
 #
 
 C_OBJS = $(C_SOURCES:.c=$(OBJ_EXT)) $(CPP_SOURCES:.cpp=$(OBJ_EXT))

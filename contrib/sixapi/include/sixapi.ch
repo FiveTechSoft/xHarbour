@@ -1,5 +1,5 @@
 /*
- * $Id: sixapi.ch 9577 2012-07-17 17:45:15Z andijahja $
+ * $Id$
  */
 
 /*

@@ -1,4 +1,4 @@
-* $Id: dirtest4.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Test program for extended DirectoryRecurse()
 *

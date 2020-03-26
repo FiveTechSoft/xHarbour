@@ -1,5 +1,5 @@
 /*
- * $Id: xmltok.c 9773 2012-10-19 08:29:51Z andijahja $
+ * $Id$
  */
 
 /* Copyright (c) 1998, 1999 Thai Open Source Software Center Ltd

@@ -1,5 +1,5 @@
 //
-// $Id: testping.prg 9855 2012-12-03 13:56:58Z andijahja $
+// $Id$
 //
 
 // Test program for PING

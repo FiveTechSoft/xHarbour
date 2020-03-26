@@ -1,5 +1,5 @@
 /*
-* $Id: bldinfo.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test program for HB_BUILDINDO( [ nInfo ] )
 * Retrieve information on xHarbour Build Info
 * Please refer to include/hbver.ch for more information on nInfo

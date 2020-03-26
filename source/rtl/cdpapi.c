@@ -1,5 +1,5 @@
 /*
- * $Id: cdpapi.c 10253 2019-06-13 13:39:02Z enricomaria $
+ * $Id$
  */
 
 /*

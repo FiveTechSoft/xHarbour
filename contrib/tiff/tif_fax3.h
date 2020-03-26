@@ -1,4 +1,4 @@
-/* $Id: tif_fax3.h 9530 2012-07-09 16:31:56Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 1990-1997 Sam Leffler

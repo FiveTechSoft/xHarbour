@@ -1,6 +1,6 @@
 ***********************************************************
 * process.prg
-* $Id: process.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for process oriented functions
 * Read from streams and manage sub processes.
 *

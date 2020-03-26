@@ -1,5 +1,5 @@
 /*
- * $Id: gttone.c 10235 2018-06-08 16:32:49Z enricomaria $
+ * $Id$
  */
 
 /*

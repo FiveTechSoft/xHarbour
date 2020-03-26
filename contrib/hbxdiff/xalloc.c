@@ -1,5 +1,5 @@
 /*
- * $Id: xalloc.c 10074 2014-12-15 12:35:31Z zsaulius $
+ * $Id$
  */
 /*
  *  LibXDiff by Davide Libenzi ( File Differential Library )

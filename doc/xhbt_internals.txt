@@ -8,7 +8,7 @@
                                     gian@nccolai.ws
 
 
-$Id: xhbt_internals.txt 9279 2011-02-14 18:06:32Z druzus $
+$Id$
 
 /*  $DOC$
  *  $FUNCNAME$

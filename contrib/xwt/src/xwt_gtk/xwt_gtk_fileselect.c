@@ -3,7 +3,7 @@
 
    (C) 2003 Luiz Rafael Culik
 
-   $Id: xwt_gtk_fileselect.c 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    GTK interface - File Selection Box 
 */

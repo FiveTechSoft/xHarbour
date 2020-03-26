@@ -1,4 +1,4 @@
-/* $Id: testmsg.prg 9560 2012-07-12 01:49:24Z andijahja $
+/* $Id$
    Test message directive
    Maybe useful for giving notice on compile time
    See below for example

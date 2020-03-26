@@ -1,6 +1,6 @@
 #===============================================================================
 #
-# $Id: common.mak 10227 2018-04-11 16:57:04Z lculik $
+# $Id$
 #
 # FILE : common.mak
 # NOTES: This file is used by all C/C++ compilers under Windows Platform whose

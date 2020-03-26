@@ -1,4 +1,4 @@
-/* $Id: tif_lzma.c 9530 2012-07-09 16:31:56Z andijahja $ */
+/* $Id$ */
 
 /*
  * Copyright (c) 2010, Andrey Kiselev <dron@ak4719.spb.edu>

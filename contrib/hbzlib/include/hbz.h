@@ -1,5 +1,5 @@
 /*
- * $Id: hbz.h 9685 2012-09-16 05:42:35Z andijahja $
+ * $Id$
  */
 
 #ifndef HB_APIZLIB_H_

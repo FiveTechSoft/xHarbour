@@ -1,5 +1,5 @@
 /*
- * $Id: hpdf_annotation.h 10218 2018-03-08 00:09:54Z lculik $
+ * $Id$
  */
 /*
  * << Haru Free PDF Library >> -- hpdf_annotation.h

@@ -1,5 +1,5 @@
 /*
- * $Id: gdfontl.h 9691 2012-09-16 10:35:44Z andijahja $
+ * $Id$
  */
 #ifdef __cplusplus
 extern "C" {

@@ -1,4 +1,4 @@
-/* $Id: drawimg.prg 9279 2011-02-14 18:06:32Z druzus $
+/* $Id$
    image.prg
    compile and link this file together with wutil.prg
    (use drawimg.bat to build)

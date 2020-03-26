@@ -1,5 +1,5 @@
 /*
- * $Id: alert.prg 9724 2012-10-02 10:36:35Z andijahja $
+ * $Id$
  */
 
 /*

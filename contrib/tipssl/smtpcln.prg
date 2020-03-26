@@ -1,5 +1,5 @@
 /*
- * $Id: smtpcln.prg 10250 2019-05-31 19:40:19Z enricomaria $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: hbxdiff.ch 9816 2012-11-11 18:35:45Z andijahja $
+ * $Id$
  */
 
 /*

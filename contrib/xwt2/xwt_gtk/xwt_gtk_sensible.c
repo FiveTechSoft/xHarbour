@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: xwt_gtk_sensible.c 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
   Sensible widget - block over normally unsensible widgets (labels and images)
   to give them eventual responsivity to events.

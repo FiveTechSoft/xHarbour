@@ -1,5 +1,5 @@
 //
-// $Id: testtone.prg 9877 2012-12-12 11:57:31Z andijahja $
+// $Id$
 // Test Program for HB_TONE for Windows
 //
 

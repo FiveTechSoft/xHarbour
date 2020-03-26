@@ -1,5 +1,5 @@
 /*
- * $Id: _hbconf.h 9827 2012-11-17 13:21:47Z andijahja $
+ * $Id$
  */
 
 #ifndef _HBCONF_H

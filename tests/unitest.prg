@@ -1,5 +1,5 @@
 /*
-   $Id: unitest.prg 9332 2011-03-03 16:57:38Z andijahja $
+   $Id$
    Test program for Stand-Alone Unicode String Conversion
    WARNING: Must link HBCC.LIB
 */

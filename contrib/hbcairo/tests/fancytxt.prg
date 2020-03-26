@@ -1,5 +1,5 @@
 /*
- * $Id: fancytxt.prg 9561 2012-07-12 02:07:53Z andijahja $
+ * $Id$
  */
 
 #message "This program requires freetype6.dll"

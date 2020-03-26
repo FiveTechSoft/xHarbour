@@ -1,5 +1,5 @@
 /*
-* $Id: wvwmenu.c 10118 2015-03-28 19:39:58Z lculik $
+* $Id$
  */
 /*
  * WVWMENU.C

@@ -30,7 +30,7 @@
  *          Addison-Wesley, 1983. ISBN 0-201-06672-6.
  */
 
-/* @(#) $Id: trees.c 10206 2017-12-17 15:20:56Z enricomaria $ */
+/* @(#) $Id$ */
 
 /* #define GEN_TREES_H */
 

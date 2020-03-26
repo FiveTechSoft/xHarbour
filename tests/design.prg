@@ -1,4 +1,4 @@
-*  $Id: design.prg 9279 2011-02-14 18:06:32Z druzus $
+*  $Id$
 *
 *  This file is a demo for text mode screen designer
 *

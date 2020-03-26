@@ -1,5 +1,5 @@
 /*
- * $Id: hrb_faq.txt 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 .HRB FAQ list 1999/05/19:

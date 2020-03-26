@@ -1,5 +1,5 @@
 /*
- * $Id: msgpt.c 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 /*
@@ -78,7 +78,7 @@ static HB_LANG s_lang =
       "Portugues",                 /* Name (in native language) */
       "PT",                        /* RFC ID */
       "850",                       /* Codepage */
-      "$Revision: 9279 $ $Date: 2011-02-14 18:06:32 +0000 (Mon, 14 Feb 2011) $",         /* Version */
+      "$Revision$ $Date$",         /* Version */
 
       /* Month names */
 

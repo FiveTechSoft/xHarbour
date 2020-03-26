@@ -1,5 +1,5 @@
 /* PDFlib GmbH cvsid:
- * $Id: tif_close.c 9644 2012-08-11 05:55:52Z andijahja $ */
+ * $Id$ */
 
 /*
  * Copyright (c) 1988-1997 Sam Leffler

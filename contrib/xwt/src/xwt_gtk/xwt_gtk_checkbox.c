@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: xwt_gtk_checkbox.c 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    GTK interface - management of checkbox widget
 */

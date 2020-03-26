@@ -1,5 +1,5 @@
 /*
- * $Id: errlogmt.prg 9727 2012-10-02 20:04:30Z andijahja $
+ * $Id$
  */
 
 /*

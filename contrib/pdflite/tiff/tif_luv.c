@@ -1,5 +1,5 @@
 /* PDFlib GmbH cvsid:
- * $Id: tif_luv.c 9734 2012-10-09 19:54:17Z andijahja $ */
+ * $Id$ */
 /*
  * Copyright (c) 1997 Greg Ward Larson
  * Copyright (c) 1997 Silicon Graphics, Inc.

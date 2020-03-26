@@ -1,4 +1,4 @@
-/* PDFlib GmbH cvsid: $Id: tif_tile.c 9734 2012-10-09 19:54:17Z andijahja $ */
+/* PDFlib GmbH cvsid: $Id$ */
 
 /*
  * Copyright (c) 1991-1997 Sam Leffler

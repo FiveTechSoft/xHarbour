@@ -1,5 +1,5 @@
 /*
- * $Id: ctmisc.prg 9736 2012-10-10 12:21:17Z andijahja $
+ * $Id$
  */
 
 /*

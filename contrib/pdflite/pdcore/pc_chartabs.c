@@ -10,7 +10,7 @@
  |                                                                           |
  *---------------------------------------------------------------------------*/
 
-/* $Id: pc_chartabs.c 9529 2012-07-08 07:09:28Z andijahja $
+/* $Id$
  *
  * PDFlib routines for converting glyph or character names to Unicode
  * and vice versa

@@ -2,7 +2,7 @@
 * TIP test
 * HTTP Advanced operations Test
 *
-* $Id: httpadv.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *****/
 
 PROCEDURE MAIN( cUrl )

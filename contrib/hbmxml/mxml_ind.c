@@ -1,5 +1,5 @@
 /*
- * "$Id: mxml_ind.c 9798 2012-11-04 05:04:53Z andijahja $"
+ * "$Id$"
  *
  * Index support code for Mini-XML, a small XML-like file parsing library.
  *
@@ -658,5 +658,5 @@ index_sort(mxml_index_t *ind,		/* I - Index to sort */
 
 
 /*
- * End of "$Id: mxml_ind.c 9798 2012-11-04 05:04:53Z andijahja $".
+ * End of "$Id$".
  */

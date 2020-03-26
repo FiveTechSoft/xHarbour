@@ -4,7 +4,7 @@
 * Giancarlo Niccolai et al.:
 * (PLZ. add your copyright...)
 *
-* $Id: xwt_test1.prg 9280 2011-02-14 18:16:32Z druzus $
+* $Id$
 *
 
 

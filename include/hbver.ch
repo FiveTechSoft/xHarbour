@@ -1,5 +1,5 @@
 /*
- * $Id: hbver.ch 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 /*
@@ -88,6 +88,9 @@
 #define _HB_ARRAY_MODE              33  /* int   */
 #define _HB_CREDITS                 34  /* array */
 #define _HB_VER_LAST                35  /* last  */
+
+
+#define _HB_CURR_YEAR           "2020"  /* current year */
 
 /* #include "hb_ver.ch" */
 

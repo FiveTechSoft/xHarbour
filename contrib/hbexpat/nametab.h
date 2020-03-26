@@ -1,5 +1,5 @@
 /*
- * $Id: nametab.h 9511 2012-06-27 21:15:07Z andijahja $
+ * $Id$
  */
 
 static const unsigned namingBitmap[] = {

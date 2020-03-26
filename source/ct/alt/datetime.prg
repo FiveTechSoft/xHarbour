@@ -1,5 +1,5 @@
 /*
- * $Id: datetime.prg 10058 2014-12-02 12:13:20Z zsaulius $
+ * $Id$
  */
 
 /*

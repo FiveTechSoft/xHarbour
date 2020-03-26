@@ -1,5 +1,5 @@
 /*
-* $Id: wvwdraw.c 10017 2014-10-07 04:14:54Z ronpinkas $
+* $Id$
  */
 /*
  * WVWDRAW.C

@@ -1,5 +1,5 @@
 /*
- * $Id: test31.prg 9576 2012-07-17 16:41:57Z andijahja $
+ * $Id$
  */
 #command TOTAL [TO <(file)>] [ON <key>]                                 ;
       [FIELDS <fields,...>]                                          ;

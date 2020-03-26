@@ -9,7 +9,7 @@
 *
 * (C) 2003 Francesco Saverio Giudice
 *
-* $Id: tstclsdbg.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 
 #include "common.ch"

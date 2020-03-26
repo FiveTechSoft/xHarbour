@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: framewindow.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Frame window class. A window with a menu, a central area and a statusbar
 */

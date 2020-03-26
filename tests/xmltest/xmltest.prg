@@ -1,6 +1,6 @@
 ************************************************************
 * xmltest.prg
-* $Id: xmltest.prg 9920 2013-05-07 08:45:02Z zsaulius $
+* $Id$
 *
 * Test for XML routines of Xharbour rtl (MXML/HBXML)
 *

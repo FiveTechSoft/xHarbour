@@ -1,11 +1,11 @@
 /*
- * $Id: zipexception.h 9685 2012-09-16 05:42:35Z andijahja $
+ * $Id$
  */
 
 ////////////////////////////////////////////////////////////////////////////////
 // $Workfile: ZipException.h $
 // $Archive: /ZipArchive/ZipException.h $
-// $Date: 2012-09-16 05:42:35 +0000 (Sun, 16 Sep 2012) $ $Author: andijahja $
+// $Date$ $Author$
 ////////////////////////////////////////////////////////////////////////////////
 // This source file is part of the ZipArchive library source distribution and
 // is Copyright 2000-2003 by Tadeusz Dracz (http://www.artpol-software.com/)

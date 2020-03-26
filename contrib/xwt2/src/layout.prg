@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: layout.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Pane class. Each widget is arranged below the
    previous one.

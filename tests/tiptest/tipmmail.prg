@@ -20,7 +20,7 @@
 * This test writes data to standard output, and is
 * compiled only under GTCGI;
 *
-* $Id: tipmmail.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *****/
 
 PROCEDURE MAIN( ... )

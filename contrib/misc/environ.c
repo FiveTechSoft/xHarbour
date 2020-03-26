@@ -1,5 +1,5 @@
 /*
- * $Id: environ.c 9597 2012-07-26 22:49:11Z andijahja $
+ * $Id$
  */
 
 /*

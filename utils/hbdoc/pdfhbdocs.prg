@@ -1,5 +1,5 @@
 /*
- * $Id: pdfhbdocs.prg 9525 2012-07-07 07:25:58Z andijahja $
+ * $Id$
  */
 
 /*

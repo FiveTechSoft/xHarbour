@@ -1,7 +1,7 @@
 @echo off
 rem ============================================================================
 rem
-rem $Id: make_bc.bat 10184 2017-02-04 18:41:34Z enricomaria $
+rem $Id$
 rem
 rem FILE: make_b32.bat
 rem BATCH FILE FOR BORLAND C++

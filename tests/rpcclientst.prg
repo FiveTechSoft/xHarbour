@@ -1,6 +1,6 @@
 ************************************************************
 * rpcclientst.prg
-* $Id: rpcclientst.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for tRpcClient class
 *
 * SINGLE THREAD MODE

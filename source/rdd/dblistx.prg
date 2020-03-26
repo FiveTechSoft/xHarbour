@@ -1,5 +1,5 @@
 /*
- * $Id: dblistx.prg 9723 2012-10-02 09:18:08Z andijahja $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: popadder.prg 9939 2013-05-07 09:59:01Z zsaulius $
+ * $Id$
  */
 /*
  * File......: Popadder.prg

@@ -1,5 +1,5 @@
 /*
- * $Id: hbsetup.ch 10134 2015-09-08 19:17:35Z ronpinkas $
+ * $Id$
  */
 
 /*

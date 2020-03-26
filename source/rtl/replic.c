@@ -1,5 +1,5 @@
 /*
- * $Id: replic.c 10093 2015-02-10 13:26:34Z enricomaria $
+ * $Id$
  */
 
 /*

@@ -1,7 +1,7 @@
 ***********************************************************
 * idletest.prg
 *
-* $Id: idletest.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * This test demonstrates usage of IDLE functions;
 * XHarbour allows to use both codeblocks and executable arrays.

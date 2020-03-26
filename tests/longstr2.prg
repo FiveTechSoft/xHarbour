@@ -1,6 +1,6 @@
 //NOTEST - You'll want to test this with the output redirected to a file!
 //
-// $Id: longstr2.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 

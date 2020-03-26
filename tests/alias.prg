@@ -1,5 +1,5 @@
 //NOTEST
-// $Id: alias.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 //It is used to check if pcode is generated correctly for aliased expressions
 //(you must check it visually :)

@@ -1,5 +1,5 @@
 /*
- * $Id: cabtest4.txt 9583 2012-07-20 13:31:25Z andijahja $
+ * $Id$
  */
 
 07/20/12 09:57:08 Windows XP Professional 5.01.2600 Service Pack 3

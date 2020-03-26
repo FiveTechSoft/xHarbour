@@ -1,5 +1,5 @@
 /*
- * "$Id: mxml_fil.c 9798 2012-11-04 05:04:53Z andijahja $"
+ * "$Id$"
  *
  * File loading code for Mini-XML, a small XML-like file parsing library.
  *
@@ -3111,5 +3111,5 @@ mxml_write_ws(mxml_node_t     *node,	/* I - Current node */
 
 
 /*
- * End of "$Id: mxml_fil.c 9798 2012-11-04 05:04:53Z andijahja $".
+ * End of "$Id$".
  */

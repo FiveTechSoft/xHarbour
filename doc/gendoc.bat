@@ -1,6 +1,6 @@
 @echo off
 rem 
-rem $Id: gendoc.bat 9280 2011-02-14 18:16:32Z druzus $
+rem $Id$
 rem 
 
 if "%1" =="/OS2" goto OS2

@@ -1,5 +1,5 @@
 /*
- * $Id: hbtoken.c 9989 2014-04-04 21:23:19Z enricomaria $
+ * $Id$
  */
 
 /*

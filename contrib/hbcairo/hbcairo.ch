@@ -1,5 +1,5 @@
 /*
- * $Id: hbcairo.ch 9476 2012-06-21 09:26:17Z andijahja $
+ * $Id$
  */
 
 /*

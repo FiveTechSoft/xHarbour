@@ -1,5 +1,5 @@
 /* PDFlib GmbH cvsid:
- * $Id: tif_jpeg.c 10075 2014-12-16 19:10:54Z zsaulius $
+ * $Id$
  */
 
 /*

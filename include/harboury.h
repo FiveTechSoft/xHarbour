@@ -1,5 +1,5 @@
 /*
- * $Id: harboury.h 10080 2014-12-23 19:28:23Z zsaulius $
+ * $Id$
  */
 
 /* A Bison parser, made by GNU Bison 3.0.2.  */

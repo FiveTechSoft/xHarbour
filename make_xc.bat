@@ -1,7 +1,7 @@
 @echo off
 rem ============================================================================
 rem
-rem $Id: make_xc.bat 9795 2012-10-31 21:02:30Z andijahja $
+rem $Id$
 rem
 rem FILE: make_xc.bat
 rem BATCH FILE FOR XCC

@@ -1,5 +1,5 @@
 ; -----------------------------------------------------------------------------
-; $Id: export.def 9830 2012-11-20 03:13:35Z andijahja $
+; $Id$
 ; Functions to be exported from EXE when creating EXE pCode programs
 ; See tests: pdllvc.bat, pexec.prg, pcode.prg and pcode1.prg for samples
 ; -----------------------------------------------------------------------------

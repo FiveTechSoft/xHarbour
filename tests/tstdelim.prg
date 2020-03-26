@@ -1,4 +1,4 @@
-* $Id: tstdelim.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * test program for append from cTextFile delimited
 *

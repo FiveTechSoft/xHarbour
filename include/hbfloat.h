@@ -1,5 +1,5 @@
 /*
- * $Id: hbfloat.h 10223 2018-03-11 20:12:17Z enricomaria $
+ * $Id$
  */
 
 /*

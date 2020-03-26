@@ -1,5 +1,5 @@
 /*
- * $Id: tstspliturl.prg 9491 2012-06-23 22:55:41Z andijahja $
+ * $Id$
  */
 
 PROCEDURE Main()

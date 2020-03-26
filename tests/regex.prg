@@ -1,5 +1,5 @@
 * regex.prg
-* $Id: regex.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for regular expression functions
 *
 * Giancarlo Niccolai

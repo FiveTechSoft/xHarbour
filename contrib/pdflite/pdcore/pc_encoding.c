@@ -10,7 +10,7 @@
  |                                                                           |
  *---------------------------------------------------------------------------*/
 
-/* $Id: pc_encoding.c 9529 2012-07-08 07:09:28Z andijahja $
+/* $Id$
  *
  * PDFlib in-core encodings and basic encoding functions
  *

@@ -1,5 +1,5 @@
 //
-// $Id: and_or.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 // Testing Harbour AND OR operators

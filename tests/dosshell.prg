@@ -1,6 +1,6 @@
 //NOTEST             // It is very frustrating if this one is auto-tested
 //
-// $Id: dosshell.prg 9279 2011-02-14 18:06:32Z druzus $
+// $Id$
 //
 
 //

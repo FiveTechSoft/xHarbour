@@ -1,5 +1,5 @@
 /*
- * $Id: c_test.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  *
  * Test program for unicode support
  */

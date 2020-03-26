@@ -1,5 +1,5 @@
 /*
-  $Id: tiffconf.h 9530 2012-07-09 16:31:56Z andijahja $
+  $Id$
   Configuration defines for installed libtiff.
   This file maintained for backward compatibility. Do not use definitions
   from this file in your programs.

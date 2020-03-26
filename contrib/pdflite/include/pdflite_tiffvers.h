@@ -1,4 +1,4 @@
-/* PDFlib GmbH cvsid: $Id: pdflite_tiffvers.h 9644 2012-08-11 05:55:52Z andijahja $ */
+/* PDFlib GmbH cvsid: $Id$ */
 
 #define TIFFLIB_VERSION_STR "LIBTIFF, Version 3.7.4\nCopyright (c) 1988-1996\
 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc."

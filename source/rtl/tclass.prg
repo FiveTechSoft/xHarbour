@@ -1,5 +1,5 @@
 /*
- * $Id: tclass.prg 9946 2013-05-07 10:24:02Z zsaulius $
+ * $Id$
  */
 
 /*

@@ -1,5 +1,5 @@
 /*
- * $Id: test01.prg 9578 2012-07-17 17:51:51Z andijahja $
+ * $Id$
  */
 /*
   test1.prg

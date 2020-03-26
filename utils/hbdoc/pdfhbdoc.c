@@ -1,5 +1,5 @@
 /*
- * $Id: pdfhbdoc.c 9747 2012-10-13 00:13:02Z andijahja $
+ * $Id$
  */
 
 /*

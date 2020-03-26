@@ -1,5 +1,5 @@
 /*
- * $Id: unzip.h 9668 2012-08-24 21:01:09Z andijahja $
+ * $Id$
  */
 
 /* unzip.h -- IO for uncompress .zip files using zlib

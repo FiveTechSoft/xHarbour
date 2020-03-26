@@ -1,7 +1,7 @@
 	@echo off
 rem ============================================================================
 rem
-rem $Id: make_vc.bat 10196 2017-07-25 06:44:41Z ronpinkas $
+rem $Id$
 rem
 rem FILE: make_vc.bat
 rem BATCH FILE FOR MSVC

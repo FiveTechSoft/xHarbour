@@ -1,6 +1,6 @@
 rem @echo off
 rem
-rem $Id: bld_vc.bat 10224 2018-03-13 19:11:04Z patrickmast $
+rem $Id$
 rem
 
 rem ---------------------------------------------------------------

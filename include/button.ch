@@ -1,5 +1,5 @@
 /*
- * $Id: button.ch 10005 2014-07-06 18:16:26Z enricomaria $
+ * $Id$
  */
 
 /*

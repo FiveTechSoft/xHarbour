@@ -3,7 +3,7 @@
 *
 * (C) 2003 Giancarlo Niccolai & Ron Pinkas
 *
-* $Id: crypt.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 *
 * Cryptography usin NXS algorithm.
 * 

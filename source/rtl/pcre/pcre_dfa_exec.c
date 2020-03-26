@@ -1,5 +1,5 @@
 /*
- * $Id: pcre_dfa_exec.c 9952 2013-05-07 11:03:58Z zsaulius $
+ * $Id$
  */
 /*************************************************
 *      Perl-Compatible Regular Expressions       *

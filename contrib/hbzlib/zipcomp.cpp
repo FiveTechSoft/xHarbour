@@ -1,5 +1,5 @@
 /*
- * $Id: zipcomp.cpp 9685 2012-09-16 05:42:35Z andijahja $
+ * $Id$
  */
 
 /*

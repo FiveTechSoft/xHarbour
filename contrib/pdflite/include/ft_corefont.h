@@ -10,7 +10,7 @@
  |                                                                           |
  *---------------------------------------------------------------------------*/
 
-/* $Id: ft_corefont.h 9529 2012-07-08 07:09:28Z andijahja $
+/* $Id$
  *
  * This file contains the metric for the base and
  * pre-installed CID fonts of PDF

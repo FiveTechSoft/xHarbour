@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: inputmask.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    This is an "input" mask. It has a grid, an Ok and a Cancel button.
    When the OK button is pressed, the variables are automagically updated,

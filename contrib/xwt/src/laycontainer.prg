@@ -3,7 +3,7 @@
 
    (C) 2003 Giancarlo Niccolai
 
-   $Id: laycontainer.prg 9279 2011-02-14 18:06:32Z druzus $
+   $Id$
 
    Layer container class is an "abstract class that should be
    used to create leaf container classes.

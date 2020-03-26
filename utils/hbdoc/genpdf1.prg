@@ -1,5 +1,5 @@
 /*
- * $Id: genpdf1.prg 10068 2014-12-10 21:40:36Z enricomaria $
+ * $Id$
  */
 
 /*

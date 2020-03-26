@@ -1,5 +1,5 @@
 /*
- * $Id: cgifunc.prg 9490 2012-06-23 22:43:02Z andijahja $
+ * $Id$
  */
 
 /*

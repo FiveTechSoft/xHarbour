@@ -1,5 +1,5 @@
 /*
- * $Id: wutil.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  * WUTIL.PRG
  * A simple interface (middle module) between application and GTWVW.
  * This is a greatly simplified version of CSASOFT's WVWUTIL.PRG.

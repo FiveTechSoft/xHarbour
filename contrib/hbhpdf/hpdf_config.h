@@ -1,5 +1,5 @@
 /*
- * $Id: hpdf_config.h 9553 2012-07-11 23:15:01Z andijahja $
+ * $Id$
  */
 #ifndef _INCLUDE_HPDF_CONFIG_H
 #define _INCLUDE_HPDF_CONFIG_H 1

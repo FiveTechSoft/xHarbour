@@ -1,5 +1,5 @@
 /*
- * $Id: digest.prg 9892 2012-12-24 20:48:13Z andijahja $
+ * $Id$
  */
 
 /*

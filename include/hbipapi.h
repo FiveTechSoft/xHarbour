@@ -1,4 +1,4 @@
-/*  $Id: hbipapi.h 10049 2014-11-24 23:21:26Z lculik $  */
+/*  $Id$  */
 
 /*
  * Harbour Project source code:

@@ -1,5 +1,5 @@
 /*
- * $Id: mathx.c 9598 2012-07-26 23:30:29Z andijahja $
+ * $Id$
  */
 
 #include <math.h>

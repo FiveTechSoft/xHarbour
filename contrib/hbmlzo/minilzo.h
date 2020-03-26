@@ -1,5 +1,5 @@
 /*
- * $Id: minilzo.h 9484 2012-06-22 05:59:16Z andijahja $
+ * $Id$
  */
 /* minilzo.h -- mini subset of the LZO real-time data compression library
 

@@ -1,5 +1,5 @@
 /*
- * $Id: gtQTc.cpp 9725 2012-10-02 10:56:51Z andijahja $
+ * $Id$
  */
 
 /*

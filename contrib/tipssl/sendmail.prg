@@ -1,5 +1,5 @@
 /*
- * $Id: sendmail.prg 10190 2017-02-28 10:08:33Z enricomaria $
+ * $Id$
  */
 
 /*

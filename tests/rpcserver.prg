@@ -1,6 +1,6 @@
 ************************************************************
 * rpcserver.prg
-* $Id: rpcserver.prg 9279 2011-02-14 18:06:32Z druzus $
+* $Id$
 * Test for tRpcServer and tRpcFunction class
 *
 * YOU NEED THREADS TO RUN THIS

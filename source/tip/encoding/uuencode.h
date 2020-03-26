@@ -1,5 +1,5 @@
 /*
- * $Id: uuencode.h 9442 2012-03-18 22:54:25Z andijahja $
+ * $Id$
  */
 
 #ifndef _uuencode_h_

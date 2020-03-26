@@ -1,5 +1,5 @@
 /*
- * $Id: hbcclic.txt 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 HBCC lib sources are intended to be used absolutely free in [x]Harbour

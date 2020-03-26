@@ -1,5 +1,5 @@
 /*
- * $Id: cstruct.h 9791 2012-10-31 11:34:30Z andijahja $
+ * $Id$
  */
 
 /*

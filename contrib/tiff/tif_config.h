@@ -1,4 +1,4 @@
-/* $Id: tif_config.h 9741 2012-10-11 23:10:30Z andijahja $
+/* $Id$
    For Creating DLL
 */
 

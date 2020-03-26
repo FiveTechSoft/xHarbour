@@ -1,5 +1,5 @@
 /*
- * $Id: sxcompat.prg 10061 2014-12-04 13:19:41Z zsaulius $
+ * $Id$
  */
 
 /*

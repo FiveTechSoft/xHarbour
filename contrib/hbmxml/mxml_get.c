@@ -1,5 +1,5 @@
 /*
- * "$Id: mxml_get.c 9798 2012-11-04 05:04:53Z andijahja $"
+ * "$Id$"
  *
  * Node get functions for Mini-XML, a small XML-like file parsing library.
  *
@@ -472,5 +472,5 @@ mxmlGetUserData(mxml_node_t *node)	/* I - Node to get */
 
 
 /*
- * End of "$Id: mxml_get.c 9798 2012-11-04 05:04:53Z andijahja $".
+ * End of "$Id$".
  */

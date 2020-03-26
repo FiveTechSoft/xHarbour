@@ -1,5 +1,5 @@
 /*
- * $Id: testprof.prg 9279 2011-02-14 18:06:32Z druzus $
+ * $Id$
  */
 
 /* Test code for the harbour profiler API and the profile reporting classes */
